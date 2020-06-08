@@ -1,0 +1,25 @@
+NOAA page: https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT/snow-depth/20200511
+JSON endpoint: https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202005.json
+
+
+Mansfield Current: https://forecast.weather.gov/product.php?site=BTV&issuedby=BTV&product=HYD&format=CI&version=1&glossary=0
+Gap here?
+Mansfield Historical: https://waw.w3.uvm.edu//skivt-l/?Page=mansel.php
+
+Rutland
+
+South Lincoln
+
+Jeffersonville
+
+Johnson
+
+Middletown Springs
+
+BTV Airport
+
+Rochester
+
+Sutton
+
+More..? Need to have daily reports that are publsihed
