@@ -4,7 +4,19 @@ import LineChart from './LineChart';
 const SidePanel = () => {
 
     // Set url for api request
-    const api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json";
+    // const nov_api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201911.json";
+    // const dec_api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json";
+
+    const urls = [
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201911.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202001.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202002.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202003.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202004.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202005.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202006.json',
+    ]
 
     //useState to set state and functions for changing state
     const [hasError, setError] = useState(false);
@@ -22,44 +34,80 @@ const SidePanel = () => {
         // Set up abort controller for clean up https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
         const abortController = new AbortController();
 
-        const fetchData = async () => {
+        // Build urls
+        const buildUrls = (year) => {
+            const nextyear = year + 1
+            const url_array = [
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '11.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '12.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '01.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '02.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '03.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '04.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '05.json'
+            ]
 
-            const res = await fetch(api_url, { signal: abortController.signal });
-            res
-                .json()
-                .then(res => {
+            return url_array
+        }
 
-                    // Grab the mansfield data
-                    const mansfield = res.data.USC00435416
+        console.log(buildUrls(2019))
+
+        // https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
+        const asyncForEach = async(array, callback) => {
+            for (let index = 0; index < array.length; index++) {
+              await callback(array[index], index, array);
+            }
+          }
+
+        const fetchData = async (site) => {
+
+            // I want all the api calls to happen in parallel
+            // I could write a generic function and then pass an array of urls
+            // Goal is to append a single list
+            const urls = buildUrls(2019)
+
+            let processed_data = []
+
+            // Needs to be async so we can use await within and we need to use
+            // asyncForEach
+            const urlsForEach = async() => {
+                await asyncForEach(urls, async (url) => {
+                    const month_res = await fetch(url, { signal: abortController.signal });
+                    const month_data = await month_res.json()
+                    // site comes from function parameter
+                    const mans_month_data = month_data.data[site]
+                    console.log('mmd', mans_month_data)
+    
                     // get starting date
-                    const year = mansfield.date.substring(0, 4);
-                    const month = '0' + (parseInt(mansfield.date.substring(4, 6)) - 1).toString()
-
-                    let d3_data = []
-                    console.log(Object.entries(mansfield.values))
-
-                    for (const [day, depth] of Object.entries(mansfield.values)) {
+                    const year = mans_month_data.date.substring(0, 4);
+                    const month = '0' + (parseInt(mans_month_data.date.substring(4, 6)) - 1).toString()
+    
+                    for (const [day, depth] of Object.entries(mans_month_data.values)) {
                         let row = {
                             'date': new Date(year, month, day),
                             'depth': depth
                         }
-
-                        d3_data.push(row)
+    
+                        processed_data.push(row)
                     }
+                });
+            }
 
-                    // Loop through items in array and fill in missing values
-                    for (const [i, { date, depth }] of d3_data.entries()) {
-                        if (depth === 'M') {
-                            d3_data[i].depth = d3_data[i - 1].depth
-                        }
-                    }
+            // need to await for all promises to resolve
+            await urlsForEach();
 
-                    setsnowdepths(d3_data)
-                })
-                .catch(err => setError(err));
-        };
+            // Fill in missing values
+            for (const [i, { date, depth }] of processed_data.entries()) {
+                if (depth === 'M') {
+                    processed_data[i].depth = processed_data[i - 1].depth
+                }
+            }
 
-        fetchData();
+            console.log(processed_data)
+            setsnowdepths(processed_data)
+        }
+
+        fetchData('USC00435416');
 
         // Clean up
         return () => {

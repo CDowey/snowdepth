@@ -14,7 +14,7 @@ const processDatesDepths = (dataObj) => {
     depths.push(depth)
   });
 
-  return {dates, depths}
+  return { dates, depths }
 }
 
 // Set default globally chart.js styles https://blog.bitsrc.io/customizing-chart-js-in-react-2199fa81530a
@@ -38,7 +38,8 @@ class LineChart extends Component {
             backgroundColor: 'rgba(100,60,180, 0.6)',
             borderColor: 'rgba(27,27,27,.95)',
             pointRadius: 0,
-            lineTension: 0,
+            lineTension: 0.2,
+            borderWidth: 1,
             fill: false
           }
         ]
@@ -49,14 +50,14 @@ class LineChart extends Component {
 
   componentDidMount() {
     console.log(this.chartReference); // returns a Chart.js instance reference
-    const {dates, depths} = processDatesDepths(this.props.data)
+    const { dates, depths } = processDatesDepths(this.props.data)
     console.log(dates, depths)
     // Set State to include the data from props
     this.setState(prevState => ({
       ChartData: {
         ...prevState.ChartData,
         labels: dates,
-        datasets:[
+        datasets: [
           {
             label: 'Snow Depth',
             data: depths,
@@ -83,7 +84,19 @@ class LineChart extends Component {
       legend: {
         display: true,
         position: 'right'
-      }
+      },
+      scales: {
+        xAxes: [{
+            gridLines: {
+                drawOnChartArea: false
+            }
+        }],
+        yAxes: [{
+            gridLines: {
+                drawOnChartArea: false
+            }
+        }]
+    }
     }
 
 
