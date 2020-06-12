@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { defaults, Line } from 'react-chartjs-2'
 
 
-var options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+var options = { month: 'short', day: 'numeric' };
 
 const processDatesDepths = (dataObj) => {
   const dates = []
@@ -30,15 +30,15 @@ class LineChart extends Component {
     super(props);
     this.state = {
       ChartData: {
-        labels: [1, 2, 3],
+        labels: [],
         datasets: [
           {
             label: 'Snow Depth',
-            data: [4, 5, 6],
+            data: [],
             backgroundColor: 'rgba(100,60,180, 0.6)',
             borderColor: 'rgba(27,27,27,.95)',
             pointRadius: 0,
-            lineTension: 0.2,
+            lineTension: 0.5,
             borderWidth: 1,
             fill: false
           }
@@ -48,29 +48,32 @@ class LineChart extends Component {
     this.chartReference = React.createRef();
   };
 
-  componentDidMount() {
-    console.log(this.chartReference); // returns a Chart.js instance reference
-    const { dates, depths } = processDatesDepths(this.props.data)
-    console.log(dates, depths)
-    // Set State to include the data from props
-    this.setState(prevState => ({
-      ChartData: {
-        ...prevState.ChartData,
-        labels: dates,
-        datasets: [
-          {
-            label: 'Snow Depth',
-            data: depths,
-            backgroundColor: 'rgba(100,60,180, 0.6)'
-          }
-        ]
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      console.log(this.chartReference); // returns a Chart.js instance reference
+      const { dates, depths } = processDatesDepths(this.props.data)
+      console.log(dates, depths)
+      // Set State to include the data from props
+      this.setState(prevState => ({
+        ChartData: {
+          ...prevState.ChartData,
+          labels: dates,
+          datasets: [
+            {
+              label: 'Snow Depth',
+              data: depths,
+              backgroundColor: 'rgba(27,27,27, 0.6)'
+            }
+          ]
 
-      }
-    })
+        }
+      })
 
-    )
-
+      )
+    }
   }
+
+
 
   render() {
 
@@ -79,7 +82,7 @@ class LineChart extends Component {
       title: {
         display: true,
         text: 'Snow depths',
-        fontSize: 25
+        fontSize: 12
       },
       legend: {
         display: true,
@@ -87,15 +90,36 @@ class LineChart extends Component {
       },
       scales: {
         xAxes: [{
-            gridLines: {
-                drawOnChartArea: false
-            }
+          gridLines: {
+            drawOnChartArea: false
+          },
+          ticks: {
+            maxTicksLimit: 20
+          }
         }],
         yAxes: [{
-            gridLines: {
-                drawOnChartArea: false
-            }
+          scaleLabel: {
+            display: true,
+            labelString: 'Inches'
+          },
+          gridLines: {
+            drawOnChartArea: false
+          }
         }]
+      },
+      tooltips: {
+        callbacks: {
+            label: function(tooltipItem, data) {
+                var label = data.datasets[tooltipItem.datasetIndex].label + ':';
+
+                // if (label) {
+                //     label += label;
+                // }
+                label += ' ' + tooltipItem.yLabel + ' in'
+
+                return label;
+            }
+        }
     }
     }
 

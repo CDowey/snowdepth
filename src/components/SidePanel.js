@@ -38,6 +38,7 @@ const SidePanel = () => {
         const buildUrls = (year) => {
             const nextyear = year + 1
             const url_array = [
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '10.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '11.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '12.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '01.json',
@@ -59,12 +60,12 @@ const SidePanel = () => {
             }
           }
 
-        const fetchData = async (site) => {
+        const fetchData = async (site, year) => {
 
             // I want all the api calls to happen in parallel
             // I could write a generic function and then pass an array of urls
             // Goal is to append a single list
-            const urls = buildUrls(2019)
+            const urls = buildUrls(year)
 
             let processed_data = []
 
@@ -107,7 +108,7 @@ const SidePanel = () => {
             setsnowdepths(processed_data)
         }
 
-        fetchData('USC00435416');
+        fetchData('USC00435416', 2017);
 
         // Clean up
         return () => {
@@ -118,10 +119,11 @@ const SidePanel = () => {
     return (
         <div>
             {/* Use this conditional statement to change what is return based on isLoading */}
-            {isLoading
+            {/* {isLoading
                 ? 'loading'
                 : <LineChart data={snowdepths} />
-            }
+            } */}
+            <LineChart data={snowdepths} />
 
         </div>
 
