@@ -38,7 +38,7 @@ class LineChart extends Component {
             backgroundColor: 'rgba(100,60,180, 0.6)',
             borderColor: 'rgba(27,27,27,.95)',
             pointRadius: 0,
-            lineTension: 0.5,
+            lineTension: 0.1,
             borderWidth: 1,
             fill: false
           }

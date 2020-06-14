@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import LineChart from './LineChart';
+import mansfieldHistoric from '../assets/MansfieldHistoric.json'
 
 const SidePanel = () => {
 
@@ -8,6 +9,8 @@ const SidePanel = () => {
     // const dec_api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json";
 
     const urls = [
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201909.json',
+        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201910.json',
         'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201911.json',
         'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json',
         'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202001.json',
@@ -21,6 +24,19 @@ const SidePanel = () => {
     //useState to set state and functions for changing state
     const [hasError, setError] = useState(false);
     const [snowdepths, setsnowdepths] = useState([]);
+
+    const historicsnowdepths = mansfieldHistoric
+
+    // Create array of dataset opbjects to pass to Line chart
+    const historicdatasets = []
+
+    // {
+    //     label: year,
+    //     data: depthsfor that year,
+    //     backgroundColor: 'rgba(27,27,27, 0.6)'
+    //   }
+
+    console.log('historic', historicsnowdepths)
 
     // Use this variable to determine if snowdepths has been updated
     // an indicator that the api response was resolved
