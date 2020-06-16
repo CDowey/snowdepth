@@ -1,31 +1,35 @@
 import React, { useState, useEffect } from 'react'
+import Moment from 'moment'
+import { extendMoment } from 'moment-range';
 import LineChart from './LineChart';
 import mansfieldHistoric from '../assets/MansfieldHistoric.json'
 
 const SidePanel = () => {
 
-    // Set url for api request
-    // const nov_api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201911.json";
-    // const dec_api_url = "https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json";
-
-    const urls = [
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201909.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201910.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201911.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-201912.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202001.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202002.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202003.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202004.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202005.json',
-        'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-202006.json',
-    ]
+    // Set up moment for dates
 
     //useState to set state and functions for changing state
     const [hasError, setError] = useState(false);
     const [snowdepths, setsnowdepths] = useState([]);
 
     const historicsnowdepths = mansfieldHistoric
+
+    // Create array of dates from Sept 1 to May 31st
+    // const getDates = (startDate, stopDate) => {
+    //     var dateArray = [];
+    //     var currentDate = moment(startDate);
+    //     var endDate = moment(stopDate);
+    //     while (currentDate <= endDate) {
+    //         dateArray.push( moment(currentDate).format('MM-DD') )
+    //         currentDate = moment(currentDate).add(1, 'days');
+    //     }
+    //     return dateArray;
+    // }
+
+    const getDaysArray = function (s, e) { for (var a = [], d = new Date(s); d <= e; d.setDate(d.getDate() + 1)) { a.push(new Date(d)); } return a; };
+
+
+
 
     // Create array of dataset opbjects to pass to Line chart
     const historicdatasets = []
@@ -50,10 +54,23 @@ const SidePanel = () => {
         // Set up abort controller for clean up https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
         const abortController = new AbortController();
 
+        const moment = extendMoment(Moment);
+        const [startDate, endDate] = ['2019-09-01', '2020-05-31']
+
+        const range = moment().range(startDate, endDate) /*can handle leap year*/
+        const dateArray = []
+        Array.from(range.by("days")).map(m => {
+            dateArray.push(m.format("MMM Do"))
+        });; 
+
+        // Need to figure out how to handle Feb 29
+        // On non-leap year just assign it the value of Feb 28
+
         // Build urls
         const buildUrls = (year) => {
             const nextyear = year + 1
             const url_array = [
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '09.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '10.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '11.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + year.toString() + '12.json',
@@ -70,11 +87,11 @@ const SidePanel = () => {
         console.log(buildUrls(2019))
 
         // https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
-        const asyncForEach = async(array, callback) => {
+        const asyncForEach = async (array, callback) => {
             for (let index = 0; index < array.length; index++) {
-              await callback(array[index], index, array);
+                await callback(array[index], index, array);
             }
-          }
+        }
 
         const fetchData = async (site, year) => {
 
@@ -87,24 +104,24 @@ const SidePanel = () => {
 
             // Needs to be async so we can use await within and we need to use
             // asyncForEach
-            const urlsForEach = async() => {
+            const urlsForEach = async () => {
                 await asyncForEach(urls, async (url) => {
                     const month_res = await fetch(url, { signal: abortController.signal });
                     const month_data = await month_res.json()
                     // site comes from function parameter
                     const mans_month_data = month_data.data[site]
                     console.log('mmd', mans_month_data)
-    
+
                     // get starting date
                     const year = mans_month_data.date.substring(0, 4);
                     const month = '0' + (parseInt(mans_month_data.date.substring(4, 6)) - 1).toString()
-    
+
                     for (const [day, depth] of Object.entries(mans_month_data.values)) {
                         let row = {
                             'date': new Date(year, month, day),
                             'depth': depth
                         }
-    
+
                         processed_data.push(row)
                     }
                 });
@@ -120,7 +137,7 @@ const SidePanel = () => {
                 }
             }
 
-            console.log(processed_data)
+            console.log(processed_data.length)
             setsnowdepths(processed_data)
         }
 
