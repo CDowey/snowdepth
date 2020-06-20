@@ -10,25 +10,11 @@ const SidePanel = () => {
 
     //useState to set state and functions for changing state
     const [hasError, setError] = useState(false);
-    const [data, setdata] = useState({dates:[], depths:[]});
+    const [data, setdata] = useState({ dates: [], depths: [] });
+    const [historicdata, setHistoricData] = useState([]);
     console.log('data', data)
 
     const historicsnowdepths = mansfieldHistoric
-
-    // Create array of dataset opbjects to pass to Line chart
-    const historicdatasets = []
-
-    // {
-    //     label: year,
-    //     data: depthsfor that year,
-    //     backgroundColor: 'rgba(27,27,27, 0.6)'
-    //   }
-
-    console.log('historic', historicsnowdepths)
-
-    // Use this variable to determine if snowdepths has been updated
-    // an indicator that the api response was resolved
-
 
     console.log('snowdepths', data.depths)
     console.log('dates', data.dates)
@@ -45,7 +31,42 @@ const SidePanel = () => {
         const dateArray = []
         Array.from(range.by("days")).map(m => {
             dateArray.push(m.format("MMM Do"))
-        });; 
+        });;
+
+        //
+        // Create array of dataset opbjects to pass to Line chart
+        // historicsnowdepths.forEach(item => {
+        //     console.log('item', item)
+        // })
+        const gatherHistoricData = () => {
+            const historicdatasets = []
+
+            for (let [key, value] of Object.entries(historicsnowdepths)) {
+
+                const dataset = {
+                    label: key,
+                    data: value,
+                    backgroundColor: 'rgba(27,27,27, 0.6)',
+                    borderColor: 'rgba(27,27,27, .15)',
+                    pointRadius: 0,
+                    lineTension: 0.5,
+                    borderWidth: 1,
+                    fill: false
+                }
+
+                if(key==='Average Season'){
+                    dataset['borderColor'] =  'rgba(230, 76, 76, 0.9)'
+                    dataset['borderWidth'] = 2
+                }
+                historicdatasets.push(dataset)
+            }
+            return historicdatasets
+        }
+
+        const gatheredhistoricdata = gatherHistoricData()
+        setHistoricData(gatheredhistoricdata)
+        console.log('historicdata state', historicdata)
+        //     setHistoricData(historicdata) this function to set the state neverworked...dunno why but the above does??
 
         // Need to figure out how to handle Feb 29
         // On non-leap year just assign it the value of Feb 28
@@ -67,8 +88,6 @@ const SidePanel = () => {
 
             return url_array
         }
-
-        console.log(buildUrls(2019))
 
         // https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
         const asyncForEach = async (array, callback) => {
@@ -98,12 +117,12 @@ const SidePanel = () => {
 
                     for (const [day, depth] of Object.entries(mans_month_data.values)) {
 
-                        if(depth !== 'M'){
+                        if (depth !== 'M') {
                             let value = parseFloat(depth)
                             processed_data.push(value)
 
                         }
-                        if(depth === 'M'){
+                        if (depth === 'M') {
                             let value = 'M'
                             processed_data.push(value)
                         }
@@ -116,16 +135,9 @@ const SidePanel = () => {
             await urlsForEach();
 
             // Fill in missing values with prior measurement
-            processed_data.forEach(function(item, i) { if (item == 'M') processed_data[i] = processed_data[i-1]; });
+            processed_data.forEach(function (item, i) { if (item == 'M') processed_data[i] = processed_data[i - 1]; });
 
-
-            // for (const [i, { depth }] of processed_data.entries()) {
-            //     if (depth === 'M') {
-            //         processed_data[i].depth = processed_data[i - 1].depth
-            //     }
-            // }
-
-            setdata({dates: dateArray, depths: processed_data})
+            setdata({ dates: dateArray, depths: processed_data })
         }
 
         fetchData('USC00435416', 2019);
@@ -143,8 +155,9 @@ const SidePanel = () => {
                 ? 'loading'
                 : <LineChart data={snowdepths} />
             } */}
-            <LineChart 
-            data= {data} />
+            <LineChart
+                historicdata={historicdata}
+                data={data} />
 
         </div>
 

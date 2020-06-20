@@ -18,7 +18,7 @@ class LineChart extends Component {
         labels: [],
         datasets: [
           {
-            label: 'Snow Depth',
+            label: '',
             data: [],
             backgroundColor: 'rgba(100,60,180, 0.6)',
             borderColor: 'rgba(27,27,27,.95)',
@@ -32,22 +32,36 @@ class LineChart extends Component {
     };
     this.chartReference = React.createRef();
   };
+  componentDidMount(){
+  //  this.setState()
+  }
 
   componentDidUpdate(prevProps) {
       if (prevProps.data.depths !== this.props.data.depths) {
         console.log('props data', this.props.data)
         const depths  = this.props.data.depths
-        console.log('props depths', depths)
+        const historicdata = this.props.historicdata
+        console.log('props historic depths', historicdata)
+
+        // Once the current year data is obtained append it to the historic datasets array
+        const all_years = this.props.historicdata.concat(
+          {
+            label: 'Current Season Snow Depth',
+            data: depths,
+            backgroundColor: 'rgba(100,60,180, 0.6)',
+            borderColor: 'rgba(77,87,213,.95)',
+            pointRadius: 0,
+            lineTension: 0.5,
+            borderWidth: 2,
+            fill: false
+          }
+        )
+
+
         this.setState(prevState => ({
           ChartData: {
             ...prevState.ChartData,
-            datasets: [
-              {
-                label: 'Snow Depth',
-                data: depths,
-                backgroundColor: 'rgba(27,27,27, 0.6)'
-              }
-            ]
+            datasets: all_years
 
           }
         }))
@@ -63,6 +77,23 @@ class LineChart extends Component {
           }
         }))
       }
+
+
+      // if (prevProps.historicdata !== this.props.historicdata) {
+      //   console.log('his data CHANGED', this.props.historicdata)
+      //   const dataset  = this.props.historicdata
+      //   const datasets = this.state.ChartData.datasets.concat(dataset)
+      //   const dates = this.props.data.dates
+
+      //   console.log('datasets hist', datasets)
+      //   this.setState(prevState => ({
+      //     ChartData: {
+      //       ...prevState.ChartData,
+      //       lables: dates,
+      //       datasets: datasets
+      //     }
+      //   }))
+      // };
     }
 
   
@@ -82,7 +113,7 @@ class LineChart extends Component {
         fontSize: 12
       },
       legend: {
-        display: true,
+        display: false,
         position: 'right'
       },
       scales: {
@@ -120,7 +151,6 @@ class LineChart extends Component {
       }
     }
     console.log('Chart Data', this.state.ChartData)
-
 
     return (
       <div className='Chart'>
