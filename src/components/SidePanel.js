@@ -10,26 +10,10 @@ const SidePanel = () => {
 
     //useState to set state and functions for changing state
     const [hasError, setError] = useState(false);
-    const [snowdepths, setsnowdepths] = useState([]);
+    const [data, setdata] = useState({dates:[], depths:[]});
+    console.log('data', data)
 
     const historicsnowdepths = mansfieldHistoric
-
-    // Create array of dates from Sept 1 to May 31st
-    // const getDates = (startDate, stopDate) => {
-    //     var dateArray = [];
-    //     var currentDate = moment(startDate);
-    //     var endDate = moment(stopDate);
-    //     while (currentDate <= endDate) {
-    //         dateArray.push( moment(currentDate).format('MM-DD') )
-    //         currentDate = moment(currentDate).add(1, 'days');
-    //     }
-    //     return dateArray;
-    // }
-
-    const getDaysArray = function (s, e) { for (var a = [], d = new Date(s); d <= e; d.setDate(d.getDate() + 1)) { a.push(new Date(d)); } return a; };
-
-
-
 
     // Create array of dataset opbjects to pass to Line chart
     const historicdatasets = []
@@ -44,10 +28,10 @@ const SidePanel = () => {
 
     // Use this variable to determine if snowdepths has been updated
     // an indicator that the api response was resolved
-    const isLoading = snowdepths.length === 0
-    console.log('isLoading', isLoading)
-    console.log('snowdepths', snowdepths)
 
+
+    console.log('snowdepths', data.depths)
+    console.log('dates', data.dates)
 
     // to use useEffect similar to ComponentDidMount pass second argument of an array 
     useEffect(() => {
@@ -112,13 +96,9 @@ const SidePanel = () => {
                     const mans_month_data = month_data.data[site]
                     console.log('mmd', mans_month_data)
 
-                    // get starting date
-                    const year = mans_month_data.date.substring(0, 4);
-                    const month = '0' + (parseInt(mans_month_data.date.substring(4, 6)) - 1).toString()
-
                     for (const [day, depth] of Object.entries(mans_month_data.values)) {
                         let row = {
-                            'date': new Date(year, month, day),
+              //              'date': new Date(year, month, day), //dates are produced independantly to help with leap years and more, should always have 274 values from sept1 to may30
                             'depth': depth
                         }
 
@@ -131,17 +111,16 @@ const SidePanel = () => {
             await urlsForEach();
 
             // Fill in missing values
-            for (const [i, { date, depth }] of processed_data.entries()) {
+            for (const [i, { depth }] of processed_data.entries()) {
                 if (depth === 'M') {
                     processed_data[i].depth = processed_data[i - 1].depth
                 }
             }
 
-            console.log(processed_data.length)
-            setsnowdepths(processed_data)
+            setdata({dates: dateArray, depths: processed_data})
         }
 
-        fetchData('USC00435416', 2017);
+        fetchData('USC00435416', 2019);
 
         // Clean up
         return () => {
@@ -156,7 +135,8 @@ const SidePanel = () => {
                 ? 'loading'
                 : <LineChart data={snowdepths} />
             } */}
-            <LineChart data={snowdepths} />
+            <LineChart 
+            data= {data} />
 
         </div>
 

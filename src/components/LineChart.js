@@ -2,21 +2,6 @@ import React, { Component } from 'react'
 import { defaults, Line } from 'react-chartjs-2'
 
 
-var options = { month: 'short', day: 'numeric' };
-
-const processDatesDepths = (dataObj) => {
-  const dates = []
-  const depths = []
-
-  dataObj.forEach(element => {
-    const { date, depth } = element
-    dates.push(date.toLocaleDateString("en-US", options))
-    depths.push(depth)
-  });
-
-  return { dates, depths }
-}
-
 // Set default globally chart.js styles https://blog.bitsrc.io/customizing-chart-js-in-react-2199fa81530a
 // defaults.global.elements.pointDot = false
 
@@ -49,29 +34,41 @@ class LineChart extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
-      console.log(this.chartReference); // returns a Chart.js instance reference
-      const { dates, depths } = processDatesDepths(this.props.data)
-      console.log(dates, depths)
-      // Set State to include the data from props
-      this.setState(prevState => ({
-        ChartData: {
-          ...prevState.ChartData,
-          labels: dates,
-          datasets: [
-            {
-              label: 'Snow Depth',
-              data: depths,
-              backgroundColor: 'rgba(27,27,27, 0.6)'
-            }
-          ]
+      if (prevProps.data.depths !== this.props.data.depths) {
+        console.log('props data', this.props.data)
+        const { depths } = this.props.data.depths
 
-        }
-      })
+        this.setState(prevState => ({
+          ChartData: {
+            ...prevState.ChartData,
+            datasets: [
+              {
+                label: 'Snow Depth',
+                data: depths,
+                backgroundColor: 'rgba(27,27,27, 0.6)'
+              }
+            ]
 
-      )
+          }
+        }))
+      };
+
+      if (prevProps.data.dates !== this.props.data.dates) {
+        const { dates } = this.props.data.dates
+
+        this.setState(prevState => ({
+          ChartData: {
+            ...prevState.ChartData,
+            labels: dates
+          }
+        }))
+      }
     }
-  }
+
+  
+
+
+
 
 
 
@@ -109,19 +106,20 @@ class LineChart extends Component {
       },
       tooltips: {
         callbacks: {
-            label: function(tooltipItem, data) {
-                var label = data.datasets[tooltipItem.datasetIndex].label + ':';
+          label: function (tooltipItem, data) {
+            var label = data.datasets[tooltipItem.datasetIndex].label + ':';
 
-                // if (label) {
-                //     label += label;
-                // }
-                label += ' ' + tooltipItem.yLabel + ' in'
+            // if (label) {
+            //     label += label;
+            // }
+            label += ' ' + tooltipItem.yLabel + ' in'
 
-                return label;
-            }
+            return label;
+          }
         }
+      }
     }
-    }
+    console.log('Chart Data', this.state.ChartData)
 
 
     return (
