@@ -36,8 +36,8 @@ class LineChart extends Component {
   componentDidUpdate(prevProps) {
       if (prevProps.data.depths !== this.props.data.depths) {
         console.log('props data', this.props.data)
-        const { depths } = this.props.data.depths
-
+        const depths  = this.props.data.depths
+        console.log('props depths', depths)
         this.setState(prevState => ({
           ChartData: {
             ...prevState.ChartData,
@@ -54,8 +54,8 @@ class LineChart extends Component {
       };
 
       if (prevProps.data.dates !== this.props.data.dates) {
-        const { dates } = this.props.data.dates
-
+        const dates = this.props.data.dates
+        console.log(dates)
         this.setState(prevState => ({
           ChartData: {
             ...prevState.ChartData,

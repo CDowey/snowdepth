@@ -97,12 +97,17 @@ const SidePanel = () => {
                     console.log('mmd', mans_month_data)
 
                     for (const [day, depth] of Object.entries(mans_month_data.values)) {
-                        let row = {
-              //              'date': new Date(year, month, day), //dates are produced independantly to help with leap years and more, should always have 274 values from sept1 to may30
-                            'depth': depth
+
+                        if(depth !== 'M'){
+                            let value = parseFloat(depth)
+                            processed_data.push(value)
+
+                        }
+                        if(depth === 'M'){
+                            let value = 'M'
+                            processed_data.push(value)
                         }
 
-                        processed_data.push(row)
                     }
                 });
             }
@@ -110,12 +115,15 @@ const SidePanel = () => {
             // need to await for all promises to resolve
             await urlsForEach();
 
-            // Fill in missing values
-            for (const [i, { depth }] of processed_data.entries()) {
-                if (depth === 'M') {
-                    processed_data[i].depth = processed_data[i - 1].depth
-                }
-            }
+            // Fill in missing values with prior measurement
+            processed_data.forEach(function(item, i) { if (item == 'M') processed_data[i] = processed_data[i-1]; });
+
+
+            // for (const [i, { depth }] of processed_data.entries()) {
+            //     if (depth === 'M') {
+            //         processed_data[i].depth = processed_data[i - 1].depth
+            //     }
+            // }
 
             setdata({dates: dateArray, depths: processed_data})
         }
