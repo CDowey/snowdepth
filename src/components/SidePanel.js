@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react'
 import Moment from 'moment'
 import { extendMoment } from 'moment-range';
 import LineChart from './LineChart';
-import mansfieldHistoric from '../assets/MansfieldHistoric.json'
+import NavPanel from './NavPanel';
+import mansfieldHistoric from '../assets/MansfieldHistoric.json';
 
 const SidePanel = () => {
 
     // Set up moment for dates
 
     //useState to set state and functions for changing state
- //   const [hasError, setError] = useState(false);
+    //   const [hasError, setError] = useState(false);
     const [data, setdata] = useState({ dates: [], depths: [] });
     const [historicdata, setHistoricData] = useState([]);
     console.log('data', data)
@@ -54,8 +55,8 @@ const SidePanel = () => {
                     fill: false
                 }
 
-                if(key==='Average Season'){
-                    dataset['borderColor'] =  'rgba(230, 76, 76, 0.9)'
+                if (key === 'Average Season') {
+                    dataset['borderColor'] = 'rgba(230, 76, 76, 0.9)'
                     dataset['borderWidth'] = 2
                 }
                 historicdatasets.push(dataset)
@@ -151,16 +152,18 @@ const SidePanel = () => {
     }, []);
 
     return (
-        <div className='ChartContainer'>
-            {/* Use this conditional statement to change what is return based on isLoading */}
-            {/* {isLoading
+        <div className='RightPanel'>
+            <div className='ChartContainer'>
+                {/* Use this conditional statement to change what is return based on isLoading */}
+                {/* {isLoading
                 ? 'loading'
                 : <LineChart data={snowdepths} />
             } */}
-            <LineChart className='LineChart'
-                historicdata={historicdata}
-                data={data} />
-
+                <LineChart className='LineChart'
+                    historicdata={historicdata}
+                    data={data} />
+            </div>
+            <NavPanel className='NavPanel'/>
         </div>
 
     );

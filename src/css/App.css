@@ -21,12 +21,19 @@
     padding: 20px 60px;
 }
 
+.RightPanel {
+    order: 1;
+    position: relative;
+    height: 80vh;
+    width: 800px;
+    display: flex;
+}
+
 .ChartContainer {
     order: 1;
     height: 60vh;
     width: 800px;
     display: flex;
-
 }
 
 .Chart {
@@ -62,4 +69,13 @@
     left: 350px;
     /* -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
+}
+
+.NavPanel{
+    position: absolute; 
+    bottom: 0px; 
+}
+
+.LearnMoreButton{
+    color: gray
 }
