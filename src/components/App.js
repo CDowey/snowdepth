@@ -1,14 +1,15 @@
 import React from 'react';
-import LeafletMap from './LeafletMap'
-import SidePanel from './SidePanel'
+import Header from './Header';
+import LeafletMap from './LeafletMap';
+import SidePanel from './SidePanel';
 import '../css/App.css';
 
 function App() {
   return (
     <div className="App">
+      <Header/>
       <div className='row1-container'>
-        {/* <LeafletMap className='leaflet-container' /> */}
-
+        <LeafletMap className='leaflet-container' />
         <SidePanel />
       </div>
     </div>

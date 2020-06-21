@@ -1,0 +1,686 @@
+{
+    "US1VTGI0003": {
+        "station_name": "ALBURGH 4.6 SSE",
+        "lat": "44.91",
+        "lon": "-73.27",
+        "state": "VT",
+        "county": "GRAND ISLE",
+        "elev": "100",
+        "date": "20200601"
+    },
+    "USC00430193": {
+        "station_name": "AVERILL",
+        "lat": "45.01",
+        "lon": "-71.69",
+        "state": "VT",
+        "county": "ESSEX",
+        "elev": "1699",
+        "date": "20200601"
+    },
+    "US1VTOL0002": {
+        "station_name": "BARTON 3.0 ENE",
+        "lat": "44.76",
+        "lon": "-72.12",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "1499",
+        "date": "20200601"
+    },
+    "US1VTWS0005": {
+        "station_name": "BERLIN 4.3 WNW",
+        "lat": "44.23",
+        "lon": "-72.66",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "851",
+        "date": "20200601"
+    },
+    "US1VTWH0029": {
+        "station_name": "BRATTLEBORO 0.7 S",
+        "lat": "42.84",
+        "lon": "-72.56",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "385",
+        "date": "20200601"
+    },
+    "USW00014742": {
+        "station_name": "BURLINGTON INTERNATIONAL AIRPORT",
+        "lat": "44.47",
+        "lon": "-73.15",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "330",
+        "date": "20200601"
+    },
+    "US1VTWS0023": {
+        "station_name": "CABOT 2.3 E",
+        "lat": "44.40",
+        "lon": "-72.27",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "2033",
+        "date": "20200601"
+    },
+    "US1VTWS0012": {
+        "station_name": "CABOT 3.9 ENE",
+        "lat": "44.42",
+        "lon": "-72.23",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1740",
+        "date": "20200601"
+    },
+    "US1VTCH0003": {
+        "station_name": "CHARLOTTE 2.9 NNE",
+        "lat": "44.35",
+        "lon": "-73.24",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "348",
+        "date": "20200601"
+    },
+    "USC00431565": {
+        "station_name": "CORINTH",
+        "lat": "44.01",
+        "lon": "-72.32",
+        "state": "VT",
+        "county": "ORANGE",
+        "elev": "1180",
+        "date": "20200601"
+    },
+    "US1VTCL0027": {
+        "station_name": "DANVILLE 0.4 N",
+        "lat": "44.42",
+        "lon": "-72.14",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1405",
+        "date": "20200601"
+    },
+    "US1VTCL0030": {
+        "station_name": "DANVILLE 2.2 NW",
+        "lat": "44.43",
+        "lon": "-72.17",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1849",
+        "date": "20200601"
+    },
+    "US1VTOL0005": {
+        "station_name": "DERBY CENTER 1.8 NW",
+        "lat": "44.97",
+        "lon": "-72.15",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "1155",
+        "date": "20200601"
+    },
+    "US1VTWS0036": {
+        "station_name": "DUXBURY 2.5 SW",
+        "lat": "44.31",
+        "lon": "-72.79",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1221",
+        "date": "20200601"
+    },
+    "US1VTWS0015": {
+        "station_name": "EAST CALAIS 1.5 SW",
+        "lat": "44.36",
+        "lon": "-72.46",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1055",
+        "date": "20200601"
+    },
+    "US1VTOL0011": {
+        "station_name": "EAST CRAFTSBURY 0.8 NE",
+        "lat": "44.65",
+        "lon": "-72.33",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "1463",
+        "date": "20200601"
+    },
+    "USC00432314": {
+        "station_name": "EAST HAVEN",
+        "lat": "44.64",
+        "lon": "-71.89",
+        "state": "VT",
+        "county": "ESSEX",
+        "elev": "1000",
+        "date": "20200601"
+    },
+    "USC00432773": {
+        "station_name": "ENOSBURG FALLS 2",
+        "lat": "44.91",
+        "lon": "-72.81",
+        "state": "VT",
+        "county": "FRANKLIN",
+        "elev": "425",
+        "date": "20200601"
+    },
+    "US1VTFR0021": {
+        "station_name": "FAIRFAX 4.9 WNW",
+        "lat": "44.69",
+        "lon": "-73.10",
+        "state": "VT",
+        "county": "FRANKLIN",
+        "elev": "502",
+        "date": "20200601"
+    },
+    "US1VTOL0009": {
+        "station_name": "GREENSBORO 2.1 NNW",
+        "lat": "44.61",
+        "lon": "-72.31",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "1496",
+        "date": "20200601"
+    },
+    "US1VTOL0012": {
+        "station_name": "GREENSBORO 3.9 NNE",
+        "lat": "44.63",
+        "lon": "-72.28",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "2036",
+        "date": "20200601"
+    },
+    "US1VTCL0003": {
+        "station_name": "GROTON 4.4 WSW",
+        "lat": "44.19",
+        "lon": "-72.28",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "770",
+        "date": "20200601"
+    },
+    "US1VTAD0020": {
+        "station_name": "HANCOCK 0.3 S",
+        "lat": "43.92",
+        "lon": "-72.84",
+        "state": "VT",
+        "county": "ADDISON",
+        "elev": "902",
+        "date": "20200601"
+    },
+    "US1VTWR0016": {
+        "station_name": "HARTLAND 1.6 NW",
+        "lat": "43.55",
+        "lon": "-72.42",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "649",
+        "date": "20200601"
+    },
+    "US1VTCH0015": {
+        "station_name": "HUNTINGTON 0.7 NNE",
+        "lat": "44.34",
+        "lon": "-72.98",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "711",
+        "date": "20200601"
+    },
+    "US1VTLM0007": {
+        "station_name": "HYDE PARK 2.9 NE",
+        "lat": "44.62",
+        "lon": "-72.57",
+        "state": "VT",
+        "county": "LAMOILLE",
+        "elev": "1032",
+        "date": "20200601"
+    },
+    "USC00434120": {
+        "station_name": "ISLAND POND",
+        "lat": "44.81",
+        "lon": "-71.89",
+        "state": "VT",
+        "county": "ESSEX",
+        "elev": "1200",
+        "date": "20200601"
+    },
+    "USC00434261": {
+        "station_name": "JEFFERSONVILLE",
+        "lat": "44.58",
+        "lon": "-72.79",
+        "state": "VT",
+        "county": "LAMOILLE",
+        "elev": "1163",
+        "date": "20200601"
+    },
+    "US1VTBN0003": {
+        "station_name": "LANDGROVE 1.1 NNE",
+        "lat": "43.29",
+        "lon": "-72.83",
+        "state": "VT",
+        "county": "BENNINGTON",
+        "elev": "1809",
+        "date": "20200601"
+    },
+    "US1VTWR0006": {
+        "station_name": "LUDLOW 3.4 S",
+        "lat": "43.35",
+        "lon": "-72.70",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "1727",
+        "date": "20200601"
+    },
+    "US1VTES0003": {
+        "station_name": "LUNENBURG 2.3 NNW",
+        "lat": "44.49",
+        "lon": "-71.70",
+        "state": "VT",
+        "county": "ESSEX",
+        "elev": "1472",
+        "date": "20200601"
+    },
+    "US1VTCL0014": {
+        "station_name": "LYNDONVILLE 1.1 W",
+        "lat": "44.54",
+        "lon": "-72.03",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1014",
+        "date": "20200601"
+    },
+    "US1VTBN0007": {
+        "station_name": "MANCHESTER 2.8 ENE",
+        "lat": "43.17",
+        "lon": "-73.02",
+        "state": "VT",
+        "county": "BENNINGTON",
+        "elev": "930",
+        "date": "20200601"
+    },
+    "US1VTAD0024": {
+        "station_name": "MIDDLEBURY 0.3 N",
+        "lat": "44.02",
+        "lon": "-73.17",
+        "state": "VT",
+        "county": "ADDISON",
+        "elev": "371",
+        "date": "20200601"
+    },
+    "US1VTWS0007": {
+        "station_name": "MIDDLESEX 3.1 ENE",
+        "lat": "44.32",
+        "lon": "-72.63",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1330",
+        "date": "20200601"
+    },
+    "US1VTWS0013": {
+        "station_name": "MIDDLESEX 6.9 NE",
+        "lat": "44.35",
+        "lon": "-72.56",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "745",
+        "date": "20200601"
+    },
+    "US1VTRT0024": {
+        "station_name": "MIDDLETOWN SPRINGS 0.9 WNW",
+        "lat": "43.49",
+        "lon": "-73.13",
+        "state": "VT",
+        "county": "RUTLAND",
+        "elev": "1132",
+        "date": "20200601"
+    },
+    "US1VTWS0034": {
+        "station_name": "MORETOWN 5.2 E",
+        "lat": "44.24",
+        "lon": "-72.66",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "743",
+        "date": "20200601"
+    },
+    "US1VTAD0019": {
+        "station_name": "NEW HAVEN 2.4 SE",
+        "lat": "44.10",
+        "lon": "-73.12",
+        "state": "VT",
+        "county": "ADDISON",
+        "elev": "497",
+        "date": "20200601"
+    },
+    "USC00435542": {
+        "station_name": "NEWPORT",
+        "lat": "44.95",
+        "lon": "-72.19",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "790",
+        "date": "20200601"
+    },
+    "USC00435768": {
+        "station_name": "NORTH HARTLAND LAKE",
+        "lat": "43.60",
+        "lon": "-72.36",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "570",
+        "date": "20200601"
+    },
+    "US1VTWS0037": {
+        "station_name": "NORTHFIELD 1.2 NNE",
+        "lat": "44.16",
+        "lon": "-72.65",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "799",
+        "date": "20200601"
+    },
+    "US1VTWS0010": {
+        "station_name": "NORTHFIELD 1.5 N",
+        "lat": "44.17",
+        "lon": "-72.65",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "672",
+        "date": "20200601"
+    },
+    "US1VTWR0004": {
+        "station_name": "NORWICH 1.6 NNE",
+        "lat": "43.73",
+        "lon": "-72.29",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "735",
+        "date": "20200601"
+    },
+    "USC00436335": {
+        "station_name": "PERU",
+        "lat": "43.26",
+        "lon": "-72.91",
+        "state": "VT",
+        "county": "BENNINGTON",
+        "elev": "1700",
+        "date": "20200601"
+    },
+    "USC00436391": {
+        "station_name": "PLAINFIELD",
+        "lat": "44.28",
+        "lon": "-72.42",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "800",
+        "date": "20200601"
+    },
+    "US1VTWR0002": {
+        "station_name": "POMFRET 2.6 N",
+        "lat": "43.74",
+        "lon": "-72.53",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "1585",
+        "date": "20200601"
+    },
+    "US1VTRT0023": {
+        "station_name": "POULTNEY 3.5 E",
+        "lat": "43.53",
+        "lon": "-73.17",
+        "state": "VT",
+        "county": "RUTLAND",
+        "elev": "761",
+        "date": "20200601"
+    },
+    "US1VTWH0025": {
+        "station_name": "PUTNEY 0.7 NE",
+        "lat": "42.98",
+        "lon": "-72.51",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "627",
+        "date": "20200601"
+    },
+    "US1VTWH0012": {
+        "station_name": "PUTNEY 2.0 WNW",
+        "lat": "43.00",
+        "lon": "-72.53",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "553",
+        "date": "20200601"
+    },
+    "US1VTOG0006": {
+        "station_name": "RANDOLPH 0.7 WNW",
+        "lat": "43.93",
+        "lon": "-72.68",
+        "state": "VT",
+        "county": "ORANGE",
+        "elev": "730",
+        "date": "20200601"
+    },
+    "US1VTCH0013": {
+        "station_name": "RICHMOND 3.4 SSE",
+        "lat": "44.36",
+        "lon": "-72.96",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "733",
+        "date": "20200601"
+    },
+    "US1VTWR0017": {
+        "station_name": "ROCHESTER 2.3 NE",
+        "lat": "43.89",
+        "lon": "-72.77",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "2025",
+        "date": "20200601"
+    },
+    "US1VTWH0017": {
+        "station_name": "ROCKINGHAM 1.1 NNE",
+        "lat": "43.20",
+        "lon": "-72.48",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "724",
+        "date": "20200601"
+    },
+    "USC00436995": {
+        "station_name": "RUTLAND",
+        "lat": "43.63",
+        "lon": "-72.98",
+        "state": "VT",
+        "county": "RUTLAND",
+        "elev": "620",
+        "date": "20200601"
+    },
+    "US1VTCL0023": {
+        "station_name": "RYEGATE 1.5 N",
+        "lat": "44.23",
+        "lon": "-72.11",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1206",
+        "date": "20200601"
+    },
+    "USC00437054": {
+        "station_name": "SAINT JOHNSBURY",
+        "lat": "44.42",
+        "lon": "-72.02",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "700",
+        "date": "20200601"
+    },
+    "USC00437612": {
+        "station_name": "SOUTH LINCOLN",
+        "lat": "44.07",
+        "lon": "-72.97",
+        "state": "VT",
+        "county": "ADDISON",
+        "elev": "1341",
+        "date": "20200601"
+    },
+    "US1VTCL0029": {
+        "station_name": "ST. JOHNSBURY 5.2 NNW",
+        "lat": "44.48",
+        "lon": "-72.07",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1027",
+        "date": "20200601"
+    },
+    "US1VTLM0001": {
+        "station_name": "STOWE 0.2 SW",
+        "lat": "44.46",
+        "lon": "-72.69",
+        "state": "VT",
+        "county": "LAMOILLE",
+        "elev": "732",
+        "date": "20200601"
+    },
+    "USC00438169": {
+        "station_name": "SUTTON",
+        "lat": "44.61",
+        "lon": "-72.05",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1500",
+        "date": "20200601"
+    },
+    "US1VTFR0019": {
+        "station_name": "SWANTON 0.5 NNE",
+        "lat": "44.93",
+        "lon": "-73.12",
+        "state": "VT",
+        "county": "FRANKLIN",
+        "elev": "140",
+        "date": "20200601"
+    },
+    "US1VTCH0004": {
+        "station_name": "UNDERHILL 4.4 NNE",
+        "lat": "44.59",
+        "lon": "-72.92",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "936",
+        "date": "20200601"
+    },
+    "US1VTCH0011": {
+        "station_name": "UNDERHILL 5.1 NNE",
+        "lat": "44.60",
+        "lon": "-72.92",
+        "state": "VT",
+        "county": "CHITTENDEN",
+        "elev": "909",
+        "date": "20200601"
+    },
+    "USC00438597": {
+        "station_name": "VERGENNES",
+        "lat": "44.17",
+        "lon": "-73.25",
+        "state": "VT",
+        "county": "ADDISON",
+        "elev": "196",
+        "date": "20200601"
+    },
+    "USC00438640": {
+        "station_name": "WAITSFIELD 2 SE",
+        "lat": "44.18",
+        "lon": "-72.80",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1142",
+        "date": "20200601"
+    },
+    "US1VTWS0033": {
+        "station_name": "WAITSFIELD 3.5 WNW",
+        "lat": "44.20",
+        "lon": "-72.89",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1087",
+        "date": "20200601"
+    },
+    "US1VTWS0019": {
+        "station_name": "WATERBURY 3.0 NW",
+        "lat": "44.36",
+        "lon": "-72.81",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "458",
+        "date": "20200601"
+    },
+    "US1VTWH0009": {
+        "station_name": "WEST HALIFAX 0.2 SE",
+        "lat": "42.79",
+        "lon": "-72.77",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "1151",
+        "date": "20200601"
+    },
+    "US1VTRT0013": {
+        "station_name": "WEST RUTLAND 0.9 SSE",
+        "lat": "43.58",
+        "lon": "-73.04",
+        "state": "VT",
+        "county": "RUTLAND",
+        "elev": "546",
+        "date": "20200601"
+    },
+    "US1VTWR0010": {
+        "station_name": "WEST WINDSOR 1.7 S",
+        "lat": "43.46",
+        "lon": "-72.49",
+        "state": "VT",
+        "county": "WINDSOR",
+        "elev": "739",
+        "date": "20200601"
+    },
+    "US1VTOL0001": {
+        "station_name": "WESTFIELD 0.7 WNW",
+        "lat": "44.89",
+        "lon": "-72.44",
+        "state": "VT",
+        "county": "ORLEANS",
+        "elev": "1069",
+        "date": "20200601"
+    },
+    "US1VTWH0026": {
+        "station_name": "WESTMINSTER 5.5 NW",
+        "lat": "43.13",
+        "lon": "-72.53",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "789",
+        "date": "20200601"
+    },
+    "US1VTCL0018": {
+        "station_name": "WHEELOCK 1.6 S",
+        "lat": "44.56",
+        "lon": "-72.09",
+        "state": "VT",
+        "county": "CALEDONIA",
+        "elev": "1159",
+        "date": "20200601"
+    },
+    "US1VTWH0016": {
+        "station_name": "WILMINGTON 0.6 WNW",
+        "lat": "42.87",
+        "lon": "-72.88",
+        "state": "VT",
+        "county": "WINDHAM",
+        "elev": "1498",
+        "date": "20200601"
+    },
+    "US1VTWS0030": {
+        "station_name": "WOODBURY 3.4 NNW",
+        "lat": "44.49",
+        "lon": "-72.43",
+        "state": "VT",
+        "county": "WASHINGTON",
+        "elev": "1624",
+        "date": "20200601"
+    }
+}

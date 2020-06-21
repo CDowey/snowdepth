@@ -9,7 +9,7 @@ const SidePanel = () => {
     // Set up moment for dates
 
     //useState to set state and functions for changing state
-    const [hasError, setError] = useState(false);
+ //   const [hasError, setError] = useState(false);
     const [data, setdata] = useState({ dates: [], depths: [] });
     const [historicdata, setHistoricData] = useState([]);
     console.log('data', data)
@@ -25,7 +25,7 @@ const SidePanel = () => {
         const abortController = new AbortController();
 
         const moment = extendMoment(Moment);
-        const [startDate, endDate] = ['2019-09-01', '2020-05-31']
+        const [startDate, endDate] = ['2019-09-01', '2020-06-30']
 
         const range = moment().range(startDate, endDate) /*can handle leap year*/
         const dateArray = []
@@ -83,7 +83,9 @@ const SidePanel = () => {
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '02.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '03.json',
                 'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '04.json',
-                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '05.json'
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '05.json',
+                'https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT-snow-depth-' + nextyear.toString() + '06.json'
+
             ]
 
             return url_array

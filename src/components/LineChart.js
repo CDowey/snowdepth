@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { defaults, Line } from 'react-chartjs-2'
-
+import Loader from 'react-loader-spinner'
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // Set default globally chart.js styles https://blog.bitsrc.io/customizing-chart-js-in-react-2199fa81530a
 // defaults.global.elements.pointDot = false
@@ -32,71 +33,57 @@ class LineChart extends Component {
     };
     this.chartReference = React.createRef();
   };
-  componentDidMount(){
-  //  this.setState()
+  componentDidMount() {
+    //  this.setState()
   }
 
   componentDidUpdate(prevProps) {
-      if (prevProps.data.depths !== this.props.data.depths) {
-        console.log('props data', this.props.data)
-        const depths  = this.props.data.depths
-        const historicdata = this.props.historicdata
-        console.log('props historic depths', historicdata)
-
-        // Once the current year data is obtained append it to the historic datasets array
-        const all_years = this.props.historicdata.concat(
-          {
-            label: 'Current Season Snow Depth',
-            data: depths,
-            backgroundColor: 'rgba(100,60,180, 0.6)',
-            borderColor: 'rgba(77,87,213,.95)',
-            pointRadius: 0,
-            lineTension: 0.5,
-            borderWidth: 2,
-            fill: false
-          }
-        )
+    if (prevProps.data.depths !== this.props.data.depths) {
+      console.log('props data', this.props.data)
+      const depths = this.props.data.depths
+      const historicdata = this.props.historicdata
+      console.log('props historic depths', historicdata)
+      console.log('labels', this.props.dates)
 
 
-        this.setState(prevState => ({
-          ChartData: {
-            ...prevState.ChartData,
-            datasets: all_years
-
-          }
-        }))
-      };
-
-      if (prevProps.data.dates !== this.props.data.dates) {
-        const dates = this.props.data.dates
-        console.log(dates)
-        this.setState(prevState => ({
-          ChartData: {
-            ...prevState.ChartData,
-            labels: dates
-          }
-        }))
-      }
+      // Once the current year data is obtained append it to the historic datasets array
+      const all_years = this.props.historicdata.concat(
+        {
+          label: 'Current Season Snow Depth',
+          data: depths,
+          backgroundColor: 'rgba(0, 72, 255, 0.05)',
+          borderColor: 'rgba(77,87,213,.95)',
+          pointRadius: 0,
+          pointHoverRadius: 5,
+          lineTension: 0.5,
+          borderWidth: 2,
+          fill: true
+        }
+      )
 
 
-      // if (prevProps.historicdata !== this.props.historicdata) {
-      //   console.log('his data CHANGED', this.props.historicdata)
-      //   const dataset  = this.props.historicdata
-      //   const datasets = this.state.ChartData.datasets.concat(dataset)
-      //   const dates = this.props.data.dates
+      this.setState(prevState => ({
+        ChartData: {
+          ...prevState.ChartData,
+          datasets: all_years
 
-      //   console.log('datasets hist', datasets)
-      //   this.setState(prevState => ({
-      //     ChartData: {
-      //       ...prevState.ChartData,
-      //       lables: dates,
-      //       datasets: datasets
-      //     }
-      //   }))
-      // };
+        }
+      }))
+    };
+
+    if (prevProps.data.dates !== this.props.data.dates) {
+      const dates = this.props.data.dates
+      console.log(dates)
+      this.setState(prevState => ({
+        ChartData: {
+          ...prevState.ChartData,
+          labels: dates
+        }
+      }))
     }
+  }
 
-  
+
 
 
 
@@ -121,8 +108,23 @@ class LineChart extends Component {
           gridLines: {
             drawOnChartArea: false
           },
+
           ticks: {
-            maxTicksLimit: 20
+           maxTicksLimit: 20,
+   //   stepsize: 30,
+            // callback: function (value, index, values) { /// HAven't quite figured out this callback, can adjust labels but only if they are placed...
+            //   const indicestokeep = [0, 32, 45] //ticks to labels conversion could also help here
+            //   const labelstokeep = ['Sep 1st', 'Oct 3rd']
+
+
+            //   if (!indicestokeep.includes(index)) {
+            //     value = null
+            //     return value
+            //   } else{
+            //     return value
+            //   }
+
+            // }
           }
         }],
         yAxes: [{
@@ -152,15 +154,34 @@ class LineChart extends Component {
     }
     console.log('Chart Data', this.state.ChartData)
 
+    const isLoading = this.props.data.depths.length === 0
+
     return (
       <div className='Chart'>
-        <Line
-          ref={this.chartReference}
-          data={this.state.ChartData}
-          height={400}
-          width={800}
-          options={options}
-        />
+        {/* Change what is rendered in the Chart div based on if the depths from current season have returned yet */}
+        {isLoading
+          ? <>
+            <div className='LoadingText'>
+              Counting Snowflakes
+            </div>
+            <Loader className='Loader'
+              type="Circles"
+              color="#DBDDDE"
+              height={80}
+              width={80}
+
+            />
+          </>
+          :
+          <Line
+            ref={this.chartReference}
+            data={this.state.ChartData}
+            height={400}
+            width={800}
+            options={options}
+          />
+        }
+
       </div>
     )
   }
