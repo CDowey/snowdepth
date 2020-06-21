@@ -151,13 +151,13 @@ const SidePanel = () => {
     }, []);
 
     return (
-        <div>
+        <div className='ChartContainer'>
             {/* Use this conditional statement to change what is return based on isLoading */}
             {/* {isLoading
                 ? 'loading'
                 : <LineChart data={snowdepths} />
             } */}
-            <LineChart
+            <LineChart className='LineChart'
                 historicdata={historicdata}
                 data={data} />
 

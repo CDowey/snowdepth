@@ -5,7 +5,7 @@ const Header = () => {
 
     return(
         <div className='Header'>
-           <h1>Vermont Current Season and Historic Snow Depths</h1> 
+           <h1 align='center'>Vermont Current Season and Historic Snow Depths</h1> 
         </div>
     )
 }

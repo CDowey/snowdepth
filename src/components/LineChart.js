@@ -94,8 +94,10 @@ class LineChart extends Component {
 
     // Set up Chart options
     const options = {
+      responsive: false,
+      maintainAspectRatio: false,
       title: {
-        display: true,
+        display: false,
         text: 'Snow depths',
         fontSize: 12
       },
@@ -110,8 +112,8 @@ class LineChart extends Component {
           },
 
           ticks: {
-           maxTicksLimit: 20,
-   //   stepsize: 30,
+            maxTicksLimit: 20,
+            //   stepsize: 30,
             // callback: function (value, index, values) { /// HAven't quite figured out this callback, can adjust labels but only if they are placed...
             //   const indicestokeep = [0, 32, 45] //ticks to labels conversion could also help here
             //   const labelstokeep = ['Sep 1st', 'Oct 3rd']
@@ -130,7 +132,7 @@ class LineChart extends Component {
         yAxes: [{
           scaleLabel: {
             display: true,
-            labelString: 'Inches'
+            labelString: 'Measured Depth (Inches)'
           },
           gridLines: {
             drawOnChartArea: false
@@ -160,18 +162,18 @@ class LineChart extends Component {
       <div className='Chart'>
         {/* Change what is rendered in the Chart div based on if the depths from current season have returned yet */}
         {isLoading
-          ? <>
-            <div className='LoadingText'>
-              Counting Snowflakes
-            </div>
-            <Loader className='Loader'
-              type="Circles"
-              color="#DBDDDE"
-              height={80}
-              width={80}
+          ? <div className='LoadingContainer'>
+              <div className='LoadingText'>
+                Gathering Snow Data
+              </div>
+              <Loader className='Loader'
+                type="Circles"
+                color="#DBDDDE"
+                height={80}
+                width={80}
 
-            />
-          </>
+              />
+          </ div>
           :
           <Line
             ref={this.chartReference}

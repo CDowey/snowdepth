@@ -1,39 +1,65 @@
 .row1-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    padding: 20px;
+    justify-content: space-between;
+    padding: 20px 60px;
     height: 100vh;
     background-color: white;
 }
 
 .leaflet-container{
-    height: 83vh;
+    height: 80vh;
     order: -1;
     flex-basis: 35%;
+    border-radius: 10px;
+}
+
+.sidePanel {
+    order: 2;
+    flex-basis: 60%;
+    display: flex;
+    padding: 20px 60px;
+}
+
+.ChartContainer {
+    order: 1;
+    height: 60vh;
+    width: 800px;
+    display: flex;
+
+}
+
+.Chart {
+    order: 1;
+    height: 60vh;
+    width: 800px;
+    display: flex;
 }
 
 
-.sidePanel {
-    /* width: 50px; */
-    order: 2;
-    flex-basis: 60%;
+.LoadingContainer{
+    order: 1;
+    width: 800px
 }
 
 .Loader {
     margin: 0;
-    position: absolute;
+    position: relative;
     top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    left: 400px;
+    /* top: 50%;
+    right: 50%; */
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .LoadingText{
     margin: 0;
-    position: absolute;
-    top: 35%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    padding: 10px;
+    position: relative;
+    color: gray;
+    top: 50%;
+    left: 350px;
+    /* -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
