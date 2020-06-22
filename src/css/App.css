@@ -6,9 +6,12 @@
     height: 100vh;
     background-color: white;
 }
+.Map-Container{
+    height: 80vh;
+}
 
 .leaflet-container{
-    height: 80vh;
+    height: 100%;
     order: -1;
     flex-basis: 35%;
     border-radius: 10px;
@@ -18,7 +21,7 @@
     order: 2;
     flex-basis: 60%;
     display: flex;
-    padding: 20px 60px;
+    padding: 20px 0px;
 }
 
 .RightPanel {
@@ -76,6 +79,21 @@
     bottom: 0px; 
 }
 
-.LearnMoreButton{
-    color: gray
+.card{
+    border: none
 }
+
+.card-header{
+    background-color: white;
+    border: none;
+}
+
+.accordion-toggle {
+    background-color: white;
+    border: none;
+    color: gray;
+}
+.nav-link.active{
+    background-color: gray;
+}
+    

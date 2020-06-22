@@ -1,8 +1,8 @@
+import '../css/App.css';
 import React from 'react';
 import Header from './Header';
 import LeafletMap from './LeafletMap';
 import SidePanel from './SidePanel';
-import '../css/App.css';
 
 function App() {
   return (
