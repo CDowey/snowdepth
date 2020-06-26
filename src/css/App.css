@@ -1,3 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap");
+
+
+
+.Header{
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.Header span{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: medium;
+    color: gray;
+padding: 20px;
+    align-content: left;
+}
+
 .row1-container {
     display: flex;
     flex-direction: row;
@@ -6,30 +22,36 @@
     height: 100vh;
     background-color: white;
 }
-.Map-Container{
+
+.Map-Container {
+    order: -1;
+    position: relative;
     height: 80vh;
+    flex-basis: 35%;
 }
 
-.leaflet-container{
-    height: 100%;
-    order: -1;
-    flex-basis: 35%;
+.leaflet-container {
+    height: 670px;
+    /* order: -1;
+    flex-basis: 35%; */
     border-radius: 10px;
 }
 
-.sidePanel {
+
+/* .sidePanel {
     order: 2;
     flex-basis: 60%;
     display: flex;
     padding: 20px 0px;
-}
+} */
 
 .RightPanel {
     order: 1;
     position: relative;
-    height: 80vh;
+    height: 93%;
     width: 800px;
     display: flex;
+    flex-direction: column;
 }
 
 .ChartContainer {
@@ -37,18 +59,18 @@
     height: 60vh;
     width: 800px;
     display: flex;
+    padding: 30px 0px 0px 0px;
 }
 
 .Chart {
     order: 1;
     height: 60vh;
     width: 800px;
-    display: flex;
 }
 
-
-.LoadingContainer{
+.LoadingContainer {
     order: 1;
+    height: 60vh;
     width: 800px
 }
 
@@ -63,7 +85,7 @@
     transform: translate(-50%, -50%); */
 }
 
-.LoadingText{
+.LoadingText {
     margin: 0;
     padding: 10px;
     position: relative;
@@ -74,18 +96,25 @@
     transform: translate(-50%, -50%); */
 }
 
-.NavPanel{
-    position: absolute; 
-    bottom: 0px; 
+.MapInfo {
+    order: 2;
+    padding: 0px 10px 0px 20px;
 }
 
-.card{
+.NavPanel {
+    order: 3;
+    position: absolute;
+    bottom: 0px;
+}
+
+.card {
     border: none
 }
 
-.card-header{
+.card-header {
     background-color: white;
     border: none;
+    padding: 10px 0px 0px 0px;
 }
 
 .accordion-toggle {
@@ -93,7 +122,7 @@
     border: none;
     color: gray;
 }
-.nav-link.active{
+
+.nav-link.active {
     background-color: gray;
 }
-    

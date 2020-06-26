@@ -35,6 +35,10 @@ const NavPanel = () => {
                 .nav-pills .nav-link{
                     color: gray;
                 }
+
+                .learnmoretext{
+                    font-size: small;
+                }
                 `}
             </style>
 

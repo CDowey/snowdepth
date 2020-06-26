@@ -3,6 +3,7 @@ import Moment from 'moment'
 import { extendMoment } from 'moment-range';
 import LineChart from './LineChart';
 import NavPanel from './NavPanel';
+import MapInfo from './MapInfo'
 import mansfieldHistoric from '../assets/MansfieldHistoric.json';
 
 const SidePanel = () => {
@@ -138,7 +139,7 @@ const SidePanel = () => {
             await urlsForEach();
 
             // Fill in missing values with prior measurement
-            processed_data.forEach(function (item, i) { if (item == 'M') processed_data[i] = processed_data[i - 1]; });
+            processed_data.forEach(function (item, i) { if (item === 'M') processed_data[i] = processed_data[i - 1]; });
 
             setdata({ dates: dateArray, depths: processed_data })
         }
@@ -163,6 +164,7 @@ const SidePanel = () => {
                     historicdata={historicdata}
                     data={data} />
             </div>
+            < MapInfo />
             <NavPanel className='NavPanel'/>
         </div>
 
