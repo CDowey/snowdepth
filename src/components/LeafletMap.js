@@ -15,7 +15,7 @@ const LeafletMap = () => {
         return {
             weight: 2,
             opacity: 1,
-            color: 'black',
+            color: 'grey',
             fillOpacity: 0
         };
 
@@ -63,7 +63,8 @@ const LeafletMap = () => {
             </div>
             <Map className='Map'
             center={[43.89, -72.5]}
-                zoom={8}
+            zoom={8}
+                zoomSnap={7.5} //ideally this could be adjusted based on screensize
                 maxZoom={9}
                 zoomControl={false}
                 attributionControl={false} > {
@@ -82,10 +83,10 @@ const LeafletMap = () => {
                     data={VT_Boundary}
                     style={bound_style}
                 />
-                <TileLayer
+                {/* <TileLayer
                     url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
                     attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
+                /> */}
 
             </Map>
         </div>
