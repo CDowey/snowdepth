@@ -153,19 +153,19 @@ const SidePanel = () => {
     }, []);
 
     return (
-        <div className='RightPanel'>
-            <div className='ChartContainer'>
+        <div className='rightPanel'>
+            {/* <div className='ChartContainer'>
                 {/* Use this conditional statement to change what is return based on isLoading */}
                 {/* {isLoading
                 ? 'loading'
                 : <LineChart data={snowdepths} />
             } */}
-                <LineChart className='LineChart'
+                {/* <LineChart className='LineChart'
                     historicdata={historicdata}
                     data={data} />
             </div>
             < MapInfo />
-            <NavPanel className='NavPanel'/>
+            <NavPanel className='NavPanel'/> */}
         </div>
 
     );

@@ -30,15 +30,15 @@ const LeafletMap = () => {
         setMarkers(locations)
 
         //Example url
-       // https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-year&dataTypes=DP01,DP05,DP10,DSND,DSNW,DT00,DT32,DX32,DX70,DX90,SNOW,PRCP&stations=ASN00084027&startDate=1952-01-01&endDate=1970-12-31&includeAttributes=true&format=json
-//        var url = new URL("https://geo.example.org/api"),
-//        params = {lat:35.696233, long:139.570431}
-//    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-//    fetch(url).then(...)
+        // https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-year&dataTypes=DP01,DP05,DP10,DSND,DSNW,DT00,DT32,DX32,DX70,DX90,SNOW,PRCP&stations=ASN00084027&startDate=1952-01-01&endDate=1970-12-31&includeAttributes=true&format=json
+        //        var url = new URL("https://geo.example.org/api"),
+        //        params = {lat:35.696233, long:139.570431}
+        //    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+        //    fetch(url).then(...)
 
 
         //API call to get the current snowdepth for all the stations
-        const getCurrentDepths = async() =>{
+        const getCurrentDepths = async () => {
 
         }
 
@@ -57,12 +57,12 @@ const LeafletMap = () => {
     // const isLoading = markerLocations.length === 0
 
     return (
-        <div className='MapContainer' >
-            <div className='MapHeader' >
-                Current Snowdepths.Click to see comparison with past seasons.
+        <div className='mapContainer' >
+            <div className='mapHeader' >
+                Last Reported Snow Depths - Select Marker to view comparison with past seasons.
             </div>
-            <Map center={
-                [43.89, -72.5]}
+            <Map className='Map'
+            center={[43.89, -72.5]}
                 zoom={8}
                 maxZoom={9}
                 zoomControl={false}
@@ -82,10 +82,11 @@ const LeafletMap = () => {
                     data={VT_Boundary}
                     style={bound_style}
                 />
-                {/* <TileLayer
+                <TileLayer
                     url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
-                    attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
-                     */}
+                    attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                />
+
             </Map>
         </div>
 

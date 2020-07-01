@@ -8,8 +8,8 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <div className='row1-container'>
-        <LeafletMap className='leaflet-container' />
+      <div className='rowContainer'>
+        <LeafletMap />
         <SidePanel />
       </div>
     </div>

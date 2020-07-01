@@ -1,55 +1,75 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap");
-
-
-
-.Header{
-    font-family: 'Source Sans Pro', sans-serif;
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* to avoid scrollbars */
 }
 
-.Header span{
+.App {
+    display: flex;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.Header {
+    font-family: 'Source Sans Pro', sans-serif;
+    height: 10%;
+    /* flex: 1; */
+}
+
+.Header span {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: medium;
     color: gray;
-padding: 20px;
+    padding: 20px;
     align-content: left;
 }
 
-.row1-container {
+.rowContainer {
+    flex: 1 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px 60px;
-    height: 100vh;
+    margin-bottom: 10px;
+    padding: 20px 20px;
     background-color: white;
 }
 
-.Map-Container {
-    order: -1;
-    position: relative;
-    height: 80vh;
-    flex-basis: 35%;
-}
-
-.leaflet-container {
-    height: 670px;
-    /* order: -1;
-    flex-basis: 35%; */
-    border-radius: 10px;
-}
-
-
-/* .sidePanel {
-    order: 2;
-    flex-basis: 60%;
+.mapContainer {
+    /* flex: 1 100%; */
+    /* min-width: 300px; */
+    /* order: 1; */
+    /* position: relative; */
+    /* height: 80vh; */
+    flex-grow: 1;
     display: flex;
-    padding: 20px 0px;
-} */
+    flex-direction: column;
+    /* flex-basis: 35%; */
+}
 
-.RightPanel {
-    order: 1;
-    position: relative;
-    height: 93%;
-    width: 800px;
+.mapHeader {
+    flex-grow: 1;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: x-small;
+    color: gray;
+    /* padding: 20px; */
+    align-content: left;
+}
+
+.Map {
+    flex-grow: 100;
+    width: 100px;
+}
+
+.rightPanel {
+    /* order: 1; */
+    flex-grow: 2;
+    /* position: relative;
+    height: 93%; */
+    /* width: 800px; */
     display: flex;
     flex-direction: column;
 }
