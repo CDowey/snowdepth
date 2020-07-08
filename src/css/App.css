@@ -47,6 +47,8 @@ html, body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    min-width: 300px;
+    max-width: fit-content;
     /* flex-basis: 35%; */
 }
 
@@ -65,7 +67,7 @@ html, body {
     background-color: white;
 }
 
-.rightPanel {
+.sidePanel {
     /* order: 1; */
     flex-grow: 2;
     /* position: relative;
@@ -75,19 +77,20 @@ html, body {
     flex-direction: column;
 }
 
-.ChartContainer {
+.chartContainer {
     order: 1;
-    height: 60vh;
-    width: 800px;
-    display: flex;
-    padding: 30px 0px 0px 0px;
+    /* height: 60vh; */
+    /* width: 800px; */
+    padding: 30px;
 }
 
-.Chart {
+
+
+/* .lineChart {
     order: 1;
     height: 60vh;
-    width: 800px;
-}
+    width: 400px;
+} */
 
 .LoadingContainer {
     order: 1;
@@ -126,6 +129,7 @@ html, body {
     order: 3;
     position: absolute;
     bottom: 0px;
+    padding: 10px 0px 20px 0px;
 }
 
 .card {

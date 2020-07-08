@@ -13,7 +13,7 @@ const LeafletMap = () => {
 
     const bound_style = () => {
         return {
-            weight: 2,
+            weight: 1,
             opacity: 1,
             color: 'grey',
             fillOpacity: 0
@@ -35,11 +35,19 @@ const LeafletMap = () => {
         //        params = {lat:35.696233, long:139.570431}
         //    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         //    fetch(url).then(...)
+        // https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation
+
+        const stations = [
+
+        ]
 
 
         //API call to get the current snowdepth for all the stations
         const getCurrentDepths = async () => {
+            // get station names from stations.json
 
+
+            
         }
 
     }, []);

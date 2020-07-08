@@ -15,7 +15,8 @@ const NavPanel = () => {
             <style type="text/css">
                 {`
                 .card{
-                    border: none
+                    border: none;
+                    padding: 0px 0px 0px 30px;
                 }
 
                 .card-header{
@@ -67,7 +68,7 @@ const NavPanel = () => {
                                     <Tab.Content>
                                         <Tab.Pane eventKey="first">
                                             <div className='learnmoretext'>
-                                                I created this web application to provide an interface for exploring Vermont snow depths for the current winter season and historic records.
+                                                I createded this web application to provide an interface for exploring Vermont snow depths for the current winter season and historic records.
                                                 It was inspired by the wonderful Mansfield Snow Stake page here.
                                                 Any comments, questions, suggestions, leads on other data to incorporate send an email to ______
                                         </div>

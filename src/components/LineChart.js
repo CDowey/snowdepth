@@ -83,19 +83,12 @@ class LineChart extends Component {
     }
   }
 
-
-
-
-
-
-
-
   render() {
 
     // Set up Chart options
     const options = {
-      responsive: false,
-      maintainAspectRatio: false,
+      responsive: true,
+      maintainAspectRatio: true,
       title: {
         display: false,
         text: 'Snow depths',
@@ -104,6 +97,31 @@ class LineChart extends Component {
       legend: {
         display: false,
         position: 'right'
+      },
+      legendCallback: function (chart) {
+        // Return the HTML string here.
+        console.log(chart.data.datasets);
+        const datasets = chart.data.datasets
+        var text = [];
+        // 'Average Season'
+        // 'Current Season Snow Depth'
+        datasets.forEach(dataset => {
+          if(dataset.label === 'Average Season')
+          text.push(dataset.label)
+        });
+
+        console.log('text', text)
+
+        // for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
+        //   text.push('<li><span id="legend-' + i + '-item" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"   onclick="updateDataset(event, ' + '\'' + i + '\'' + ')">');
+        //   if (chart.data.labels[i]) {
+        //     text.push(chart.data.labels[i]);
+        //   }
+        //   text.push('</span></li>');
+        // }
+        // text.push('</ul>');
+        // console.log(text)
+        return text;
       },
       scales: {
         xAxes: [{
@@ -159,27 +177,27 @@ class LineChart extends Component {
     const isLoading = this.props.data.depths.length === 0
 
     return (
-      <div className='Chart'>
+      <div className='lineChartContainter'>
         {/* Change what is rendered in the Chart div based on if the depths from current season have returned yet */}
         {isLoading
           ? <div className='LoadingContainer'>
-              <div className='LoadingText'>
-                Gathering Snow Data
+            <div className='LoadingText'>
+              Gathering Snow Data
               </div>
-              <Loader className='Loader'
-                type="Circles"
-                color="#DBDDDE"
-                height={80}
-                width={80}
+            <Loader className='Loader'
+              type="Circles"
+              color="#DBDDDE"
+              height={80}
+              width={80}
 
-              />
+            />
           </ div>
           :
           <Line
             ref={this.chartReference}
             data={this.state.ChartData}
-            height={400}
-            width={800}
+            // height={250}
+            // width={650} responsive
             options={options}
           />
         }
