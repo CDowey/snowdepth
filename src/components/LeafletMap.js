@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
@@ -9,6 +9,7 @@ import ReactDOMServer from 'react-dom/server';
 
 const LeafletMap = () => {
 
+    // Markers are going to be built from state
     const [markers, setMarkers] = useState([]);
 
     const bound_style = () => {
@@ -20,6 +21,13 @@ const LeafletMap = () => {
         };
 
     }
+
+    // create map and group refs useRef for functional components
+    const mapRef = useRef();
+    const stateBoundayRef = useRef();
+
+
+
     useEffect(() => {
         //Set Marker Locations
         const locations = []
@@ -37,20 +45,38 @@ const LeafletMap = () => {
         //    fetch(url).then(...)
         // https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation
 
-        const stations = [
+        // const map = this.mapRef.current.leafletElement;
+        // const group = this.groupRef.current.leafletElement;
+        // map.fitBounds(group.getBounds());
 
-        ]
+        // Destructure mapRef
+        const { current = {} } = mapRef;        // sets it to empty object if mapRef not defined
+        const { leafletElement: map } = current;
 
+        // map.fitBounds([
+        //     [45.047076, -73.525964],
+        //     [42.723549, -71.174890]
+        // ]
+        // )
+
+        // need geojson ref
+        const { statebounday = {} } = stateBoundayRef;
+
+        console.log(statebounday)
+        // Use fitBounds to set zoom and extent
+        // map.fitBounds(statebounday.getBounds()); https://stackoverflow.com/questions/40451506/react-leaflet-how-to-set-zoom-based-on-geojson
 
         //API call to get the current snowdepth for all the stations
         const getCurrentDepths = async () => {
             // get station names from stations.json
+            const station_names = Object.keys(Stations)
 
 
-            
         }
 
-    }, []);
+        getCurrentDepths()
+
+    }, [mapRef]);
 
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
@@ -70,12 +96,14 @@ const LeafletMap = () => {
                 Last Reported Snow Depths - Select Marker to view comparison with past seasons.
             </div>
             <Map className='Map'
-            center={[43.89, -72.5]}
-            zoom={8}
-                zoomSnap={7.5} //ideally this could be adjusted based on screensize
+                ref={mapRef}
+                center={[43.89, -72.5]}
+                zoom={8}
+                // zoomSnap={7.5} //ideally this could be adjusted based on screensize (use fitBounds for this)
                 maxZoom={9}
-                zoomControl={false}
-                attributionControl={false} > {
+                zoomControl={true}
+                attributionControl={false} >
+                {
                     markers.map((position, idx) =>
                         <Marker key={`marker-${idx}`}
                             position={position}
@@ -87,6 +115,7 @@ const LeafletMap = () => {
                     )
                 }
                 <GeoJSON
+                    ref={stateBoundayRef}
                     key='1'
                     data={VT_Boundary}
                     style={bound_style}
