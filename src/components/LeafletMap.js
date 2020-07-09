@@ -74,7 +74,7 @@ const LeafletMap = () => {
         ]
 
         map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
-                                    // Needs better way for the container to resize based on available space and width/heigh ratio
+        // Needs better way for the container to resize based on available space and width/heigh ratio
         console.log('VT bounds', VT_bounds)
 
 
@@ -96,12 +96,21 @@ const LeafletMap = () => {
 
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
+    // const icon = L.divIcon({
+    //     className: 'custom-icon',
+    //     iconAnchor: [10, 10],
+    //     html: ReactDOMServer.renderToString(< MapIcon depth={10} />)
+    // });
+
+
+
     const icon = L.divIcon({
-        className: 'custom-icon',
-        iconAnchor: [10, 10],
-        html: ReactDOMServer.renderToString(< MapIcon depth={10}
-        />)
-    });
+        className: "my-custom-pin",
+        iconAnchor: [0, 24],
+        labelAnchor: [-6, 0],
+        popupAnchor: [0, -36],
+        html: `<span style="${markerHtmlStyles}" />`
+    })
 
 
     // const isLoading = markerLocations.length === 0
