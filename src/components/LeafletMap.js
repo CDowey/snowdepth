@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
+import bbox from '@turf/bbox'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
 import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
@@ -62,7 +63,22 @@ const LeafletMap = () => {
         // need geojson ref
         const { statebounday = {} } = stateBoundayRef;
 
-        console.log(statebounday)
+        console.log('geojson ref', statebounday)
+
+        // use turf/bbox to get bounding box (I couldn't figure out the GeoJSON refs...for Leaflet)
+
+        const bboxArray = bbox(VT_Boundary);
+        const VT_bounds = [
+            [bboxArray[1], bboxArray[0]],
+            [bboxArray[3], bboxArray[2]]
+        ]
+
+        map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
+                                    // Needs better way for the container to resize based on available space and width/heigh ratio
+        console.log('VT bounds', VT_bounds)
+
+
+
         // Use fitBounds to set zoom and extent
         // map.fitBounds(statebounday.getBounds()); https://stackoverflow.com/questions/40451506/react-leaflet-how-to-set-zoom-based-on-geojson
 
