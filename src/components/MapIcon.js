@@ -32,3 +32,12 @@ export default class MapIcon extends Component {
 //     border: 1px solid #FFFFFF`
 
 //     https://stackoverflow.com/questions/23567203/leaflet-changing-marker-color
+
+
+// const icon = L.divIcon({
+//   className: "my-custom-pin",
+//   iconAnchor: [0, 24],
+//   labelAnchor: [-6, 0],
+//   popupAnchor: [0, -36],
+//   html: `<span style="${markerHtmlStyles}" />`
+// })

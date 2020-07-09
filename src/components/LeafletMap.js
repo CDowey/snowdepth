@@ -104,13 +104,6 @@ const LeafletMap = () => {
 
 
 
-    const icon = L.divIcon({
-        className: "my-custom-pin",
-        iconAnchor: [0, 24],
-        labelAnchor: [-6, 0],
-        popupAnchor: [0, -36],
-        html: `<span style="${markerHtmlStyles}" />`
-    })
 
 
     // const isLoading = markerLocations.length === 0
