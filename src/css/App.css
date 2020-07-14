@@ -145,6 +145,26 @@ th, td {
     font-size: small;
 }
 
+.currentSnowDepthName{
+    font-size: x-small;
+    color: blue;
+}
+
+.currentSnowDepthAttribute{
+    font-size: small;
+    color: blue;
+}
+
+.avgSnowDepthName{
+    font-size: x-small;
+    color: red;
+}
+
+.avgSnowDepthAttribute{
+    font-size: small;
+    color: red;
+}
+
 .NavPanel {
     order: 3;
     position: absolute;

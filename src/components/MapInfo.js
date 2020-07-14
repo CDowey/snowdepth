@@ -17,6 +17,8 @@ const reformatName = (phrase) => {
 
 const MapInfo = (props) => {
 
+    //useffect [] to query for current snowdepth for station passed in through props
+
     const station_id = props.station_id
 
     const station_info = Stations[station_id]
@@ -30,7 +32,7 @@ const MapInfo = (props) => {
             <table className='mapStationTable'>
                 <tr>
                     <td>
-                        <span className='stationAttributeName'>Elevation: </span><span className='stationAttributeValue'>{elev}'</span>
+                        <span className='stationAttributeName'>Elevation: </span><span className='stationAttributeValue'>{elev} ft</span>
                     </td>
                     <td>
                         <span className='stationAttributeName'>Current Date: </span><span className='stationAttributeValue'>__/__/__</span>
@@ -41,7 +43,7 @@ const MapInfo = (props) => {
                         <span className='stationAttributeName'>Station: </span><span className='stationAttributeValue'>{station_id}</span>
                     </td>
                     <td>
-                        <span className='stationAttributeName'>Current Snow Depth: </span><span className='stationAttributeValue'>___ inches</span>
+                        <span className='currentSnowDepthName'>Current Snow Depth: </span><span className='currentSnowDepthAttribute'>___ in</span>
                     </td>
                 </tr>
                 <tr>
@@ -49,7 +51,7 @@ const MapInfo = (props) => {
                         <span className='stationAttributeName'>County: </span><span className='stationAttributeValue'>{county}</span>
                     </td>
                     <td>
-                        <span className='stationAttributeName'>Current Snow Depth: </span><span className='stationAttributeValue'>___ inches</span>
+                        <span className='avgSnowDepthName'>Average Snow Depth: </span><span className='avgSnowDepthAttribute'>___ in</span>
                     </td>
                 </tr>
             </table>
