@@ -26,7 +26,7 @@ const SidePanel = (props) => {
     useEffect(() => {
 
         // Set station id from props
-        setStation(props.station_id)
+      //  setStation(props.station_id)
 
 
         // Set up abort controller for clean up https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
