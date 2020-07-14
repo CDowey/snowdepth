@@ -8,10 +8,13 @@ import Stations from '../assets/stations.json'
 import '../css/App.css';
 import ReactDOMServer from 'react-dom/server';
 
-const LeafletMap = () => {
+const LeafletMap = (props) => {
 
     // Markers are going to be built from state
     const [markers, setMarkers] = useState([]);
+
+    // Selected Marker Station ID in state
+    const [selectedStationID, setSelectedStationID] = useState()
 
     const bound_style = () => {
         return {
@@ -27,16 +30,47 @@ const LeafletMap = () => {
     const mapRef = useRef();
     const stateBoundayRef = useRef();
 
+    //Marker OnClick function
+    const handleClick = e => {
+        const station_id = e.target.options.station_id
+        console.log('click event target id', station_id)
+        setSelectedStationID(station_id)
+        // Need to trigger function to change the value in the MapInfo through SidePanel state/props from App state/props
+        const changeStationParent = props.changeStation
+        console.log('click props', changeStationParent)
+        changeStationParent(station_id)
+
+    }
+
+
 
 
     useEffect(() => {
-        //Set Marker Locations
-        const locations = []
+        //Set Marker Locations {station name: {lat: , long: }}
+        const stationLocations = []
         for (let [key, value] of Object.entries(Stations)) {
-            locations.push([parseFloat(Stations[key].lat), parseFloat(Stations[key].lon)])
+
+            const station_id = key
+            const station_name = Stations[key].station_name
+
+            stationLocations.push(
+
+                {
+                    'station_id': station_id,
+                    'station_name': station_name,
+                    'lat': parseFloat(Stations[key].lat),
+                    'long': parseFloat(Stations[key].lon),
+                }
+
+
+            )
         }
 
-        setMarkers(locations)
+        setMarkers(stationLocations)
+
+        // Set selected marker from props from App
+        setSelectedStationID(props.station_id)
+        console.log('selectedStation', selectedStationID)
 
         //Example url
         // https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-year&dataTypes=DP01,DP05,DP10,DSND,DSNW,DT00,DT32,DX32,DX70,DX90,SNOW,PRCP&stations=ASN00084027&startDate=1952-01-01&endDate=1970-12-31&includeAttributes=true&format=json
@@ -53,12 +87,6 @@ const LeafletMap = () => {
         // Destructure mapRef
         const { current = {} } = mapRef;        // sets it to empty object if mapRef not defined
         const { leafletElement: map } = current;
-
-        // map.fitBounds([
-        //     [45.047076, -73.525964],
-        //     [42.723549, -71.174890]
-        // ]
-        // )
 
         // need geojson ref
         const { statebounday = {} } = stateBoundayRef;
@@ -96,17 +124,27 @@ const LeafletMap = () => {
 
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
-    // const icon = L.divIcon({
-    //     className: 'custom-icon',
-    //     iconAnchor: [10, 10],
-    //     html: ReactDOMServer.renderToString(< MapIcon depth={10} />)
-    // });
+
+    // Grey Border
+    const icon = L.divIcon({
+        className: 'custom-icon',
+        iconAnchor: [10, 10],
+        html: ReactDOMServer.renderToString(< MapIcon depth={10} bgColor={'#ffffff00'} strokeColor={'#5F5F5F'} />)
+    });
+
+    // Red Border
+    const selectedIcon = L.divIcon({
+        className: 'custom-icon',
+        iconAnchor: [10, 10],
+        html: ReactDOMServer.renderToString(< MapIcon depth={10} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
+    });
 
 
 
 
 
     // const isLoading = markerLocations.length === 0
+
 
     return (
         <div className='mapContainer' >
@@ -122,15 +160,37 @@ const LeafletMap = () => {
                 zoomControl={true}
                 attributionControl={false} >
                 {
-                    markers.map((position, idx) =>
-                        <Marker key={`marker-${idx}`}
-                            position={position}
-                            icon={icon} >
-                            <Popup >
-                                <span > Test Pop up < br /> Easily customizable. </span>
-                            </Popup>
-                        </Marker>
-                    )
+                    markers.map((stationobj, idx) => {
+                        // Tunery Operator within the map was the only way I could get this to work with two diff markers
+                        // could also change marker size..
+                        return stationobj.station_id === selectedStationID ?
+
+                            < Marker key={`marker-${stationobj.station_name}`}
+                                station_id={stationobj.station_id}
+                                station_name={stationobj.station_name}
+                                position={[stationobj.lat, stationobj.long]}
+                                icon={selectedIcon}
+                                onClick={handleClick}
+                            >
+                                <Popup >
+                                    <span > Station Name < br /> {stationobj.station_name} </span>
+                                </Popup>
+                            </Marker>
+
+                            :
+
+                            < Marker key={`${stationobj.station_name}`}
+                                station_id={stationobj.station_id}
+                                station_name={stationobj.station_name}
+                                position={[stationobj.lat, stationobj.long]}
+                                icon={icon}
+                                onClick={handleClick}
+                            >
+                                <Popup >
+                                    <span > Station Name < br /> {stationobj.station_name} </span>
+                                </Popup>
+                            </Marker>
+                    })
                 }
                 <GeoJSON
                     ref={stateBoundayRef}
@@ -144,7 +204,7 @@ const LeafletMap = () => {
                 /> */}
 
             </Map>
-        </div>
+        </div >
 
     );
 

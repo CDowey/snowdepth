@@ -341,6 +341,15 @@
         "elev": "743",
         "date": "20200601"
     },
+    "USC00435416":{
+        "station_name": "MOUNT MANSFIELD",
+        "lat": "44.52",
+        "lon": "-72.82",
+        "state": "VT",
+        "county": "LAMOILLE",
+        "elev": "3949",
+        "date": "20200601"
+    },
     "US1VTAD0019": {
         "station_name": "NEW HAVEN 2.4 SE",
         "lat": "44.10",

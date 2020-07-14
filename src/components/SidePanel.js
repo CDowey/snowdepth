@@ -6,12 +6,13 @@ import NavPanel from './NavPanel';
 import MapInfo from './MapInfo'
 import mansfieldHistoric from '../assets/MansfieldHistoric.json';
 
-const SidePanel = () => {
+const SidePanel = (props) => {
 
     // Set up moment for dates
 
     //useState to set state and functions for changing state
     //   const [hasError, setError] = useState(false);
+    const [station, setStation] = useState(props.station_id) //not sure if best to set this from props here, but doing it first in useEffect didn't seem to work
     const [data, setdata] = useState({ dates: [], depths: [] });
     const [historicdata, setHistoricData] = useState([]);
     console.log('data', data)
@@ -23,6 +24,11 @@ const SidePanel = () => {
 
     // to use useEffect similar to ComponentDidMount pass second argument of an array 
     useEffect(() => {
+
+        // Set station id from props
+        setStation(props.station_id)
+
+
         // Set up abort controller for clean up https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
         const abortController = new AbortController();
 
@@ -144,7 +150,7 @@ const SidePanel = () => {
             setdata({ dates: dateArray, depths: processed_data })
         }
 
-        fetchData('USC00435416', 2019);
+        fetchData(station, 2019);
 
         // Clean up
         return () => {
@@ -164,7 +170,7 @@ const SidePanel = () => {
                     historicdata={historicdata}
                     data={data} />
             </div>
-            {/* <MapInfo /> */}
+            <MapInfo station_id={props.station_id}/>
             <NavPanel className='NavPanel'/> 
         </div>
 
