@@ -7,6 +7,7 @@ import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
 import Stations from '../assets/stations.json'
 import '../css/App.css';
 import ReactDOMServer from 'react-dom/server';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 const LeafletMap = (props) => {
 
@@ -23,7 +24,6 @@ const LeafletMap = (props) => {
             color: 'grey',
             fillOpacity: 0
         };
-
     }
 
     // create map and group refs useRef for functional components
@@ -33,17 +33,11 @@ const LeafletMap = (props) => {
     //Marker OnClick function
     const handleClick = e => {
         const station_id = e.target.options.station_id
-        console.log('click event target id', station_id)
         setSelectedStationID(station_id)
         // Need to trigger function to change the value in the MapInfo through SidePanel state/props from App state/props
         const changeStationParent = props.changeStation
-        console.log('click props', changeStationParent)
         changeStationParent(station_id)
-
     }
-
-
-
 
     useEffect(() => {
         //Set Marker Locations {station name: {lat: , long: }}
@@ -54,15 +48,12 @@ const LeafletMap = (props) => {
             const station_name = Stations[key].station_name
 
             stationLocations.push(
-
                 {
                     'station_id': station_id,
                     'station_name': station_name,
                     'lat': parseFloat(Stations[key].lat),
                     'long': parseFloat(Stations[key].lon),
                 }
-
-
             )
         }
 
@@ -72,13 +63,102 @@ const LeafletMap = (props) => {
         setSelectedStationID(props.station_id)
         console.log('selectedStation', selectedStationID)
 
+
+        // API call to get current snowdepth for all stations
+
+        // Create comma separated string of all station ids
+        // Get all keys from stations.json
+
+
+
         //Example url
         // https://www.ncei.noaa.gov/access/services/data/v1?dataset=global-summary-of-the-year&dataTypes=DP01,DP05,DP10,DSND,DSNW,DT00,DT32,DX32,DX70,DX90,SNOW,PRCP&stations=ASN00084027&startDate=1952-01-01&endDate=1970-12-31&includeAttributes=true&format=json
-        //        var url = new URL("https://geo.example.org/api"),
-        //        params = {lat:35.696233, long:139.570431}
-        //    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+
+
+        const getDailySummaries = async () => {
+
+
+
+            const ids = Object.keys(Stations).join(',');
+
+            // Max 50 stations in a request so need to split as there are 77 stations
+
+            const ids_1 = ids.slice(0, 40)
+            const ids_2 = ids.slice(40, Object.keys(Stations).length)
+
+            // Set dates
+            const today = new Date();
+            const seven_days_before = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+ 
+            const startDate = seven_days_before.toLocaleDateString("sv-SE", { 
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              });
+            const endDate = today.toLocaleDateString("sv-SE", { 
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              });
+
+            console.log('DATES', startDate, endDate)
+
+            // I think the data range should be a week and if they haven't reported in the week prior then show that
+            // otherwise find the most recent SNWD value in what is returned
+
+            const url = new URL("https://www.ncei.noaa.gov/access/services/data/v1")
+
+            url.search = new URLSearchParams({
+                dataset: 'daily-summaries',
+                stations: ids_1,
+                startDate: startDate,
+                endDate: endDate,
+                includeAttributes: true,
+                includeStationName: true,
+                includeStationLocation: true,
+                units: 'standard',
+                format: 'json'
+            })
+
+            console.log('fetch url', url)
+            const ds_res_1 = await fetch(url);
+            const ds_data_1 = await ds_res_1.json()
+
+            url.search = new URLSearchParams({
+                dataset: 'daily-summaries',
+                stations: ids_2,
+                startDate: startDate,
+                endDate: endDate,
+                includeAttributes: true,
+                includeStationName: true,
+                includeStationLocation: true,
+                units: 'standard',
+                format: 'json'
+            })
+
+            const ds_res_2 = await fetch(url);
+            const ds_data_2 = await ds_res_2.json()
+
+            const daily_summaries_prior_week = ds_data_1.concat(ds_data_2)
+
+            console.log('daily_summaries_prior_week', daily_summaries_prior_week)
+        }
+
+        getDailySummaries()
+
+
+
+
+        // LAT AND LONG from the daily summaries might be more precise! 4 dec
+
+        // fetch(url)        //    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
         //    fetch(url).then(...)
         // https://www.ncei.noaa.gov/support/access-data-service-api-user-documentation
+
+        //  https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USC00435416&startDate=2020-06-07&endDate=2020-06-14&&
+        //format=json&&includeAttributes=true&includeStationName=true&includeStationLocation=true&units=standard
+        //      unsupported dataset daily-snow
+        //         daily-summaries works and has the attribute SNWD which is Snow Depth in inches
 
         // const map = this.mapRef.current.leafletElement;
         // const group = this.groupRef.current.leafletElement;
