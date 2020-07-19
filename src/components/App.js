@@ -4,9 +4,10 @@ import Header from './Header';
 import LeafletMap from './LeafletMap';
 import SidePanel from './SidePanel';
 
-const App = () =>{
+const App = () => {
 
   const [station, setStation] = useState('USC00435416')
+  debugger;
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
@@ -14,17 +15,17 @@ const App = () =>{
 
   console.log('App station', station)
 
-
-
   return (
     <div className="App">
-      <Header/>
+      <Header />
       <div className='rowContainer'>
-        <LeafletMap changeStation={changeStation} station_id = {station}/>
-        <SidePanel station_id = {station}/>
+        <LeafletMap changeStation={changeStation} station_id={station} />
+        <SidePanel station_id={station} />
       </div>
     </div>
   );
 }
+
+
 
 export default App;

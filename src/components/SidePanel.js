@@ -98,6 +98,7 @@ const SidePanel = (props) => {
 
             return url_array
         }
+        
 
         // https://codeburst.io/javascript-async-await-with-foreach-b6ba62bbf404
         const asyncForEach = async (array, callback) => {
