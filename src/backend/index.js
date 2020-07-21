@@ -31,7 +31,7 @@ app.get('/:station/data.json', async (req, res) => {
     // Start date is Jan 1 1930 since that is the oldest one on record
     const startDate = "1930-01-01"
     const today = new Date()
-    const endDate = new Date(today.getTime() - (today.getTimezoneOffset() * 60000 )).toISOString().split("T")[0];
+    const endDate = new Date(today.getTime() - (today.getTimezoneOffset() * 60000)).toISOString().split("T")[0];
 
     url.search = new URLSearchParams({
         dataset: 'daily-summaries',
@@ -45,7 +45,7 @@ app.get('/:station/data.json', async (req, res) => {
         units: 'standard',
         format: 'json'
     })
-    
+
 
     const st_ds = await fetch(url);
     const st_ds_data = await st_ds.json()
@@ -65,18 +65,18 @@ app.get('/:station/data.json', async (req, res) => {
     const getSnowYear = (date_string) => {
         const date = new Date(date_string)
 
-        if(date.getUTCMonth() + 1 >= 7){
-            return (date.getUTCFullYear()+ '-' +  (parseInt(date.getUTCFullYear()) + 1).toString())
+        if (date.getUTCMonth() + 1 >= 7) {
+            return (date.getUTCFullYear() + '-' + (parseInt(date.getUTCFullYear()) + 1).toString())
         }
-        else{
+        else {
             return ((parseInt(date.getUTCFullYear()) - 1).toString() + '-' + date.getUTCFullYear())
         }
     }
 
     // Get snow depth value index for given snow-year based on date
     const getDaysArray = (start, end) => {
-        for(var arr=[],dt=new Date(start); dt<=end; dt.setDate(dt.getDate()+1)){
-            arr.push(new Date(dt).toISOString().slice(5,10));
+        for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+            arr.push(new Date(dt).toISOString().slice(5, 10));
         }
         return arr;
     };
@@ -86,39 +86,52 @@ app.get('/:station/data.json', async (req, res) => {
     // use index of to properly insert values into a list
     // get month day pair from the response if it has a SNWD
     // function to apply to each item in response object that builds and inserts (best way to do this??)
+    // The number of elements in the array for each snow year is 304 (this is inclusive number of days from 9/1 to 6/30 with 2/29)
+
 
     const processSnowDepthRes = (res_obj) => {
 
         // get snowYear
         const snowYear = getSnowYear(res_obj.DATE)
-        if (!sorted_st_ds.hasOwnProperty(snowYear)){
-            sorted_st_ds[snowYear] = new Array(daysArray.length)
+        if (!sorted_st_ds.hasOwnProperty(snowYear)) {
+            sorted_st_ds[snowYear] = new Array(daysArray.length).fill('Unknown')
         }
 
         // get index of month/day in daysArray
-        const date = new Date(res_obj.DATE).toISOString().slice(5,10)
+        const date = new Date(res_obj.DATE).toISOString().slice(5, 10)
         const index = daysArray.indexOf(date)
 
         // if res_obj has SNWD property
-        if (res_obj.hasOwnProperty('SNWD')){
+        if (res_obj.hasOwnProperty('SNWD')) {
             sorted_st_ds[snowYear][index] = parseInt(res_obj.SNWD)
         }
-        else{
-            sorted_st_ds[snowYear][index] = 'M'
+        else {
+            sorted_st_ds[snowYear][index] = 'Unknown'
         }
 
         return sorted_st_ds
 
-    }    
+    }
 
-    const processed_data = processSnowDepthRes(st_ds_data[0])
+    // const processed_data = [processSnowDepthRes(st_ds_data[0]), processSnowDepthRes(st_ds_data[1])]
+
+    // Iterate through the response and 'apply' processSnowDepthRes to each object in array
+    st_ds_data.map(processSnowDepthRes)
+
+    // Fill in intial zero and then fill in forward through nulls, and 'M's
 
 
-    // The number of elements in the array for each snow year is 304 (this is inclusive number of days from 9/1 to 6/30 with 2/29)
+    // for (const [key, value] of Object.entries(sorted_st_ds)) {
+    //     const depth_array = value
 
+    //     depth_array.forEach((item, i) => {
+    //         if ((item == 'Unknown')) {
+    //             depth_array[i] = depth_array[i - 1];
+    //         };
+    //     })
 
-
-
+    //     sorted_st_ds[key] = depth_array
+    // }
 
 
     debugger
@@ -126,7 +139,7 @@ app.get('/:station/data.json', async (req, res) => {
 
     res.json({
         data: station,
-        station_data: st_ds_data
+        station_data: sorted_st_ds
     })
 
 })
