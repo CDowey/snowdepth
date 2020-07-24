@@ -132,10 +132,10 @@ app.get('/:station/data.json', async (req, res) => {
             };
         })
         
-
         sorted_st_ds[key] = depth_array
     }
 
+    // Might need to change the above or check for all 0 arrays...
 
     debugger
 

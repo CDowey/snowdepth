@@ -44,15 +44,15 @@ class LineChart extends Component {
       const historicdata = this.props.historicdata
       console.log('props historic depths', historicdata)
       console.log('labels', this.props.dates)
+    }
+    //   this.setState(prevState => ({
+    //     ChartData: {
+    //       ...prevState.ChartData,
+    //       datasets: all_years
 
-      this.setState(prevState => ({
-        ChartData: {
-          ...prevState.ChartData,
-          datasets: all_years
-
-        }
-      }))
-    };
+    //     }
+    //   }))
+    // };
 
     if (prevProps.data.dates !== this.props.data.dates) {
       const dates = this.props.data.dates
@@ -157,7 +157,7 @@ class LineChart extends Component {
     }
     console.log('Chart Data', this.state.ChartData)
 
-    const isLoading = this.props.data.depths.length === 0
+    const isLoading = this.props.data.data.length === 0
 
     return (
       <div className='lineChartContainter'>
