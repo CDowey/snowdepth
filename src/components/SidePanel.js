@@ -121,37 +121,10 @@ const SidePanel = (props) => {
             const urlsForEach = async () => {
                 await asyncForEach(urls, async (url) => {
                     const month_res = await fetch(url, { signal: abortController.signal });
-                    const month_data = await month_res.json()
-                    // site comes from function parameter
-                    const mans_month_data = month_data.data[site]
-                    console.log('mmd', mans_month_data)
 
-                    for (const [day, depth] of Object.entries(mans_month_data.values)) {
-
-                        if (depth !== 'M') {
-                            let value = parseFloat(depth)
-                            processed_data.push(value)
-
-                        }
-                        if (depth === 'M') {
-                            let value = 'M'
-                            processed_data.push(value)
-                        }
-
-                    }
-                });
-            }
-
-            // need to await for all promises to resolve
-            await urlsForEach();
-
-            // Fill in missing values with prior measurement
-            processed_data.forEach(function (item, i) { if (item === 'M') processed_data[i] = processed_data[i - 1]; });
-
-            setdata({ dates: dateArray, depths: processed_data })
         }
 
-        fetchData(station, 2019);
+        fetchData(station);
 
         // Clean up
         return () => {

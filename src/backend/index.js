@@ -121,17 +121,20 @@ app.get('/:station/data.json', async (req, res) => {
     // Fill in intial zero and then fill in forward through nulls, and 'M's
 
 
-    // for (const [key, value] of Object.entries(sorted_st_ds)) {
-    //     const depth_array = value
+    for (const [key, value] of Object.entries(sorted_st_ds)) {
+        const depth_array = value
+        //set intial value to zero
+        depth_array[0] = 0
 
-    //     depth_array.forEach((item, i) => {
-    //         if ((item == 'Unknown')) {
-    //             depth_array[i] = depth_array[i - 1];
-    //         };
-    //     })
+        depth_array.forEach((item, i) => {
+            if ((item === 'Unknown') || (item == null)) {
+                depth_array[i] = depth_array[i - 1];
+            };
+        })
+        
 
-    //     sorted_st_ds[key] = depth_array
-    // }
+        sorted_st_ds[key] = depth_array
+    }
 
 
     debugger

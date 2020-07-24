@@ -45,23 +45,6 @@ class LineChart extends Component {
       console.log('props historic depths', historicdata)
       console.log('labels', this.props.dates)
 
-
-      // Once the current year data is obtained append it to the historic datasets array
-      const all_years = this.props.historicdata.concat(
-        {
-          label: 'Current Season Snow Depth',
-          data: depths,
-          backgroundColor: 'rgba(0, 72, 255, 0.05)',
-          borderColor: 'rgba(77,87,213,.95)',
-          pointRadius: 0,
-          pointHoverRadius: 5,
-          lineTension: 0.5,
-          borderWidth: 2,
-          fill: true
-        }
-      )
-
-
       this.setState(prevState => ({
         ChartData: {
           ...prevState.ChartData,
