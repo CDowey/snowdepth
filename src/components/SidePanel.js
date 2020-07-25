@@ -30,7 +30,7 @@ const SidePanel = (props) => {
             console.log('res', res)
         }
 
-        fetchData(station);
+  //      fetchData(station);
 
         console.log(data)
     });
@@ -44,9 +44,9 @@ const SidePanel = (props) => {
                 : <LineChart data={snowdepths} />
                 } */}
                 <LineChart className='lineChart'
-                    data={data} />
+                    data={props.chartData} />
             </div>
-            <MapInfo station_id={props.station_id} />
+            {/* <MapInfo station_id={props.station_id} /> */}
             <NavPanel className='NavPanel' />
         </div>
 

@@ -38,21 +38,26 @@ class LineChart extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data.depths !== this.props.data.depths) {
+    if (prevProps.data !== this.props.data) {
       console.log('props data', this.props.data)
-      const depths = this.props.data.depths
-      const historicdata = this.props.historicdata
-      console.log('props historic depths', historicdata)
-      console.log('labels', this.props.dates)
-    }
-    //   this.setState(prevState => ({
-    //     ChartData: {
-    //       ...prevState.ChartData,
-    //       datasets: all_years
+    
+      this.setState(prevState => ({
+        ChartData: {
+          ...prevState.ChartData,
+          datasets:           {
+            label: '',
+            data: this.props.data.station_data,
+            backgroundColor: 'rgba(100,60,180, 0.6)',
+            borderColor: 'rgba(27,27,27,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: false
+          }
 
-    //     }
-    //   }))
-    // };
+        }
+      }))
+    };
 
     if (prevProps.data.dates !== this.props.data.dates) {
       const dates = this.props.data.dates
@@ -157,7 +162,7 @@ class LineChart extends Component {
     }
     console.log('Chart Data', this.state.ChartData)
 
-    const isLoading = this.props.data.data.length === 0
+    const isLoading = this.props.data === 0
 
     return (
       <div className='lineChartContainter'>

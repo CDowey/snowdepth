@@ -1,13 +1,20 @@
-const express = require('express')
+const express = require('express');
+const cors = require('cors')
 const fetch = require('node-fetch');
 
-// const ___ = require(rfp)
 const app = express()
 const port = 4000
 
+const corsOptions = {
+    origin: true
+}
 
-app.get('/:station/data.json', async (req, res) => {
+app.options('*', cors())
 
+
+app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
+
+  ////  req.setHeader('Access-Control-Allow-Origin', 'http://localhost:1/')
     // Get Station ID from the url
     const station = req.params.station
 
@@ -131,17 +138,15 @@ app.get('/:station/data.json', async (req, res) => {
                 depth_array[i] = depth_array[i - 1];
             };
         })
-        
+
         sorted_st_ds[key] = depth_array
     }
 
     // Might need to change the above or check for all 0 arrays...
 
-    debugger
-
 
     res.json({
-        data: station,
+        station_id: station,
         station_data: sorted_st_ds
     })
 

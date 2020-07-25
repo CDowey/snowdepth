@@ -20,20 +20,15 @@ const App = () => {
 
     // Get data from endpoints for the station set in App state
 
-    const fetchData = async (site) => {
+    const fetchData = async (station) => {
 
       const url_prefix = 'http://localhost:4000/'
-      const url = url_prefix + site + '/data.json'
+      const url = url_prefix + station + '/data.json'
       console.log('url', url)
-      try {
-        let res = await fetch(url);
-      } catch (error) {
-        console.log('error', error)
-      }
-
-      const res_data = res.json();
-      setChartData({ data: res_data })
-      console.log('res', chartData)
+      const res = await fetch(url);
+      const res_data = await res.json();
+      setChartData(res_data)
+      console.log('res_data', res_data)
     }
 
     fetchData(station)
@@ -46,7 +41,7 @@ const App = () => {
       <Header />
       <div className='rowContainer'>
         <LeafletMap changeStation={changeStation} station_id={station} />
-        <SidePanel station_id={station} />
+        <SidePanel chartData={chartData} />
       </div>
     </div>
   );
