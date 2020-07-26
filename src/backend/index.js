@@ -148,7 +148,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     res.json({
         station_id: station,
         forChart: {
-            data: sorted_st_ds,
+            depths: sorted_st_ds,
             dates: daysArray
         }
     })

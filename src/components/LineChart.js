@@ -19,16 +19,16 @@ class LineChart extends Component {
       ChartData: {
         labels: [],
         datasets: [
-          // {
-          //   label: '',
-          //   data: [],
-          //   backgroundColor: 'rgba(100,60,180, 0.6)',
-          //   borderColor: 'rgba(27,27,27,.95)',
-          //   pointRadius: 0,
-          //   lineTension: 0.1,
-          //   borderWidth: 1,
-          //   fill: false
-          // }
+          {
+            label: '',
+            data: [],
+            backgroundColor: 'rgba(100,60,180, 0.6)',
+            borderColor: 'rgba(27,27,27,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: false
+          }
         ]
       }
     };
@@ -43,33 +43,43 @@ class LineChart extends Component {
     if (prevProps.data !== this.props.data) {
       console.log('props data', this.props.data)
 
-      const{ data, dates } = this.props.data.forChart
-      console.log('data', data['1970-1971'], 'dates', dates)
+      const { depths, dates } = this.props.data.forChart
+      console.log('data', depths['1970-1971'], 'dates', dates)
 
-      this.setState(prevState => ({
+      const single_year_data = depths['1970-1971']
+
+      this.setState({
         isLoading: false,
         ChartData: {
-          ...prevState.ChartData,
-          labels: dates
+          labels: dates,
+          datasets: [
+            {
+              label: 'Rainfall',
+              fill: false,
+              lineTension: 0.5,
+              backgroundColor: 'rgba(75,192,192,1)',
+              borderColor: 'rgba(0,0,0,1)',
+              borderWidth: 2,
+              data: single_year_data
+            }
+          ]
         }
-      }))
+        // ChartData: {
+        //   labels: [1,2,3,4],
+        //   datasets: {
+        //     label: '1970-71',
+        //     data: [1, 2, 3, 4],
+        //     backgroundColor: 'rgba(100,60,180, 0.6)',
+        //     borderColor: 'rgba(27,27,27,.95)',
+        //     pointRadius: 0,
+        //     lineTension: 0.1,
+        //     borderWidth: 1,
+        //     fill: false
+        //   }
+        // }
+      })
 
-      this.setState(prevState => ({
-        ...prevState,
-        ChartData: {
-          ...prevState.ChartData,
-          datasets: {
-            label: '1970-71',
-            data: data['1970-1971'],
-            backgroundColor: 'rgba(100,60,180, 0.6)',
-            borderColor: 'rgba(27,27,27,.95)',
-            pointRadius: 0,
-            lineTension: 0.1,
-            borderWidth: 1,
-            fill: false
-          }
-        }
-      }))
+      console.log('line chart state', this.state)
     };
 
     // if (prevProps.data.dates !== this.props.data.dates) {
@@ -110,8 +120,6 @@ class LineChart extends Component {
           if (dataset.label === 'Average Season')
             text.push(dataset.label)
         });
-
-        console.log('text', text)
 
         // for (var i = 0; i < chart.data.datasets[0].data.length; i++) {
         //   text.push('<li><span id="legend-' + i + '-item" style="background-color:' + chart.data.datasets[0].backgroundColor[i] + '"   onclick="updateDataset(event, ' + '\'' + i + '\'' + ')">');
@@ -175,6 +183,8 @@ class LineChart extends Component {
     }
 
     const isLoading = this.state.isLoading
+    const cd = this.state.ChartData
+
 
     return (
       <div className='lineChartContainter'>
@@ -189,7 +199,6 @@ class LineChart extends Component {
               color="#DBDDDE"
               height={80}
               width={80}
-
             />
           </ div>
           :
