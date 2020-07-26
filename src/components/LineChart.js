@@ -44,9 +44,7 @@ class LineChart extends Component {
       console.log('props data', this.props.data)
 
       const { depths, dates } = this.props.data.forChart
-      console.log('data', depths['1970-1971'], 'dates', dates)
-
-      const single_year_data = depths['1970-1971']
+      const single_year_data = depths['2015-2016']
 
       this.setState({
         isLoading: false,
@@ -80,6 +78,17 @@ class LineChart extends Component {
       })
 
       console.log('line chart state', this.state)
+
+      // need something here for when station props changes to renew the loading screen until that request is fulfilled
+      if (prevProps.station !== this.props.station) {
+        this.setState((prevState) => ({
+          isLoading: true,
+          ChartData: {}
+        }))
+
+      }
+
+
     };
 
     // if (prevProps.data.dates !== this.props.data.dates) {

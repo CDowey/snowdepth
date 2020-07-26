@@ -34,7 +34,7 @@ const App = () => {
     // Get data from endpoints for the station set in App state
     fetchData(station)
 
-  }, []
+  }
 
   )
 
@@ -51,7 +51,7 @@ const App = () => {
                 : <LineChart data={snowdepths} />
                 } */}
                 <LineChart className='lineChart'
-                    data={snowData} />
+                    data={snowData} station={station}/>
             </div>
             <MapInfo />
             <NavPanel className='NavPanel' />
