@@ -8,31 +8,33 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // defaults.global.elements.line.tension = 0;
 
-
+debugger
 
 class LineChart extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: true,
       ChartData: {
         labels: [],
         datasets: [
-          {
-            label: '',
-            data: [],
-            backgroundColor: 'rgba(100,60,180, 0.6)',
-            borderColor: 'rgba(27,27,27,.95)',
-            pointRadius: 0,
-            lineTension: 0.1,
-            borderWidth: 1,
-            fill: false
-          }
+          // {
+          //   label: '',
+          //   data: [],
+          //   backgroundColor: 'rgba(100,60,180, 0.6)',
+          //   borderColor: 'rgba(27,27,27,.95)',
+          //   pointRadius: 0,
+          //   lineTension: 0.1,
+          //   borderWidth: 1,
+          //   fill: false
+          // }
         ]
       }
     };
     this.chartReference = React.createRef();
   };
+
   componentDidMount() {
     //  this.setState()
   }
@@ -40,13 +42,25 @@ class LineChart extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps.data !== this.props.data) {
       console.log('props data', this.props.data)
-    
+
+      const{ data, dates } = this.props.data.forChart
+      console.log('data', data['1970-1971'], 'dates', dates)
+
       this.setState(prevState => ({
+        isLoading: false,
         ChartData: {
           ...prevState.ChartData,
-          datasets:           {
-            label: '',
-            data: this.props.data.station_data,
+          labels: dates
+        }
+      }))
+
+      this.setState(prevState => ({
+        ...prevState,
+        ChartData: {
+          ...prevState.ChartData,
+          datasets: {
+            label: '1970-71',
+            data: data['1970-1971'],
             backgroundColor: 'rgba(100,60,180, 0.6)',
             borderColor: 'rgba(27,27,27,.95)',
             pointRadius: 0,
@@ -54,21 +68,20 @@ class LineChart extends Component {
             borderWidth: 1,
             fill: false
           }
-
         }
       }))
     };
 
-    if (prevProps.data.dates !== this.props.data.dates) {
-      const dates = this.props.data.dates
-      console.log(dates)
-      this.setState(prevState => ({
-        ChartData: {
-          ...prevState.ChartData,
-          labels: dates
-        }
-      }))
-    }
+    // if (prevProps.data.dates !== this.props.data.dates) {
+    //   const dates = this.props.data.dates
+    //   console.log(dates)
+    //   this.setState(prevState => ({
+    //     ChartData: {
+    //       ...prevState.ChartData,
+    //       labels: dates
+    //     }
+    //   }))
+    // }
   }
 
   render() {
@@ -94,8 +107,8 @@ class LineChart extends Component {
         // 'Average Season'
         // 'Current Season Snow Depth'
         datasets.forEach(dataset => {
-          if(dataset.label === 'Average Season')
-          text.push(dataset.label)
+          if (dataset.label === 'Average Season')
+            text.push(dataset.label)
         });
 
         console.log('text', text)
@@ -160,9 +173,8 @@ class LineChart extends Component {
         }
       }
     }
-    console.log('Chart Data', this.state.ChartData)
 
-    const isLoading = this.props.data === 0
+    const isLoading = this.state.isLoading
 
     return (
       <div className='lineChartContainter'>

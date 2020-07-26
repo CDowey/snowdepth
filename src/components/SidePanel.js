@@ -19,21 +19,21 @@ const SidePanel = (props) => {
 
 
     // to use useEffect similar to ComponentDidMount pass second argument of an array 
-    useEffect(() => {
+//     useEffect(() => {
 
-        const fetchData = async (site) => {
+//         const fetchData = async (site) => {
 
-            const url_prefix = 'http://localhost:4000/'
-            const url = url_prefix + site + '/data.json'
-            const res = await fetch(url);
-            setData({ dates: [], data: res.json() })
-            console.log('res', res)
-        }
+//             const url_prefix = 'http://localhost:4000/'
+//             const url = url_prefix + site + '/data.json'
+//             const res = await fetch(url);
+//             setData({ dates: [], data: res.json() })
+//             console.log('res', res)
+//         }
 
-  //      fetchData(station);
+//   //      fetchData(station);
 
-        console.log(data)
-    });
+//         console.log(data)
+//     });
 
     return (
         <div className='sidePanel'>

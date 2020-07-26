@@ -14,7 +14,7 @@ app.options('*', cors())
 
 app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
-  ////  req.setHeader('Access-Control-Allow-Origin', 'http://localhost:1/')
+    ////  req.setHeader('Access-Control-Allow-Origin', 'http://localhost:1/')
     // Get Station ID from the url
     const station = req.params.station
 
@@ -147,7 +147,10 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
     res.json({
         station_id: station,
-        station_data: sorted_st_ds
+        forChart: {
+            data: sorted_st_ds,
+            dates: daysArray
+        }
     })
 
 })
