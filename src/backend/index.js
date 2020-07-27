@@ -3,7 +3,7 @@ const cors = require('cors')
 const fetch = require('node-fetch');
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
 const corsOptions = {
     origin: true
@@ -157,7 +157,11 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
 // Endpoint for markers
 app.get('/:station/mostrecentdepth.json', async (req, res) => {
-
+    const station = req.params.station
+    
+    res.json({
+        body: `tested ${station}`
+    })
 })
 
 

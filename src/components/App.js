@@ -10,11 +10,14 @@ import NavPanel from './NavPanel';
 const App = () => {
 
   const [station, setStation] = useState('USC00435416')
+  const [isLoading, setIsLoading] = useState(true)
   const [snowData, setSnowData] = useState({})
+
 
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
+    setIsLoading(true)
   }
 
   console.log('App station', station)
@@ -26,6 +29,7 @@ const App = () => {
     const res = await fetch(url);
     const res_data = await res.json();
     setSnowData(res_data)
+    setIsLoading(false)
   }
 
 
@@ -51,7 +55,7 @@ const App = () => {
                 : <LineChart data={snowdepths} />
                 } */}
                 <LineChart className='lineChart'
-                    data={snowData} station={station}/>
+                    data={snowData} station={station} loading={isLoading}/>
             </div>
             <MapInfo />
             <NavPanel className='NavPanel' />

@@ -52,7 +52,7 @@ class LineChart extends Component {
           labels: dates,
           datasets: [
             {
-              label: 'Rainfall',
+              label: 'Snow Depth',
               fill: false,
               lineTension: 0.5,
               backgroundColor: 'rgba(75,192,192,1)',
@@ -191,9 +191,9 @@ class LineChart extends Component {
       }
     }
 
-    const isLoading = this.state.isLoading
-    const cd = this.state.ChartData
+    const isLoading = this.props.loading
 
+    // || is or
 
     return (
       <div className='lineChartContainter'>
