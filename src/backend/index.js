@@ -53,9 +53,10 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
         format: 'json'
     })
 
+    // working url https://www.ncei.noaa.gov/access/services/data/v1?dataset=daily-summaries&stations=USC00435416&startDate=1930-01-01&endDate=2020-07-13&dataTypes=SNWD&includeAttributes=true&includeStationName=false&inclueStationLocation=false&units=standard&format=json
 
     const st_ds = await fetch(url);
-    const st_ds_data = await st_ds.json()
+    const st_ds_data =  await st_ds.json()
 
     // Need to sort the response in to depths for each complete snow-year
 
