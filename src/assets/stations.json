@@ -1,6 +1,9 @@
 {
     "US1VTGI0003": {
         "station_name": "ALBURGH 4.6 SSE",
+        "period_of_record": "2009-04-18 to 2020-07-31",
+        "daily_coverage": "82%",
+        "going_to_use": "yes - coverage over 80, spans 10+ years or to present"
         "lat": "44.91",
         "lon": "-73.27",
         "state": "VT",
@@ -10,6 +13,9 @@
     },
     "USC00430193": {
         "station_name": "AVERILL",
+        "period_of_record": "2011-11-01 to 2020-07-31",
+        "daily_coverage": "98%",
+        "going_to_use": "yes",
         "lat": "45.01",
         "lon": "-71.69",
         "state": "VT",
@@ -19,6 +25,9 @@
     },
     "US1VTOL0002": {
         "station_name": "BARTON 3.0 ENE",
+        "period_of_record": "2016-05-24 to 2017-11-13",
+        "daily_coverage": "31%",
+        "going_to_use": "no",
         "lat": "44.76",
         "lon": "-72.12",
         "state": "VT",
@@ -28,6 +37,9 @@
     },
     "US1VTWS0005": {
         "station_name": "BERLIN 4.3 WNW",
+        "period_of_record": "2009-04-07 to 2020-07-24",
+        "daily_coverage": "84%",
+        "going_to_use": "yes",
         "lat": "44.23",
         "lon": "-72.66",
         "state": "VT",
