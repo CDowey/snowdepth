@@ -3,7 +3,7 @@
         "station_name": "ALBURGH 4.6 SSE",
         "period_of_record": "2009-04-18 to 2020-07-31",
         "daily_coverage": "82%",
-        "going_to_use": "yes - coverage over 80, spans 10+ years or to present"
+        "going_to_use": "yes - coverage over 80, spans 10+ years or to present",
         "lat": "44.91",
         "lon": "-73.27",
         "state": "VT",

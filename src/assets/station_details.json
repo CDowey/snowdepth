@@ -1,0 +1,443 @@
+{
+    "USC00431580": {
+        "Station_Name": "",
+        "Station_ID": "USC00431580",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTOL0009": {
+        "Station_Name": "GREENSBORO 2.1 NNW",
+        "Station_ID": "US1VTOL0009",
+        "Date_Range": "2011 - Present",
+        "Elevation": "1496",
+        "County": "ORLEANS"
+    },
+    "US1VTWH0026": {
+        "Station_Name": "WESTMINSTER 5.5 NW",
+        "Station_ID": "US1VTWH0026",
+        "Date_Range": "2019 - Present",
+        "Elevation": "789",
+        "County": "WINDHAM"
+    },
+    "US1VTWS0036": {
+        "Station_Name": "DUXBURY 2.5 SW",
+        "Station_ID": "US1VTWS0036",
+        "Date_Range": "2017 - Present",
+        "Elevation": "1221",
+        "County": "WASHINGTON"
+    },
+    "US1VTCL0027": {
+        "Station_Name": "DANVILLE 0.4 N",
+        "Station_ID": "US1VTCL0027",
+        "Date_Range": "2016 - Present",
+        "Elevation": "1405",
+        "County": "CALEDONIA"
+    },
+    "US1VTWS0012": {
+        "Station_Name": "CABOT 3.9 ENE",
+        "Station_ID": "US1VTWS0012",
+        "Date_Range": "2009 - Present",
+        "Elevation": "1740",
+        "County": "WASHINGTON"
+    },
+    "USC00437612": {
+        "Station_Name": "SOUTH LINCOLN",
+        "Station_ID": "USC00437612",
+        "Date_Range": "1980 - Present",
+        "Elevation": "1341",
+        "County": "ADDISON"
+    },
+    "USC00435768": {
+        "Station_Name": "NORTH HARTLAND LAKE",
+        "Station_ID": "USC00435768",
+        "Date_Range": "2009 - Present",
+        "Elevation": "570",
+        "County": "WINDSOR"
+    },
+    "USC00435982": {
+        "Station_Name": "",
+        "Station_ID": "USC00435982",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "USC00436391": {
+        "Station_Name": "PLAINFIELD",
+        "Station_ID": "USC00436391",
+        "Date_Range": "1999 - Present",
+        "Elevation": "800",
+        "County": "WASHINGTON"
+    },
+    "US1VTWH0029": {
+        "Station_Name": "BRATTLEBORO 0.7 S",
+        "Station_ID": "US1VTWH0029",
+        "Date_Range": "2018 - Present",
+        "Elevation": "385",
+        "County": "WINDHAM"
+    },
+    "US1VTOL0001": {
+        "Station_Name": "WESTFIELD 0.7 WNW",
+        "Station_ID": "US1VTOL0001",
+        "Date_Range": "2009 - Present",
+        "Elevation": "1069",
+        "County": "ORLEANS"
+    },
+    "USC00435416": {
+        "Station_Name": "MOUNT MANSFIELD",
+        "Station_ID": "USC00435416",
+        "Date_Range": "1954 - Present",
+        "Elevation": "3949",
+        "County": "LAMOILLE"
+    },
+    "US1VTOL0012": {
+        "Station_Name": "GREENSBORO 3.9 NNE",
+        "Station_ID": "US1VTOL0012",
+        "Date_Range": "2014 - Present",
+        "Elevation": "2036",
+        "County": "ORLEANS"
+    },
+    "USW00094705": {
+        "Station_Name": "",
+        "Station_ID": "USW00094705",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "USC00437607": {
+        "Station_Name": "",
+        "Station_ID": "USC00437607",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "USW00014742": {
+        "Station_Name": "BURLINGTON INTERNATIONAL AIRPORT",
+        "Station_ID": "USW00014742",
+        "Date_Range": "1942 - Present",
+        "Elevation": "330",
+        "County": "CHITTENDEN"
+    },
+    "US1VTCH0013": {
+        "Station_Name": "RICHMOND 3.4 SSE",
+        "Station_ID": "US1VTCH0013",
+        "Date_Range": "2008 - Present",
+        "Elevation": "733",
+        "County": "CHITTENDEN"
+    },
+    "US1VTWS0022": {
+        "Station_Name": "",
+        "Station_ID": "US1VTWS0022",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTFR0019": {
+        "Station_Name": "SWANTON 0.5 NNE",
+        "Station_ID": "US1VTFR0019",
+        "Date_Range": "2016 - Present",
+        "Elevation": "140",
+        "County": "FRANKLIN"
+    },
+    "USC00438640": {
+        "Station_Name": "WAITSFIELD 2 SE",
+        "Station_ID": "USC00438640",
+        "Date_Range": "2010 - Present",
+        "Elevation": "1142",
+        "County": "WASHINGTON"
+    },
+    "US1VTLM0007": {
+        "Station_Name": "HYDE PARK 2.9 NE",
+        "Station_ID": "US1VTLM0007",
+        "Date_Range": "2009 - Present",
+        "Elevation": "1032",
+        "County": "LAMOILLE"
+    },
+    "US1VTWR0010": {
+        "Station_Name": "WEST WINDSOR 1.7 S",
+        "Station_ID": "US1VTWR0010",
+        "Date_Range": "2016 - Present",
+        "Elevation": "739",
+        "County": "WINDSOR"
+    },
+    "USW00054740": {
+        "Station_Name": "",
+        "Station_ID": "USW00054740",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTWH0012": {
+        "Station_Name": "PUTNEY 2.0 WNW",
+        "Station_ID": "US1VTWH0012",
+        "Date_Range": "2011 - Present",
+        "Elevation": "553",
+        "County": "WINDHAM"
+    },
+    "USC00434120": {
+        "Station_Name": "ISLAND POND",
+        "Station_ID": "USC00434120",
+        "Date_Range": "1990 - Present",
+        "Elevation": "1200",
+        "County": "ESSEX"
+    },
+    "US1VTWR0017": {
+        "Station_Name": "ROCHESTER 2.3 NE",
+        "Station_ID": "US1VTWR0017",
+        "Date_Range": "2016 - Present",
+        "Elevation": "2025",
+        "County": "WINDSOR"
+    },
+    "US1VTGI0003": {
+        "Station_Name": "ALBURGH 4.6 SSE",
+        "Station_ID": "US1VTGI0003",
+        "Date_Range": "2009 - Present",
+        "Elevation": "100",
+        "County": "GRAND ISLE"
+    },
+    "US1VTCL0041": {
+        "Station_Name": "",
+        "Station_ID": "US1VTCL0041",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTWH0017": {
+        "Station_Name": "ROCKINGHAM 1.1 NNE",
+        "Station_ID": "US1VTWH0017",
+        "Date_Range": "2015 - Present",
+        "Elevation": "724",
+        "County": "WINDHAM"
+    },
+    "US1VTFR0021": {
+        "Station_Name": "FAIRFAX 4.9 WNW",
+        "Station_ID": "US1VTFR0021",
+        "Date_Range": "2018 - Present",
+        "Elevation": "502",
+        "County": "FRANKLIN"
+    },
+    "USC00438597": {
+        "Station_Name": "VERGENNES",
+        "Station_ID": "USC00438597",
+        "Date_Range": "2011 - Present",
+        "Elevation": "196",
+        "County": "ADDISON"
+    },
+    "US1VTWS0005": {
+        "Station_Name": "BERLIN 4.3 WNW",
+        "Station_ID": "US1VTWS0005",
+        "Date_Range": "2010 - Present",
+        "Elevation": "851",
+        "County": "WASHINGTON"
+    },
+    "US1VTAD0020": {
+        "Station_Name": "HANCOCK 0.3 S",
+        "Station_ID": "US1VTAD0020",
+        "Date_Range": "2016 - Present",
+        "Elevation": "902",
+        "County": "ADDISON"
+    },
+    "US1VTAD0024": {
+        "Station_Name": "MIDDLEBURY 0.3 N",
+        "Station_ID": "US1VTAD0024",
+        "Date_Range": "2016 - Present",
+        "Elevation": "371",
+        "County": "ADDISON"
+    },
+    "US1VTWR0002": {
+        "Station_Name": "POMFRET 2.6 N",
+        "Station_ID": "US1VTWR0002",
+        "Date_Range": "2008 - Present",
+        "Elevation": "1585",
+        "County": "WINDSOR"
+    },
+    "US1VTOL0005": {
+        "Station_Name": "DERBY CENTER 1.8 NW",
+        "Station_ID": "US1VTOL0005",
+        "Date_Range": "2009 - Present",
+        "Elevation": "1155",
+        "County": "ORLEANS"
+    },
+    "US1VTRT0024": {
+        "Station_Name": "MIDDLETOWN SPRINGS 0.9 WNW",
+        "Station_ID": "US1VTRT0024",
+        "Date_Range": "2018 - Present",
+        "Elevation": "1132",
+        "County": "RUTLAND"
+    },
+    "US1VTES0003": {
+        "Station_Name": "LUNENBURG 2.3 NNW",
+        "Station_ID": "US1VTES0003",
+        "Date_Range": "2014 - Present",
+        "Elevation": "1472",
+        "County": "ESSEX"
+    },
+    "US1VTWS0010": {
+        "Station_Name": "NORTHFIELD 1.5 N",
+        "Station_ID": "US1VTWS0010",
+        "Date_Range": "2009 - Present",
+        "Elevation": "672",
+        "County": "WASHINGTON"
+    },
+    "USW00054781": {
+        "Station_Name": "",
+        "Station_ID": "USW00054781",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTCL0035": {
+        "Station_Name": "",
+        "Station_ID": "US1VTCL0035",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTCL0030": {
+        "Station_Name": "DANVILLE 2.2 NW",
+        "Station_ID": "US1VTCL0030",
+        "Date_Range": "2016 - Present",
+        "Elevation": "1849",
+        "County": "CALEDONIA"
+    },
+    "USC00434261": {
+        "Station_Name": "JEFFERSONVILLE",
+        "Station_ID": "USC00434261",
+        "Date_Range": "1998 - Present",
+        "Elevation": "1163",
+        "County": "LAMOILLE"
+    },
+    "USC00434290": {
+        "Station_Name": "",
+        "Station_ID": "USC00434290",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTLM0001": {
+        "Station_Name": "STOWE 0.2 SW",
+        "Station_ID": "US1VTLM0001",
+        "Date_Range": "2008 - Present",
+        "Elevation": "732",
+        "County": "LAMOILLE"
+    },
+    "US1VTWS0007": {
+        "Station_Name": "MIDDLESEX 3.1 ENE",
+        "Station_ID": "US1VTWS0007",
+        "Date_Range": "2009 - Present",
+        "Elevation": "1330",
+        "County": "WASHINGTON"
+    },
+    "US1VTWS0034": {
+        "Station_Name": "MORETOWN 5.2 E",
+        "Station_ID": "US1VTWS0034",
+        "Date_Range": "2016 - Present",
+        "Elevation": "743",
+        "County": "WASHINGTON"
+    },
+    "USC00438556": {
+        "Station_Name": "",
+        "Station_ID": "USC00438556",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "USC00432773": {
+        "Station_Name": "ENOSBURG FALLS 2",
+        "Station_ID": "USC00432773",
+        "Date_Range": "1991 - Present",
+        "Elevation": "425",
+        "County": "FRANKLIN"
+    },
+    "USC00439984": {
+        "Station_Name": "",
+        "Station_ID": "USC00439984",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTWR0006": {
+        "Station_Name": "LUDLOW 3.4 S",
+        "Station_ID": "US1VTWR0006",
+        "Date_Range": "2010 - Present",
+        "Elevation": "1727",
+        "County": "WINDSOR"
+    },
+    "USC00430193": {
+        "Station_Name": "AVERILL",
+        "Station_ID": "USC00430193",
+        "Date_Range": "2011 - Present",
+        "Elevation": "1699",
+        "County": "ESSEX"
+    },
+    "US1VTOG0011": {
+        "Station_Name": "",
+        "Station_ID": "US1VTOG0011",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTWR0016": {
+        "Station_Name": "HARTLAND 1.6 NW",
+        "Station_ID": "US1VTWR0016",
+        "Date_Range": "2016 - Present",
+        "Elevation": "649",
+        "County": "WINDSOR"
+    },
+    "USC00436335": {
+        "Station_Name": "PERU",
+        "Station_ID": "USC00436335",
+        "Date_Range": "1940 - Present",
+        "Elevation": "1700",
+        "County": "BENNINGTON"
+    },
+    "USC00435542": {
+        "Station_Name": "NEWPORT",
+        "Station_ID": "USC00435542",
+        "Date_Range": "1932 - Present",
+        "Elevation": "790",
+        "County": "ORLEANS"
+    },
+    "US1VTCH0011": {
+        "Station_Name": "UNDERHILL 5.1 NNE",
+        "Station_ID": "US1VTCH0011",
+        "Date_Range": "2009 - Present",
+        "Elevation": "909",
+        "County": "CHITTENDEN"
+    },
+    "US1VTCH0015": {
+        "Station_Name": "HUNTINGTON 0.7 NNE",
+        "Station_ID": "US1VTCH0015",
+        "Date_Range": "2010 - Present",
+        "Elevation": "711",
+        "County": "CHITTENDEN"
+    },
+    "US1VTRT0013": {
+        "Station_Name": "WEST RUTLAND 0.9 SSE",
+        "Station_ID": "US1VTRT0013",
+        "Date_Range": "2016 - Present",
+        "Elevation": "546",
+        "County": "RUTLAND"
+    },
+    "USC00438169": {
+        "Station_Name": "SUTTON",
+        "Station_ID": "USC00438169",
+        "Date_Range": "2007 - Present",
+        "Elevation": "1500",
+        "County": "CALEDONIA"
+    },
+    "USC00435273": {
+        "Station_Name": "",
+        "Station_ID": "USC00435273",
+        "Date_Range": "",
+        "Elevation": "",
+        "County": ""
+    },
+    "US1VTCL0018": {
+        "Station_Name": "WHEELOCK 1.6 S",
+        "Station_ID": "US1VTCL0018",
+        "Date_Range": "2013 - Present",
+        "Elevation": "1159",
+        "County": "CALEDONIA"
+    }
+}
