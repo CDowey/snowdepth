@@ -96,10 +96,10 @@ for index, row in station_data.iterrows():
         snow_data[key]['chartData'][snow_year][year_index] = int(row['SNWD'])
         
 # Fill forward for each snow_year and station
-        
-        
-        
-        
+
+for key in snow_data:
+    for year in snow_data[key]['chartData']:
+        snow_data[key]['chartData'][year] = [int(x) for x in list(pd.Series(snow_data[key]['chartData'][year]).fillna(method='ffill'))]
         
         
 # Fill in locations

@@ -1,10 +1,10 @@
 {
     "USC00431580": {
-        "Station_Name": "",
+        "Station_Name": "CORNWALL, VT US",
         "Station_ID": "USC00431580",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "345",
+        "County": "ADDISON"
     },
     "US1VTOL0009": {
         "Station_Name": "GREENSBORO 2.1 NNW",
@@ -56,11 +56,11 @@
         "County": "WINDSOR"
     },
     "USC00435982": {
-        "Station_Name": "",
+        "Station_Name": "N SPRINGFIELD LAKE",
         "Station_ID": "USC00435982",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "560",
+        "County": "WINDSOR"
     },
     "USC00436391": {
         "Station_Name": "PLAINFIELD",
@@ -98,18 +98,18 @@
         "County": "ORLEANS"
     },
     "USW00094705": {
-        "Station_Name": "",
+        "Station_Name": "BARRE MONTPELIER KNAPP STATE AIRPORT",
         "Station_ID": "USW00094705",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "1125",
+        "County": "WASHINGTON"
     },
     "USC00437607": {
-        "Station_Name": "",
+        "Station_Name": "SOUTH HERO",
         "Station_ID": "USC00437607",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "110",
+        "County": "GRAND ISLE"
     },
     "USW00014742": {
         "Station_Name": "BURLINGTON INTERNATIONAL AIRPORT",
@@ -126,11 +126,11 @@
         "County": "CHITTENDEN"
     },
     "US1VTWS0022": {
-        "Station_Name": "",
+        "Station_Name": "WARREN 3.3 SSE",
         "Station_ID": "US1VTWS0022",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "1684",
+        "County": "WASHINGTON"
     },
     "US1VTFR0019": {
         "Station_Name": "SWANTON 0.5 NNE",
@@ -161,11 +161,11 @@
         "County": "WINDSOR"
     },
     "USW00054740": {
-        "Station_Name": "",
+        "Station_Name": "SPRINGFIELD HARTNESS STATE AIRPORT",
         "Station_ID": "USW00054740",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "578",
+        "County": "WINDSOR"
     },
     "US1VTWH0012": {
         "Station_Name": "PUTNEY 2.0 WNW",
@@ -196,11 +196,11 @@
         "County": "GRAND ISLE"
     },
     "US1VTCL0041": {
-        "Station_Name": "",
+        "Station_Name": "DANVILLE 4.0 SE",
         "Station_ID": "US1VTCL0041",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "889",
+        "County": "CALEDONIA"
     },
     "US1VTWH0017": {
         "Station_Name": "ROCKINGHAM 1.1 NNE",
@@ -280,18 +280,18 @@
         "County": "WASHINGTON"
     },
     "USW00054781": {
-        "Station_Name": "",
+        "Station_Name": "BENNINGTON MORSE STATE AIRPORT",
         "Station_ID": "USW00054781",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "790",
+        "County": "BENNINGTON"
     },
     "US1VTCL0035": {
-        "Station_Name": "",
+        "Station_Name": "LYNDONVILLE 1.8 N",
         "Station_ID": "US1VTCL0035",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "999",
+        "County": "CALEDONIA"
     },
     "US1VTCL0030": {
         "Station_Name": "DANVILLE 2.2 NW",
@@ -308,11 +308,11 @@
         "County": "LAMOILLE"
     },
     "USC00434290": {
-        "Station_Name": "",
+        "Station_Name": "JOHNSON 2 N",
         "Station_ID": "USC00434290",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "980",
+        "County": "LAMOILLE"
     },
     "US1VTLM0001": {
         "Station_Name": "STOWE 0.2 SW",
@@ -336,11 +336,11 @@
         "County": "WASHINGTON"
     },
     "USC00438556": {
-        "Station_Name": "",
+        "Station_Name": "UNION VILLAGE DAM",
         "Station_ID": "USC00438556",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "460",
+        "County": "ORANGE"
     },
     "USC00432773": {
         "Station_Name": "ENOSBURG FALLS 2",
@@ -350,11 +350,11 @@
         "County": "FRANKLIN"
     },
     "USC00439984": {
-        "Station_Name": "",
+        "Station_Name": "WOODSTOCK",
         "Station_ID": "USC00439984",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "600",
+        "County": "WINDSOR"
     },
     "US1VTWR0006": {
         "Station_Name": "LUDLOW 3.4 S",
@@ -371,11 +371,11 @@
         "County": "ESSEX"
     },
     "US1VTOG0011": {
-        "Station_Name": "",
+        "Station_Name": "VERSHIRE 1.5 ESE",
         "Station_ID": "US1VTOG0011",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "1008",
+        "County": "ORANGE"
     },
     "US1VTWR0016": {
         "Station_Name": "HARTLAND 1.6 NW",
@@ -427,11 +427,11 @@
         "County": "CALEDONIA"
     },
     "USC00435273": {
-        "Station_Name": "",
+        "Station_Name": "MONTPELIER 2",
         "Station_ID": "USC00435273",
         "Date_Range": "",
-        "Elevation": "",
-        "County": ""
+        "Elevation": "530",
+        "County": "WASHINGTON"
     },
     "US1VTCL0018": {
         "Station_Name": "WHEELOCK 1.6 S",
