@@ -147,7 +147,10 @@ for station in stations:
                                         }
 # Export to json
         
+fp = '/Users/CDowey/github/snowdepth/src/assets/snow_data.json'
 
+with open(fp, 'w') as file:
+    json.dump(snow_data, file)
     
     
     

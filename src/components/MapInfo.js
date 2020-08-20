@@ -17,13 +17,18 @@ const reformatName = (phrase) => {
 
 const MapInfo = (props) => {
 
+    useEffect(() => {
+        console.log('map info', props)
+    }, []);
+
+
     //useffect [] to query for current snowdepth for station passed in through props
 
-  //  const station_id = props.station_id
+    //  const station_id = props.station_id
 
-  //  const station_info = Stations[station_id]
+    //  const station_info = Stations[station_id]
 
-  //  const { station_name, lat, long, state, county, elev, date } = station_info
+    //  const { station_name, lat, long, state, county, elev, date } = station_info
 
     return (
         <div className='MapInfo'>

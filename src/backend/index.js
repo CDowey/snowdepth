@@ -63,7 +63,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
 
     res.json({
-
+        'data': station_snow_data
     })
 
 

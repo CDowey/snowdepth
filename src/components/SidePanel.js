@@ -4,7 +4,6 @@ import { extendMoment } from 'moment-range';
 import LineChart from './LineChart';
 import NavPanel from './NavPanel';
 import MapInfo from './MapInfo'
-import mansfieldHistoric from '../assets/MansfieldHistoric.json';
 
 const SidePanel = (props) => {
 

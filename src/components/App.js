@@ -7,6 +7,8 @@ import LineChart from './LineChart';
 import MapInfo from './MapInfo'
 import NavPanel from './NavPanel';
 
+debugger
+
 const App = () => {
 
   const [station, setStation] = useState('USC00435416')
@@ -30,15 +32,20 @@ const App = () => {
     const res_data = await res.json();
     setSnowData(res_data)
     setIsLoading(false)
+    console.log('res_data', snowData)
   }
 
 
   useEffect(() => {
 
-    // Get data from endpoints for the station set in App state
-    fetchData(station)
+    const fetch = async() =>{
+      await fetchData(station)
+    }
 
-  }
+    fetch()
+    // Get data from endpoints for the station set in App state
+
+  }, []
 
   )
 
@@ -54,10 +61,10 @@ const App = () => {
                 ? 'loading'
                 : <LineChart data={snowdepths} />
                 } */}
-                <LineChart className='lineChart'
-                    data={snowData} station={station} loading={isLoading}/>
+                {/* <LineChart className='lineChart'
+                    data={snowData} station={station} loading={isLoading}/> */}
             </div>
-            <MapInfo />
+            <MapInfo mapInfoData={snowData}/>
             <NavPanel className='NavPanel' />
         </div>
       </div>

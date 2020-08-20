@@ -8,8 +8,6 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // defaults.global.elements.line.tension = 0;
 
-debugger
-
 class LineChart extends Component {
 
   constructor(props) {
