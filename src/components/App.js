@@ -64,7 +64,9 @@ const App = () => {
                 {/* <LineChart className='lineChart'
                     data={snowData} station={station} loading={isLoading}/> */}
             </div>
-            <MapInfo mapInfoData={snowData}/>
+            {isLoading
+                ? ''
+            :<MapInfo mapInfoData={snowData.data.info}/>}
             <NavPanel className='NavPanel' />
         </div>
       </div>

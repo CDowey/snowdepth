@@ -17,30 +17,26 @@ const reformatName = (phrase) => {
 
 const MapInfo = (props) => {
 
+
     useEffect(() => {
-        console.log('map info', props)
+
     }, []);
 
 
-    //useffect [] to query for current snowdepth for station passed in through props
 
-    //  const station_id = props.station_id
-
-    //  const station_info = Stations[station_id]
-
-    //  const { station_name, lat, long, state, county, elev, date } = station_info
+  //  const { county, date_range, elevation, stationID, stationName } = props.MapInfoData
 
     return (
         <div className='MapInfo'>
-            {/* {reformatName(station_name)} */}
+            {reformatName(props.mapInfoData.Station_Name)}
             <br></br>
             <table className='mapStationTable'>
                 <tbody>
-                    <tr>
-                        <td>
-                            <span className='stationAttributeName'>Elevation: </span>
-                            {/* <span className='stationAttributeValue'>{elev} ft</span> */}
-                        </td>
+                    <tr>                        <td>
+                        <span className='stationAttributeName'>Station: </span>
+                        <span className='stationAttributeValue'>{props.mapInfoData.Station_ID}</span>
+                    </td>
+
                         <td>
                             <span className='stationAttributeName'>Current Date: </span>
                             <span className='stationAttributeValue'>__/__/__</span>
@@ -48,8 +44,8 @@ const MapInfo = (props) => {
                     </tr>
                     <tr>
                         <td>
-                            <span className='stationAttributeName'>Station: </span>
-                            {/* <span className='stationAttributeValue'>{station_id}</span> */}
+                            <span className='stationAttributeName'>Elevation: </span>
+                            {/* <span className='stationAttributeValue'>{elevation} ft</span> */}
                         </td>
                         <td>
                             <span className='currentSnowDepthName'>Current Snow Depth: </span>
