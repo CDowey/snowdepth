@@ -19,7 +19,7 @@ const App = () => {
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
-    setIsLoading(true)
+   // setIsLoading(true)
   }
 
   console.log('App station', station)
@@ -35,17 +35,13 @@ const App = () => {
     console.log('res_data', snowData)
   }
 
+  // fetchData(station)
 
   useEffect(() => {
 
-    const fetch = async() =>{
-      await fetchData(station)
-    }
+    fetchData(station)
 
-    fetch()
-    // Get data from endpoints for the station set in App state
-
-  }, []
+  }, [station]
 
   )
 
@@ -55,19 +51,19 @@ const App = () => {
       <div className='rowContainer'>
         <LeafletMap changeStation={changeStation} station_id={station} />
         <div className='sidePanel'>
-            <div className='chartContainer'>
-                {/* * Use this conditional statement to change what is return based on isLoading */}
-                {/* {isLoading
+          <div className='chartContainer'>
+            {/* * Use this conditional statement to change what is return based on isLoading */}
+            {/* {isLoading
                 ? 'loading'
                 : <LineChart data={snowdepths} />
                 } */}
-                {/* <LineChart className='lineChart'
+            {/* <LineChart className='lineChart'
                     data={snowData} station={station} loading={isLoading}/> */}
-            </div>
-            {isLoading
-                ? ''
-            :<MapInfo mapInfoData={snowData.data.info}/>}
-            <NavPanel className='NavPanel' />
+          </div>
+          {isLoading
+            ? ''
+            : <MapInfo mapInfoData={snowData.data.info} />}
+          <NavPanel className='NavPanel' />
         </div>
       </div>
     </div>

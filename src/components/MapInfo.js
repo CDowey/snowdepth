@@ -17,50 +17,45 @@ const reformatName = (phrase) => {
 
 const MapInfo = (props) => {
 
-
-    useEffect(() => {
-
-    }, []);
-
-
-
-  //  const { county, date_range, elevation, stationID, stationName } = props.MapInfoData
+    // Destructure Props
+    let { County, Date_Range, Elevation, Station_ID, Station_Name } = props.mapInfoData
 
     return (
         <div className='MapInfo'>
-            {reformatName(props.mapInfoData.Station_Name)}
+            {reformatName(Station_Name)}
             <br></br>
             <table className='mapStationTable'>
                 <tbody>
                     <tr>                        <td>
                         <span className='stationAttributeName'>Station: </span>
-                        <span className='stationAttributeValue'>{props.mapInfoData.Station_ID}</span>
+                        <span className='stationAttributeValue'>{Station_ID}</span>
                     </td>
-
-                        <td>
-                            <span className='stationAttributeName'>Current Date: </span>
-                            <span className='stationAttributeValue'>__/__/__</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className='stationAttributeName'>Elevation: </span>
-                            {/* <span className='stationAttributeValue'>{elevation} ft</span> */}
-                        </td>
                         <td>
                             <span className='currentSnowDepthName'>Current Snow Depth: </span>
                             <span className='currentSnowDepthAttribute'>___ in</span>
                         </td>
+
                     </tr>
                     <tr>
                         <td>
-                            <span className='stationAttributeName'>County: </span>
-                            {/* <span className='stationAttributeValue'>{county}</span> */}
+                            <span className='stationAttributeName'>Elevation: </span>
+                            <span className='stationAttributeValue'>{Elevation} ft</span>
                         </td>
                         <td>
                             <span className='avgSnowDepthName'>Average Snow Depth: </span>
                             <span className='avgSnowDepthAttribute'>___ in</span>
                         </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span className='stationAttributeName'>County: </span>
+                            <span className='stationAttributeValue'>{reformatName(County)}</span>
+                        </td>
+                        <td>
+                            <span className='stationAttributeName'>Available Date Range: </span>
+                            <span className='stationAttributeValue'>{Date_Range}</span>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>

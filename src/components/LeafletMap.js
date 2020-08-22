@@ -40,7 +40,7 @@ const LeafletMap = (props) => {
     }
 
     useEffect(() => {
-        //Set Marker Locations {station name: {lat: , long: }}
+        //Set Marker Locations {station name: {lat: , long: }} // Nees to be UPDATED to get stations form snow_data.json
         const stationLocations = []
         for (let [key, value] of Object.entries(Stations)) {
 
