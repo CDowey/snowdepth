@@ -58,8 +58,13 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
 
     // Calculate Average Depth
+    // Get every value
+    const first_values = []
 
-
+    for (const depth_array in Object.values(station_snow_data)){
+       // const first_value = depth_array
+        first_values.push(depth_array)
+    }
 
 
     res.json({
