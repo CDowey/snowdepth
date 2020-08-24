@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import { defaults, Line } from 'react-chartjs-2'
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
@@ -8,10 +9,19 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // defaults.global.elements.line.tension = 0;
 
+
+const getDaysArray = (start, end) => {
+  for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
+    arr.push(moment(new Date(dt)).format("MMM D"));
+  }
+  return arr;
+};
+
 class LineChart extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       isLoading: true,
       ChartData: {
@@ -34,57 +44,84 @@ class LineChart extends Component {
   };
 
   componentDidMount() {
-    //  this.setState()
+    console.log('DidMount', this.props)
+    const chartData = this.props
+    const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
+    const datasets = []
+
+    for (let [key, value] of Object.entries(chartData)) {
+      datasets.push(
+        {
+          label: key,
+          data: value,
+          backgroundColor: 'rgba(100,60,180, 0.6)',
+          borderColor: 'rgba(27,27,27,.95)',
+          pointRadius: 0,
+          lineTension: 0.1,
+          borderWidth: 1,
+          fill: false
+        }
+      )
+    }
+
+    this.setState({
+      ChartData: {
+        labels: dates,
+        datasets: datasets
+      }
+    })
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.data !== this.props.data) {
-      console.log('props data', this.props.data)
+    console.log('line chart props', this.props)
+    if (prevProps.chartData !== this.props.chartData) {
+      console.log('props data', this.props.chartData)
 
       const { depths, dates } = this.props.data.forChart
       const single_year_data = depths['2015-2016']
 
+      // this.setState({
+      //   isLoading: false,
+      //   ChartData: {
+      //     labels: dates,
+      //     datasets: [
+      //       {
+      //         label: 'Snow Depth',
+      //         fill: false,
+      //         lineTension: 0.5,
+      //         backgroundColor: 'rgba(75,192,192,1)',
+      //         borderColor: 'rgba(0,0,0,1)',
+      //         borderWidth: 2,
+      //         data: single_year_data
+      //       }
+      //     ]
+      //   }
       this.setState({
-        isLoading: false,
         ChartData: {
-          labels: dates,
-          datasets: [
-            {
-              label: 'Snow Depth',
-              fill: false,
-              lineTension: 0.5,
-              backgroundColor: 'rgba(75,192,192,1)',
-              borderColor: 'rgba(0,0,0,1)',
-              borderWidth: 2,
-              data: single_year_data
-            }
-          ]
+          labels: [1, 2, 3, 4],
+          datasets: {
+            label: '1970-71',
+            data: [1, 2, 3, 4],
+            backgroundColor: 'rgba(100,60,180, 0.6)',
+            borderColor: 'rgba(27,27,27,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: false
+          }
         }
-        // ChartData: {
-        //   labels: [1,2,3,4],
-        //   datasets: {
-        //     label: '1970-71',
-        //     data: [1, 2, 3, 4],
-        //     backgroundColor: 'rgba(100,60,180, 0.6)',
-        //     borderColor: 'rgba(27,27,27,.95)',
-        //     pointRadius: 0,
-        //     lineTension: 0.1,
-        //     borderWidth: 1,
-        //     fill: false
-        //   }
-        // }
       })
 
       console.log('line chart state', this.state)
 
       // need something here for when station props changes to renew the loading screen until that request is fulfilled
-      if (prevProps.station !== this.props.station) {
-        this.setState((prevState) => ({
-          isLoading: true,
-          ChartData: {}
-        }))
+      // if (prevProps.station !== this.props.station) {
+      //   this.setState((prevState) => ({
+      //     isLoading: true,
+      //     ChartData: {}
+      //   }))
 
-      }
+      // }
 
 
     };

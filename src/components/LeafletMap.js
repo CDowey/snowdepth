@@ -60,15 +60,6 @@ const LeafletMap = (props) => {
             )
         }
 
-
-        // for (let [key, value] of Object.entries(Stations)) {
-
-        //     const station_id = key
-        //     const station_name = Stations[key].station_name
-
-
-        // }
-
         setMarkers(stationLocations)
 
         // Set selected marker from props from App

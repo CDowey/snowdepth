@@ -35,8 +35,6 @@ const App = () => {
     console.log('res_data', snowData)
   }
 
-  // fetchData(station)
-
   useEffect(() => {
 
     fetchData(station)
@@ -53,10 +51,10 @@ const App = () => {
         <div className='sidePanel'>
           <div className='chartContainer'>
             {/* * Use this conditional statement to change what is return based on isLoading */}
-            {/* {isLoading
-                ? 'loading'
-                : <LineChart data={snowdepths} />
-                } */}
+            {isLoading
+                ? ''
+                : <LineChart chartData={snowData.data.chartData} />
+                }
             {/* <LineChart className='lineChart'
                     data={snowData} station={station} loading={isLoading}/> */}
           </div>
