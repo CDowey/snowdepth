@@ -7,7 +7,6 @@ import LineChart from './LineChart';
 import MapInfo from './MapInfo'
 import NavPanel from './NavPanel';
 
-debugger
 
 const App = () => {
 

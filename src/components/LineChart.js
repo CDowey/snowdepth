@@ -9,6 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // defaults.global.elements.line.tension = 0;
 
+debugger
 
 const getDaysArray = (start, end) => {
   for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {
@@ -45,97 +46,67 @@ class LineChart extends Component {
 
   componentDidMount() {
     console.log('DidMount', this.props)
-    const chartData = this.props
+    const chartData = this.props.chartData
     const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
     const datasets = []
 
     for (let [key, value] of Object.entries(chartData)) {
+      console.log(key, value)
       datasets.push(
         {
           label: key,
           data: value,
           backgroundColor: 'rgba(100,60,180, 0.6)',
-          borderColor: 'rgba(27,27,27,.95)',
+          borderColor: 'rgba(146,146,146,.95)',
           pointRadius: 0,
           lineTension: 0.1,
-          borderWidth: 1,
+          borderWidth: 0.5,
           fill: false
         }
       )
     }
 
     this.setState({
+      isLoading: false,
       ChartData: {
         labels: dates,
         datasets: datasets
       }
     })
+
+
   }
 
   componentDidUpdate(prevProps) {
-    console.log('line chart props', this.props)
-    if (prevProps.chartData !== this.props.chartData) {
-      console.log('props data', this.props.chartData)
+    if (prevProps !== this.props) {
+      const chartData = this.props.chartData
+      const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
+      const datasets = []
 
-      const { depths, dates } = this.props.data.forChart
-      const single_year_data = depths['2015-2016']
-
-      // this.setState({
-      //   isLoading: false,
-      //   ChartData: {
-      //     labels: dates,
-      //     datasets: [
-      //       {
-      //         label: 'Snow Depth',
-      //         fill: false,
-      //         lineTension: 0.5,
-      //         backgroundColor: 'rgba(75,192,192,1)',
-      //         borderColor: 'rgba(0,0,0,1)',
-      //         borderWidth: 2,
-      //         data: single_year_data
-      //       }
-      //     ]
-      //   }
-      this.setState({
-        ChartData: {
-          labels: [1, 2, 3, 4],
-          datasets: {
-            label: '1970-71',
-            data: [1, 2, 3, 4],
+      for (let [key, value] of Object.entries(chartData)) {
+        console.log(key, value)
+        datasets.push(
+          {
+            label: key,
+            data: value,
             backgroundColor: 'rgba(100,60,180, 0.6)',
-            borderColor: 'rgba(27,27,27,.95)',
+            borderColor: 'rgba(146,146,146,.95)',
             pointRadius: 0,
             lineTension: 0.1,
-            borderWidth: 1,
+            borderWidth: 0.5,
             fill: false
           }
+        )
+      }
+
+      this.setState({
+        isLoading: false,
+        ChartData: {
+          labels: dates,
+          datasets: datasets
         }
       })
-
-      console.log('line chart state', this.state)
-
-      // need something here for when station props changes to renew the loading screen until that request is fulfilled
-      // if (prevProps.station !== this.props.station) {
-      //   this.setState((prevState) => ({
-      //     isLoading: true,
-      //     ChartData: {}
-      //   }))
-
-      // }
-
-
-    };
-
-    // if (prevProps.data.dates !== this.props.data.dates) {
-    //   const dates = this.props.data.dates
-    //   console.log(dates)
-    //   this.setState(prevState => ({
-    //     ChartData: {
-    //       ...prevState.ChartData,
-    //       labels: dates
-    //     }
-    //   }))
-    // }
+    }
   }
 
   render() {
