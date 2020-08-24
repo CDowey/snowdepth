@@ -5,6 +5,7 @@ import MapIcon from './MapIcon'
 import L from 'leaflet';
 import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
 import Stations from '../assets/stations.json'
+import Snow_Data from '../assets/snow_data.json'
 import '../css/App.css';
 import ReactDOMServer from 'react-dom/server';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
@@ -40,22 +41,33 @@ const LeafletMap = (props) => {
     }
 
     useEffect(() => {
-        //Set Marker Locations {station name: {lat: , long: }} // Nees to be UPDATED to get stations form snow_data.json
+        //Set Marker Locations 
         const stationLocations = []
-        for (let [key, value] of Object.entries(Stations)) {
 
+        for (let [key, value] of Object.entries(Snow_Data)){
             const station_id = key
-            const station_name = Stations[key].station_name
+            const station_name = Snow_Data[key].info.Station_Name
+            const lat = Snow_Data[key].location.Latitude
+            const long = Snow_Data[key].location.Longitude
 
             stationLocations.push(
                 {
                     'station_id': station_id,
                     'station_name': station_name,
-                    'lat': parseFloat(Stations[key].lat),
-                    'long': parseFloat(Stations[key].lon),
+                    'lat': lat,
+                    'long': long,
                 }
             )
         }
+
+
+        // for (let [key, value] of Object.entries(Stations)) {
+
+        //     const station_id = key
+        //     const station_name = Stations[key].station_name
+
+
+        // }
 
         setMarkers(stationLocations)
 
