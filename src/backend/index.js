@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const fetch = require('node-fetch');
+const moment = require('moment')
 
 const app = express()
 const port = process.env.PORT || 4000
@@ -59,9 +60,9 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
     // Calculate Average Depth
     // Get every value
-    const transpose = (a) =>  {
-        return Object.keys(a[0]).map(function(c) {
-            return a.map(function(r) { return r[c]; });
+    const transpose = (a) => {
+        return Object.keys(a[0]).map(function (c) {
+            return a.map(function (r) { return r[c]; });
         });
     }
 
@@ -74,9 +75,9 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     // Calculate average for each day array
     depth_arrays.map(
         array => {
-            const average = array.reduce((a,b) => a + b, 0) / array.length
+            const average = array.reduce((a, b) => a + b, 0) / array.length
             // ^ is a way of rounding to an int
-            average_season.push(average^0);
+            average_season.push(average ^ 0);
         }
     )
 
@@ -84,10 +85,35 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     station_snow_data.chartData['Average Season'] = average_season
 
     // Get Current Season Data
-    
+
+    // Set Up Fetch Request
+    const getSnowDepths = async (station) => {
+
+        //const endDate = moment(today).format("YYYY-MM-DD")
+
+        const params = new URLSearchParams({
+            dataset: 'daily-summaries',
+            stations: station,
+            startDate: current_snow_year.substr(0,4) + '-09-01',
+            endDate: moment(today).format("YYYY-MM-DD"),
+            dataTypes:'SNWD',
+            units: 'standard',
+            includeStationName: 'false',
+            format: 'json',
+            
+        })
+
+        const current_depths = await fetch('https://www.ncei.noaa.gov/access/services/data/v1?' + params)
+
+        return current_depths
+
+    }
+
+    const cd = await getSnowDepths(station)
 
     res.json({
-        'data': station_snow_data
+        'data': station_snow_data,
+        'cd': cd
     })
 })
 
