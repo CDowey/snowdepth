@@ -3,6 +3,7 @@ import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
 import bbox from '@turf/bbox'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
+import esri from 'esri-leaflet';
 import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
 import Stations from '../assets/stations.json'
 import Snow_Data from '../assets/snow_data.json'
@@ -41,23 +42,50 @@ const LeafletMap = (props) => {
     }
 
     useEffect(() => {
+
+
         //Set Marker Locations 
         const stationLocations = []
 
-        for (let [key, value] of Object.entries(Snow_Data)){
-            const station_id = key
-            const station_name = Snow_Data[key].info.Station_Name
-            const lat = Snow_Data[key].location.Latitude
-            const long = Snow_Data[key].location.Longitude
+        // Stations with useful records based on consistency and recording interval
+        const good_stations = ['USC00435416',
+            'USC00432773',
+            'US1VTOL0001',
+            'USC00435542',
+            'USC00430193',
+            'USC00434120',
+            'US1VTES0003',
+            'USC00438169',
+            'US1VTOL0009',
+            'US1VTLM0007',
+            'USC00434290',
+            'USC00434261',
+            'USC00437607',
+            'USW00014742',
+            'USC00436391',
+            'USW00094705',
+            'USC00438556',
+            'US1VTAD0020',
+            'USC00438640',
+            'USC00436335'
+        ]
 
-            stationLocations.push(
-                {
-                    'station_id': station_id,
-                    'station_name': station_name,
-                    'lat': lat,
-                    'long': long,
-                }
-            )
+        for (let [key, value] of Object.entries(Snow_Data)) {
+            if (good_stations.includes(key)) {
+                const station_id = key
+                const station_name = Snow_Data[key].info.Station_Name
+                const lat = Snow_Data[key].location.Latitude
+                const long = Snow_Data[key].location.Longitude
+
+                stationLocations.push(
+                    {
+                        'station_id': station_id,
+                        'station_name': station_name,
+                        'lat': lat,
+                        'long': long,
+                    }
+                )
+            }
         }
 
         setMarkers(stationLocations)
@@ -92,17 +120,17 @@ const LeafletMap = (props) => {
             // Set dates
             const today = new Date();
             const seven_days_before = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
- 
-            const startDate = seven_days_before.toLocaleDateString("sv-SE", { 
+
+            const startDate = seven_days_before.toLocaleDateString("sv-SE", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
-              });
-            const endDate = today.toLocaleDateString("sv-SE", { 
+            });
+            const endDate = today.toLocaleDateString("sv-SE", {
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
-              });
+            });
 
             console.log('DATES', startDate, endDate)
 

@@ -83,6 +83,9 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     // Add Average Season to chartData
     station_snow_data.chartData['Average Season'] = average_season
 
+    // Get Current Season Data
+    
+
     res.json({
         'data': station_snow_data
     })
