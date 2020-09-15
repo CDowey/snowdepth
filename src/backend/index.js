@@ -94,27 +94,52 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
         const params = new URLSearchParams({
             dataset: 'daily-summaries',
             stations: station,
-            startDate: current_snow_year.substr(0,4) + '-09-01',
+            startDate: current_snow_year.substr(0, 4) + '-09-01',
             endDate: moment(today).format("YYYY-MM-DD"),
-            dataTypes:'SNWD',
+            dataTypes: 'SNWD',
             units: 'standard',
             includeStationName: 'false',
             format: 'json',
-            
+
         })
 
-        const current_depths = await fetch('https://www.ncei.noaa.gov/access/services/data/v1?' + params)
 
-        return current_depths
+        try {
+            const response = await fetch('https://www.ncei.noaa.gov/access/services/data/v1?' + params);
+            const json = await response.json();
+            return json
+        } catch (error) {
+            console.log(error);
+            return error
+        }
+    };
 
+    const current_depths_response = await getSnowDepths(station)
+    let current_depths = current_depths_response.map(a => parseInt(a.SNWD));
+
+    // Set initial value to 0 and then fill forward to fill any gaps
+    current_depths[0] = 0
+
+    for (const [i, value] of current_depths.entries()) {
+        if(Number.isNaN(value)) {
+            current_depths[i] = current_depths[i-1]
+        }
     }
 
-    const cd = await getSnowDepths(station)
+   // for testing with non zero depths
+   // current_depths = [0, 2, 3, 9, 12, 12, 12]
 
-    res.json({
-        'data': station_snow_data,
-        'cd': cd
-    })
+    // To allow for proper calculating averages fill remaining values with nulls
+    const nulls = new Array(304 - current_depths.length).fill(null)
+    current_depths = current_depths.concat(nulls)
+
+   
+
+    station_snow_data.chartData['Current Season'] = current_depths
+
+res.json({
+    'data': station_snow_data
+})
 })
 
 

@@ -98,7 +98,21 @@ class LineChart extends Component {
       const datasets = []
 
       for (let [key, value] of Object.entries(chartData)) {
-        if (key == 'Average Season') {
+        if(key === 'Current Season'){
+          datasets.push(
+            {
+              label: key,
+              data: value,
+              backgroundColor: 'rgba(255,0,0,.02)',
+              borderColor: 'rgba(0, 31, 255,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 2,
+              fill: false
+            }
+          )
+        }
+        else if(key === 'Average Season') {
           datasets.push(
             {
               label: key,
