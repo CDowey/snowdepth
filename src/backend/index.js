@@ -127,7 +127,8 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     }
 
    // for testing with non zero depths
-   // current_depths = [0, 2, 3, 9, 12, 12, 12]
+   current_depths = [0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20]
+   const indexlastmeasurement = current_depths.length
 
     // To allow for proper calculating averages fill remaining values with nulls
     const nulls = new Array(304 - current_depths.length).fill(null)
@@ -136,6 +137,8 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
    
 
     station_snow_data.chartData['Current Season'] = current_depths
+    station_snow_data.info['Current_Depth'] = current_depths[indexlastmeasurement-1]
+    station_snow_data.info['Average_Depth'] = average_season[indexlastmeasurement-1]
 
 res.json({
     'data': station_snow_data

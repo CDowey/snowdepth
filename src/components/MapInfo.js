@@ -18,7 +18,8 @@ const reformatName = (phrase) => {
 const MapInfo = (props) => {
 
     // Destructure Props
-    let { County, Date_Range, Elevation, Station_ID, Station_Name } = props.mapInfoData
+    let { Average_Depth, County, Current_Depth, Date_Range, Elevation, Station_ID, Station_Name } = props.mapInfoData
+
 
     return (
         <div className='MapInfo'>
@@ -32,7 +33,7 @@ const MapInfo = (props) => {
                     </td>
                         <td>
                             <span className='currentSnowDepthName'>Current Snow Depth: </span>
-                            <span className='currentSnowDepthAttribute'>___ in</span>
+                            <span className='currentSnowDepthAttribute'>{Current_Depth} in</span>
                         </td>
 
                     </tr>
@@ -43,7 +44,7 @@ const MapInfo = (props) => {
                         </td>
                         <td>
                             <span className='avgSnowDepthName'>Average Depth On This Date: </span>
-                            <span className='avgSnowDepthAttribute'>___ in</span>
+                            <span className='avgSnowDepthAttribute'>{Average_Depth} in</span>
                         </td>
                     </tr>
                     <tr>
