@@ -9,7 +9,7 @@ import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
 // defaults.global.elements.line.tension = 0;
 
-debugger
+
 
 const getDaysArray = (start, end) => {
   for (var arr = [], dt = new Date(start); dt <= end; dt.setDate(dt.getDate() + 1)) {

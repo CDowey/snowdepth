@@ -11,6 +11,9 @@ import '../css/App.css';
 import ReactDOMServer from 'react-dom/server';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
+
+debugger
+
 const LeafletMap = (props) => {
 
     // Markers are going to be built from state
@@ -70,25 +73,7 @@ const LeafletMap = (props) => {
             'USC00436335'
         ]
 
-        for (let [key, value] of Object.entries(Snow_Data)) {
-            if (good_stations.includes(key)) {
-                const station_id = key
-                const station_name = Snow_Data[key].info.Station_Name
-                const lat = Snow_Data[key].location.Latitude
-                const long = Snow_Data[key].location.Longitude
 
-                stationLocations.push(
-                    {
-                        'station_id': station_id,
-                        'station_name': station_name,
-                        'lat': lat,
-                        'long': long,
-                    }
-                )
-            }
-        }
-
-        setMarkers(stationLocations)
 
         // Set selected marker from props from App
         setSelectedStationID(props.station_id)
@@ -153,19 +138,13 @@ const LeafletMap = (props) => {
             // Get results for each station
             let results = ds_data.map(({ STATION, SNWD, DATE }) => ({ STATION, SNWD, DATE }))
 
-            // Create obj for storing
-            let temp_obj = {};
-
-            let station_depths = good_stations.map(
-                (value, index) => {
-                    temp_obj[`${value}`] = "";
-                    return temp_obj;
-                }
-            );
+            // Create obj for storing most recent depth for each station
+            let station_depths = {}
 
             good_stations.forEach(station => {
                 // let station_results = results.find(x => x.STATION === station)
-                let station_results = results.map((e, i) => e.STATION === station ? e : '')
+                let station_results = results.map((e) => e.STATION === station ? e.SNWD : null)
+                station_results = station_results.filter(x => x != null)
                 console.log('station_results', station_results)
 
                 // if station_results has no results then return 'N/A'
@@ -184,11 +163,31 @@ const LeafletMap = (props) => {
             // Get result with date closest today? always first or last?
 
             console.log('daily_summaries_prior_week', station_depths)
+
+            for (let [key, value] of Object.entries(Snow_Data)) {
+                if (good_stations.includes(key)) {
+                    const station_id = key
+                    const station_name = Snow_Data[key].info.Station_Name
+                    const lat = Snow_Data[key].location.Latitude
+                    const long = Snow_Data[key].location.Longitude
+                    const depth = station_depths[key]
+
+                    stationLocations.push(
+                        {
+                            'station_id': station_id,
+                            'station_name': station_name,
+                            'lat': lat,
+                            'long': long,
+                            'depth': depth
+                        }
+                    )
+                }
+            }
+
+            setMarkers(stationLocations)
         }
 
         getDailySummaries()
-
-
 
 
         // LAT AND LONG from the daily summaries might be more precise! 4 dec
@@ -233,14 +232,14 @@ const LeafletMap = (props) => {
         // map.fitBounds(statebounday.getBounds()); https://stackoverflow.com/questions/40451506/react-leaflet-how-to-set-zoom-based-on-geojson
 
         //API call to get the current snowdepth for all the stations
-        const getCurrentDepths = async () => {
-            // get station names from stations.json
-            const station_names = Object.keys(Stations)
+        // const getCurrentDepths = async () => {
+        //     // get station names from stations.json
+        //     const station_names = Object.keys(Stations)
 
 
-        }
+        // }
 
-        getCurrentDepths()
+        // getCurrentDepths()
 
     }, [mapRef]);
 
@@ -248,18 +247,22 @@ const LeafletMap = (props) => {
     // Would be a lot of requests to get that info unless it is available a different way
 
     // Grey Border
-    const icon = L.divIcon({
-        className: 'custom-icon',
-        iconAnchor: [10, 10],
-        html: ReactDOMServer.renderToString(< MapIcon depth={10} bgColor={'#ffffff00'} strokeColor={'#5F5F5F'} />)
-    });
+    const icon = (depth) => {
+
+        return (L.divIcon({
+            className: 'custom-icon',
+            iconAnchor: [10, 10],
+            html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#ffffff00'} strokeColor={'#5F5F5F'} />)
+        }))}
 
     // Red Border
-    const selectedIcon = L.divIcon({
+    const selectedIcon = (depth) => {
+        
+        return (L.divIcon({
         className: 'custom-icon',
         iconAnchor: [10, 10],
-        html: ReactDOMServer.renderToString(< MapIcon depth={10} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
-    });
+        html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
+    }))};
 
 
 
@@ -287,11 +290,13 @@ const LeafletMap = (props) => {
                         // could also change marker size..
                         return stationobj.station_id === selectedStationID ?
 
+
+
                             < Marker key={`marker-${stationobj.station_name}`}
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
-                                icon={selectedIcon}
+                                icon={selectedIcon(stationobj.depth)}
                                 onClick={handleClick}
                             >
                                 <Popup >
@@ -305,7 +310,7 @@ const LeafletMap = (props) => {
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
-                                icon={icon}
+                                icon={icon(stationobj.depth)}
                                 onClick={handleClick}
                             >
                                 <Popup >
