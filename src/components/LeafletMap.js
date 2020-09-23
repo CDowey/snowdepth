@@ -151,14 +151,36 @@ const LeafletMap = (props) => {
 
             // narrow data down to most recent reading for each station
             // Get results for each station
-            let result = ds_data.map(({ STATION, SNWD }) => ({ STATION, SNWD }))
+            let results = ds_data.map(({ STATION, SNWD, DATE }) => ({ STATION, SNWD, DATE }))
+
+            // Create obj for storing
+            let temp_obj = {};
+
+            let station_depths = good_stations.map(
+                (value, index) => {
+                    temp_obj[`${value}`] = "";
+                    return temp_obj;
+                }
+            );
+
+            good_stations.forEach(station => {
+               // let station_results = results.find(x => x.STATION === station)
+                let station_results = results.find(x => {
+                    return x.STATION === station
+                  })
+                console.log('station_results', station_results)
+                // get last non null item in array this is the most recent measurement
+                let last_measurement = parseInt(station_results.reduce((acc, curr) => curr ? curr : acc))
+                station_depths[station] = last_measurement
+
+            });
 
 
             // Get result with date closest today? always first or last?
 
 
 
-            console.log('daily_summaries_prior_week', result)
+            console.log('daily_summaries_prior_week', station_depths)
         }
 
         getDailySummaries()
