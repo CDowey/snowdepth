@@ -164,21 +164,24 @@ const LeafletMap = (props) => {
             );
 
             good_stations.forEach(station => {
-               // let station_results = results.find(x => x.STATION === station)
-                let station_results = results.find(x => {
-                    return x.STATION === station
-                  })
+                // let station_results = results.find(x => x.STATION === station)
+                let station_results = results.map((e, i) => e.STATION === station ? e : '')
                 console.log('station_results', station_results)
-                // get last non null item in array this is the most recent measurement
-                let last_measurement = parseInt(station_results.reduce((acc, curr) => curr ? curr : acc))
-                station_depths[station] = last_measurement
 
+                // if station_results has no results then return 'N/A'
+                if (station_results.length === 0) {
+                    let last_measurement = ['N/A']
+                    station_depths[station] = last_measurement
+                }
+                else {
+                    // get last non null item in array this is the most recent measurement
+                    let last_measurement = parseInt(station_results.reduce((acc, curr) => curr ? curr : acc)).toString()
+                    station_depths[station] = last_measurement
+                }
             });
 
 
             // Get result with date closest today? always first or last?
-
-
 
             console.log('daily_summaries_prior_week', station_depths)
         }
