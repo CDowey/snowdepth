@@ -32,7 +32,7 @@ const MapInfo = (props) => {
                         <span className='stationAttributeValue'>{Station_ID}</span>
                     </td>
                         <td>
-                            <span className='currentSnowDepthName'>Current Snow Depth: </span>
+                            <span className='stationAttributeName'>Current Snow Depth: </span>
                             <span className='currentSnowDepthAttribute'>{Current_Depth} in</span>
                         </td>
 
@@ -43,7 +43,7 @@ const MapInfo = (props) => {
                             <span className='stationAttributeValue'>{Elevation} ft</span>
                         </td>
                         <td>
-                            <span className='avgSnowDepthName'>Average Depth On This Date: </span>
+                            <span className='stationAttributeName'>Average Depth On This Date: </span>
                             <span className='avgSnowDepthAttribute'>{Average_Depth} in</span>
                         </td>
                     </tr>

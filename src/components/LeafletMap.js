@@ -108,14 +108,7 @@ const LeafletMap = (props) => {
 
         const getDailySummaries = async () => {
 
-
-
-            const ids = Object.keys(Stations).join(',');
-
-            // Max 50 stations in a request so need to split as there are 77 stations
-
-            const ids_1 = ids.slice(0, 40)
-            const ids_2 = ids.slice(40, Object.keys(Stations).length)
+            const ids = good_stations;
 
             // Set dates
             const today = new Date();
@@ -141,9 +134,10 @@ const LeafletMap = (props) => {
 
             url.search = new URLSearchParams({
                 dataset: 'daily-summaries',
-                stations: ids_1,
+                stations: ids,
                 startDate: startDate,
                 endDate: endDate,
+                dataTypes: 'SNWD',
                 includeAttributes: true,
                 includeStationName: true,
                 includeStationLocation: true,
@@ -152,27 +146,19 @@ const LeafletMap = (props) => {
             })
 
             console.log('fetch url', url)
-            const ds_res_1 = await fetch(url);
-            const ds_data_1 = await ds_res_1.json()
+            const ds_res = await fetch(url);
+            const ds_data = await ds_res.json()
 
-            url.search = new URLSearchParams({
-                dataset: 'daily-summaries',
-                stations: ids_2,
-                startDate: startDate,
-                endDate: endDate,
-                includeAttributes: true,
-                includeStationName: true,
-                includeStationLocation: true,
-                units: 'standard',
-                format: 'json'
-            })
+            // narrow data down to most recent reading for each station
+            // Get results for each station
+            let result = ds_data.map(({ STATION, SNWD }) => ({ STATION, SNWD }))
 
-            const ds_res_2 = await fetch(url);
-            const ds_data_2 = await ds_res_2.json()
 
-            const daily_summaries_prior_week = ds_data_1.concat(ds_data_2)
+            // Get result with date closest today? always first or last?
 
-            console.log('daily_summaries_prior_week', daily_summaries_prior_week)
+
+
+            console.log('daily_summaries_prior_week', result)
         }
 
         getDailySummaries()
