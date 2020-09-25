@@ -5,6 +5,7 @@ import MapIcon from './MapIcon'
 import L from 'leaflet';
 import esri from 'esri-leaflet';
 import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
+import VT_Mask from '../assets/VT_Mask.json'
 import Stations from '../assets/stations.json'
 import Snow_Data from '../assets/snow_data.json'
 import '../css/App.css';
@@ -31,9 +32,19 @@ const LeafletMap = (props) => {
         };
     }
 
+    const mask_style = () => {
+        return {
+            weight: 0,
+            opacity: 1,
+            color: 'white',
+            fillOpacity: 1
+        };
+    }
+
     // create map and group refs useRef for functional components
     const mapRef = useRef();
     const stateBoundayRef = useRef();
+    const stateMask = useRef();
 
     //Marker OnClick function
     const handleClick = e => {
@@ -149,7 +160,7 @@ const LeafletMap = (props) => {
 
                 // if station_results has no results then return 'N/A'
                 if (station_results.length === 0) {
-                    let last_measurement = ['N/A']
+                    let last_measurement = ['-']
                     station_depths[station] = last_measurement
                 }
                 else {
@@ -253,16 +264,18 @@ const LeafletMap = (props) => {
             className: 'custom-icon',
             iconAnchor: [10, 10],
             html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#ffffff00'} strokeColor={'#5F5F5F'} />)
-        }))}
+        }))
+    }
 
     // Red Border
     const selectedIcon = (depth) => {
-        
+
         return (L.divIcon({
-        className: 'custom-icon',
-        iconAnchor: [10, 10],
-        html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
-    }))};
+            className: 'custom-icon',
+            iconAnchor: [10, 10],
+            html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
+        }))
+    };
 
 
 
@@ -289,9 +302,6 @@ const LeafletMap = (props) => {
                         // Tunery Operator within the map was the only way I could get this to work with two diff markers
                         // could also change marker size..
                         return stationobj.station_id === selectedStationID ?
-
-
-
                             < Marker key={`marker-${stationobj.station_name}`}
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
@@ -319,16 +329,24 @@ const LeafletMap = (props) => {
                             </Marker>
                     })
                 }
-                <GeoJSON
+
+
+                {/* <TileLayer
+                    url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
+                    attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                /> */}
+                                <GeoJSON
                     ref={stateBoundayRef}
                     key='1'
                     data={VT_Boundary}
                     style={bound_style}
                 />
-                {/* <TileLayer
-                    url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
-                    attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                /> */}
+                <GeoJSON
+                    ref={stateMask}
+                    key='2'
+                    data={VT_Mask}
+                    style={mask_style}
+                />
 
             </Map>
         </div >
