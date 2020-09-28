@@ -14,7 +14,7 @@ export default class MapIcon extends Component {
         <circle className="donut-hole" cx="24" cy="24" r="14" fill="white" role="presentation"></circle>
         <circle className="donut-ring" cx="24" cy="24" r="14" fill={bgColor} stroke={strokeColor} strokeWidth="2" role="presentation"></circle>
         <g className="chart-text">
-          <text className="chart-number" x="40%" y="68%">
+          <text className="chart-number" x="48%" y="68%">
             {depth}
           </text>
         </g>

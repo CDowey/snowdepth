@@ -41,6 +41,8 @@ const LeafletMap = (props) => {
         };
     }
 
+    let mapcenter = [43.89, -72.5]
+
     // create map and group refs useRef for functional components
     const mapRef = useRef();
     const stateBoundayRef = useRef();
@@ -53,6 +55,7 @@ const LeafletMap = (props) => {
         // Need to trigger function to change the value in the MapInfo through SidePanel state/props from App state/props
         const changeStationParent = props.changeStation
         changeStationParent(station_id)
+        mapcenter = [43.89, -72.5]
     }
 
     useEffect(() => {
@@ -237,6 +240,7 @@ const LeafletMap = (props) => {
         // Needs better way for the container to resize based on available space and width/heigh ratio
         console.log('VT bounds', VT_bounds)
 
+        mapcenter = [43.89, -72.5]
 
 
         // Use fitBounds to set zoom and extent
@@ -291,11 +295,12 @@ const LeafletMap = (props) => {
             </div>
             <Map className='Map'
                 ref={mapRef}
-                center={[43.89, -72.5]}
+                center={mapcenter}
                 zoom={8}
                 // zoomSnap={7.5} //ideally this could be adjusted based on screensize (use fitBounds for this)
-                maxZoom={9}
-                zoomControl={true}
+                maxZoom={8}
+                minZoom={8}
+                zoomControl={false}
                 attributionControl={false} >
                 {
                     markers.map((stationobj, idx) => {
@@ -331,11 +336,13 @@ const LeafletMap = (props) => {
                 }
 
 
-                {/* <TileLayer
-                    url="https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}{r}.png"
+                <TileLayer
+                    url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}"
                     attribution='&copy; Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                /> */}
-                                <GeoJSON
+                />
+
+
+                <GeoJSON
                     ref={stateBoundayRef}
                     key='1'
                     data={VT_Boundary}

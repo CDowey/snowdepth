@@ -63,7 +63,7 @@ html, body {
 
 .Map {
     flex-grow: 100;
-    width: 300px;
+    width: 500px;
     background-color: white;
 }
 
