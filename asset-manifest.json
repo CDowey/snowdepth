@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/snowdepths/static/css/main.2893800f.chunk.css",
+    "main.js": "/snowdepths/static/js/main.29215759.chunk.js",
+    "main.js.map": "/snowdepths/static/js/main.29215759.chunk.js.map",
+    "runtime-main.js": "/snowdepths/static/js/runtime-main.67eb53d9.js",
+    "runtime-main.js.map": "/snowdepths/static/js/runtime-main.67eb53d9.js.map",
+    "static/css/2.aa628720.chunk.css": "/snowdepths/static/css/2.aa628720.chunk.css",
+    "static/js/2.348c66b1.chunk.js": "/snowdepths/static/js/2.348c66b1.chunk.js",
+    "static/js/2.348c66b1.chunk.js.map": "/snowdepths/static/js/2.348c66b1.chunk.js.map",
+    "index.html": "/snowdepths/index.html",
+    "precache-manifest.6c22e448c8ed57113903aab1795cf2a7.js": "/snowdepths/precache-manifest.6c22e448c8ed57113903aab1795cf2a7.js",
+    "service-worker.js": "/snowdepths/service-worker.js",
+    "static/css/2.aa628720.chunk.css.map": "/snowdepths/static/css/2.aa628720.chunk.css.map",
+    "static/css/main.2893800f.chunk.css.map": "/snowdepths/static/css/main.2893800f.chunk.css.map",
+    "static/js/2.348c66b1.chunk.js.LICENSE.txt": "/snowdepths/static/js/2.348c66b1.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.67eb53d9.js",
+    "static/css/2.aa628720.chunk.css",
+    "static/js/2.348c66b1.chunk.js",
+    "static/css/main.2893800f.chunk.css",
+    "static/js/main.29215759.chunk.js"
+  ]
+}
