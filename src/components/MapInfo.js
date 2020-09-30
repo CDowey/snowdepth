@@ -20,6 +20,8 @@ const MapInfo = (props) => {
     // Destructure Props
     let { Average_Depth, County, Current_Depth, Date_Range, Elevation, Station_ID, Station_Name } = props.mapInfoData
 
+    // Build Station URL
+    const Station_URL = 'https://www.ncdc.noaa.gov/cdo-web/datasets/GHCND/stations/GHCND:' + Station_ID + '/detail'
 
     return (
         <div className='MapInfo'>
@@ -29,7 +31,7 @@ const MapInfo = (props) => {
                 <tbody>
                     <tr>                        <td>
                         <span className='stationAttributeName'>Station: </span>
-                        <span className='stationAttributeValue'>{Station_ID}</span>
+                        <span className='stationAttributeValue'><a href={Station_URL} target="_blank" rel="noopener noreferrer">{Station_ID}</a></span>
                     </td>
                         <td>
                             <span className='stationAttributeName'>Current Snow Depth: </span>

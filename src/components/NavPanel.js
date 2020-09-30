@@ -69,15 +69,15 @@ const NavPanel = () => {
                                         <Tab.Pane eventKey="first">
                                             <div className='learnmoretext'>
                                                 I created this web application to provide an interface for exploring Vermont snow depths for the current winter season and historic records.
-                                                It was inspired by the wonderful Mansfield Snow Stake page here.
-                                                Any comments, questions, suggestions, leads on other data to incorporate send an email to ______
+                                                It was inspired by the wonderful <a href='https://www.matthewparrilla.com/mansfield-stake/' target='_blank' rel="noopener noreferrer">Mansfield Snow Stake page</a>.
+                                                Any comments, questions, suggestions, or leads on other data to incorporate send an email to vermontsnowdepths@gmail.com
                                         </div>
                                         </Tab.Pane>
                                         <Tab.Pane eventKey="second">
                                             <div className='learnmoretext'>
-                                                The <a href='https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT/snowfall/'>NOAA Centers for Environmental Information Daily Snowfall and Snow Depth dataset</a> is the primary source of snow depths shown in this application is the
-                                    Historic records are
-                                    Basemap is _____.
+                                                The <a href='https://www.ncdc.noaa.gov/snow-and-ice/daily-snow/VT/snowfall/'>NOAA Centers for Environmental Information Daily Snowfall and Snow Depth dataset</a> is the primary source of snow depths shown in this application. The data is collected and processed from public APIs and is not certified data.
+                                                Basemap is <a href='https://leaflet-extras.github.io/leaflet-providers/preview/#filter=Esri.WorldTerrain' target='_blank' rel="noopener noreferrer"> ESRI World Terrain</a>.
+                                                Repository for this site can be found on <a href='https://github.com/CDowey/snowdepth' target='_blank' rel="noopener noreferrer">Github</a>.
                                     </div>
                                         </Tab.Pane>
                                     </Tab.Content>

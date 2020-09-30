@@ -50,6 +50,8 @@ html, body {
     min-width: 300px;
     max-width: fit-content;
     /* flex-basis: 35%; */
+    text-align: left;
+    padding: 0px 0px 40px 0px;
 }
 
 .mapHeader {
@@ -57,8 +59,9 @@ html, body {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: x-small;
     color: gray;
-    /* padding: 20px; */
-    align-content: left;
+    position: absolute;
+    bottom: 0px;
+    padding: 30px 0px 20px 0px;
 }
 
 .Map {
@@ -83,8 +86,6 @@ html, body {
     /* width: 800px; */
     padding: 30px;
 }
-
-
 
 /* .lineChart {
     order: 1;
@@ -128,39 +129,63 @@ html, body {
 th, td {
     padding: 0px 15px;
     text-align: left;
-  }
+}
 
 /* .mapStationTable{
 
 
 } */
 
-.stationAttributeName{
+.stationAttributeName {
     color: gray;
     font-size: x-small;
 }
 
-.stationAttributeValue{
+.stationAttributeValue {
     color: black;
     font-size: small;
 }
 
-.currentSnowDepthName{
+/* unvisited link */
+
+a:link {
+    color: black;
+}
+
+/* visited link */
+
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+
+a:hover {
+    color: gray;
+}
+
+/* selected link */
+
+a:active {
+    color: blue;
+}
+
+.currentSnowDepthName {
     font-size: x-small;
     color: blue;
 }
 
-.currentSnowDepthAttribute{
+.currentSnowDepthAttribute {
     font-size: small;
     color: blue;
 }
 
-.avgSnowDepthName{
+.avgSnowDepthName {
     font-size: x-small;
     color: red;
 }
 
-.avgSnowDepthAttribute{
+.avgSnowDepthAttribute {
     font-size: small;
     color: red;
 }
@@ -190,4 +215,8 @@ th, td {
 
 .nav-link.active {
     background-color: gray;
+}
+
+.learnmoretext{
+    padding: 5px;
 }

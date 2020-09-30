@@ -7,14 +7,19 @@ export default class MapIcon extends Component {
   render() {
     const depth = this.props.depth || 0;
     const strokeColor = this.props.strokeColor || '#d2d3d4';
+    const stroke = this.props.stroke || "2";
     const bgColor = this.props.bgColor || '#d2d3d4';
+    const textColor = this.props.textColor || '#535354';
+    const xpos = this.props.xpos || "48%"
+
+    console.log('icon', depth[0], xpos)
 
     return (
-      <svg width="20px" height="20px" cx='0' cy='0' viewBox="0 0 42 42" className="donut" aria-labelledby="beers-title beers-desc" role="img">
-        <circle className="donut-hole" cx="24" cy="24" r="14" fill="white" role="presentation"></circle>
-        <circle className="donut-ring" cx="24" cy="24" r="14" fill={bgColor} stroke={strokeColor} strokeWidth="2" role="presentation"></circle>
+      <svg width="30px" height="30px" cx='50' cy='50' viewBox="0 0 100 100" className="donut" aria-labelledby="beers-title beers-desc" role="img">
+        <circle className="donut-hole" cx="50" cy="50" r="25" fill="white" role="presentation"></circle>
+        <circle className="donut-ring" cx="50" cy="50" r="25" fill={bgColor} stroke={strokeColor} strokeWidth={stroke} role="presentation"></circle>
         <g className="chart-text">
-          <text className="chart-number" x="48%" y="68%">
+          <text className="chart-number" font-size = '2em' fill= {textColor} x={xpos} y="58%">
             {depth}
           </text>
         </g>

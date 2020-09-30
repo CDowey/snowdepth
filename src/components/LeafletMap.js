@@ -23,10 +23,13 @@ const LeafletMap = (props) => {
     // Selected Marker Station ID in state
     const [selectedStationID, setSelectedStationID] = useState()
 
+    // Snow depths loaded
+    const [loaded, setLoaded] = useState(false);
+
     const bound_style = () => {
         return {
-            weight: 1,
-            opacity: 1,
+            weight: 2,
+            opacity: 0.5,
             color: 'grey',
             fillOpacity: 0
         };
@@ -163,7 +166,7 @@ const LeafletMap = (props) => {
 
                 // if station_results has no results then return 'N/A'
                 if (station_results.length === 0) {
-                    let last_measurement = ['-']
+                    let last_measurement = ['']
                     station_depths[station] = last_measurement
                 }
                 else {
@@ -199,6 +202,7 @@ const LeafletMap = (props) => {
             }
 
             setMarkers(stationLocations)
+            setLoaded(true)
         }
 
         getDailySummaries()
@@ -238,7 +242,6 @@ const LeafletMap = (props) => {
 
         map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
         // Needs better way for the container to resize based on available space and width/heigh ratio
-        console.log('VT bounds', VT_bounds)
 
         mapcenter = [43.89, -72.5]
 
@@ -261,38 +264,65 @@ const LeafletMap = (props) => {
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
 
+    // number of digits
+    const numDigits = (x) => {
+        return (Math.log10((x ^ (x >> 31)) - (x >> 31)) | 0) + 1;
+    }
+
+    // function for calc x position
+    const calc_xpos = (depth) => {
+        // get length of string to set xpos
+        const len = numDigits(depth)
+
+        if (len === 1) {
+            return '43%'
+        }
+        if (len === 2) {
+            return '48%'
+        }
+        if (len === 3) {
+            return '30%'
+        }
+    }
+
     // Grey Border
     const icon = (depth) => {
+
+        const xpos = calc_xpos(depth)
 
         return (L.divIcon({
             className: 'custom-icon',
             iconAnchor: [10, 10],
-            html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#ffffff00'} strokeColor={'#5F5F5F'} />)
+            html: ReactDOMServer.renderToString(< MapIcon depth={depth}
+                xpos={xpos}
+                bgColor={'#ffffff00'}
+                strokeColor={'#202020'} />)
         }))
     }
 
     // Red Border
     const selectedIcon = (depth) => {
 
+        const xpos = calc_xpos(depth)
+
         return (L.divIcon({
             className: 'custom-icon',
             iconAnchor: [10, 10],
-            html: ReactDOMServer.renderToString(< MapIcon depth={depth} bgColor={'#0DF109'} strokeColor={'#027A00'} />)
+            html: ReactDOMServer.renderToString(< MapIcon depth={depth}
+                xpos={xpos}
+                bgColor={'#ffffff00'}
+                strokeColor={'#4A81FF'}
+                stroke={10}
+                textColor={'blue'}
+            />)
         }))
     };
 
 
 
-
-
-    // const isLoading = markerLocations.length === 0
-
-
     return (
         <div className='mapContainer' >
-            <div className='mapHeader' >
-                Last Reported Snow Depths - Select Marker to view comparison with past seasons.
-            </div>
+
             <Map className='Map'
                 ref={mapRef}
                 center={mapcenter}
@@ -356,6 +386,18 @@ const LeafletMap = (props) => {
                 />
 
             </Map>
+            <div className='mapHeader' >
+                {loaded
+                    ?
+                    <div>
+                        <div>Last Reported Snow Depths</div>
+                        <div>Select Marker to view comparison with past seasons.</div>
+                        <div>If marker is blank, no Snow Depth Report is available in past 7 days.</div>
+                    </div>
+                    :
+                    <div>Loading Last Reported Snow Depths</div>
+                }
+            </div>
         </div >
 
     );
