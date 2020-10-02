@@ -39,6 +39,12 @@ const NavPanel = () => {
 
                 .learnmoretext{
                     font-size: small;
+                    font-color: gray;
+                }
+
+                .row {
+                    padding-right: 3%;
+                    padding-left: 2%;
                 }
                 `}
             </style>
@@ -46,11 +52,13 @@ const NavPanel = () => {
 
             <Accordion defaultActiveKey="0">
                 <Card>
-                    <Card.Header className='card-header'>
-                        <Accordion.Toggle className='accordion-toggle' variant="outline-dark" eventKey="1">
-                            Learn More
+                    {/* <div class='pull-right'> */}
+                        <Card.Header className='card-header'>
+                            <Accordion.Toggle className='accordion-toggle' variant="outline-dark" eventKey="1">
+                                Learn More
                         </Accordion.Toggle>
-                    </Card.Header>
+                        </Card.Header>
+                    {/* </div> */}
                     <Accordion.Collapse eventKey="1">
                         <Tab.Container id="left-tabs-example" defaultActiveKey="first">
                             <Row>

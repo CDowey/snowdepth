@@ -13,8 +13,6 @@ import ReactDOMServer from 'react-dom/server';
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 
-debugger
-
 const LeafletMap = (props) => {
 
     // Markers are going to be built from state
@@ -390,7 +388,7 @@ const LeafletMap = (props) => {
                 {loaded
                     ?
                     <div>
-                        <div>Last Reported Snow Depths</div>
+                        <div class='mapHeader-header'>Last Reported Snow Depths</div>
                         <div>Select Marker to view comparison with past seasons.</div>
                         <div>If marker is blank, no Snow Depth Report is available in past 7 days.</div>
                     </div>

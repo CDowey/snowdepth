@@ -129,7 +129,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     // Need to add something here so that Feb 29th is filled in with Feb28th value, unless it doesn't exist....
 
    // for testing with non zero depths
-   current_depths = [0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,6]
+  // current_depths = [0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,6]
    const indexlastmeasurement = current_depths.length
 
     // To allow for proper calculating averages fill remaining values with nulls
