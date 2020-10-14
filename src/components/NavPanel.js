@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Accordion, Button, Card, Tabs, Nav, Row, Col, Tab } from 'react-bootstrap'
+import { Accordion, Card, Nav, Row, Col, Tab } from 'react-bootstrap'
 
 
 

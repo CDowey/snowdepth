@@ -3,14 +3,13 @@ import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
 import bbox from '@turf/bbox'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
-import esri from 'esri-leaflet';
+//import esri from 'esri-leaflet';
 import VT_Boundary from '../assets/VT_Data_-_State_Boundary.json'
 import VT_Mask from '../assets/VT_Mask.json'
-import Stations from '../assets/stations.json'
+//import Stations from '../assets/stations.json'
 import Snow_Data from '../assets/snow_data.json'
 import '../css/App.css';
 import ReactDOMServer from 'react-dom/server';
-import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 
 
 const LeafletMap = (props) => {
@@ -23,6 +22,9 @@ const LeafletMap = (props) => {
 
     // Snow depths loaded
     const [loaded, setLoaded] = useState(false);
+
+    // Map Center
+    const [mapCenter, setMapCenter] = useState([43.89, -72.5])
 
     const bound_style = () => {
         return {
@@ -42,8 +44,6 @@ const LeafletMap = (props) => {
         };
     }
 
-    let mapcenter = [43.89, -72.5]
-
     // create map and group refs useRef for functional components
     const mapRef = useRef();
     const stateBoundayRef = useRef();
@@ -56,7 +56,7 @@ const LeafletMap = (props) => {
         // Need to trigger function to change the value in the MapInfo through SidePanel state/props from App state/props
         const changeStationParent = props.changeStation
         changeStationParent(station_id)
-        mapcenter = [43.89, -72.5]
+        setMapCenter([43.89, -72.5])
     }
 
     useEffect(() => {
@@ -179,7 +179,7 @@ const LeafletMap = (props) => {
 
             console.log('daily_summaries_prior_week', station_depths)
 
-            for (let [key, value] of Object.entries(Snow_Data)) {
+            for (let key of Object.keys(Snow_Data)) {
                 if (good_stations.includes(key)) {
                     const station_id = key
                     const station_name = Snow_Data[key].info.Station_Name
@@ -201,6 +201,7 @@ const LeafletMap = (props) => {
 
             setMarkers(stationLocations)
             setLoaded(true)
+            setMapCenter([43.89, -72.5])
         }
 
         getDailySummaries()
@@ -241,8 +242,7 @@ const LeafletMap = (props) => {
         map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
         // Needs better way for the container to resize based on available space and width/heigh ratio
 
-        mapcenter = [43.89, -72.5]
-
+        setMapCenter([43.89, -72.5])
 
         // Use fitBounds to set zoom and extent
         // map.fitBounds(statebounday.getBounds()); https://stackoverflow.com/questions/40451506/react-leaflet-how-to-set-zoom-based-on-geojson
@@ -257,7 +257,7 @@ const LeafletMap = (props) => {
 
         // getCurrentDepths()
 
-    }, [mapRef]);
+    }, [mapRef, props.station_id, selectedStationID]);
 
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
@@ -323,7 +323,7 @@ const LeafletMap = (props) => {
 
             <Map className='Map'
                 ref={mapRef}
-                center={mapcenter}
+                center={mapCenter}
                 zoom={8}
                 // zoomSnap={7.5} //ideally this could be adjusted based on screensize (use fitBounds for this)
                 maxZoom={8}

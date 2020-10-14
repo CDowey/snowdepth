@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Stations from '../assets/stations.json'
 
 
 const reformatName = (phrase) => {

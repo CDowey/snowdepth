@@ -2,7 +2,6 @@ import '../css/App.css';
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import LeafletMap from './LeafletMap';
-import SidePanel from './SidePanel';
 import LineChart from './LineChart';
 import MapInfo from './MapInfo'
 import NavPanel from './NavPanel';
@@ -23,22 +22,24 @@ const App = () => {
 
   console.log('App station', station)
 
-  const fetchData = async (station) => {
 
-    const url_prefix = 'http://localhost:4000/'
-    const url = url_prefix + station + '/data.json'
-    const res = await fetch(url);
-    const res_data = await res.json();
-    setSnowData(res_data)
-    setIsLoading(false)
-    console.log('res_data', snowData)
-  }
 
   useEffect(() => {
 
+    const fetchData = async (station) => {
+
+      const url_prefix = 'http://localhost:4000/'
+      const url = url_prefix + station + '/data.json'
+      const res = await fetch(url);
+      const res_data = await res.json();
+      setSnowData(res_data)
+      setIsLoading(false)
+    }
+
     fetchData(station)
 
-  }, [station]
+  }
+  , [station]
 
   )
 

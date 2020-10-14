@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import Moment from 'moment'
-import { extendMoment } from 'moment-range';
+import React from 'react'
 import LineChart from './LineChart';
 import NavPanel from './NavPanel';
-import MapInfo from './MapInfo'
+// import MapInfo from './MapInfo'
 
 const SidePanel = (props) => {
 
@@ -11,8 +9,8 @@ const SidePanel = (props) => {
 
     //useState to set state and functions for changing state
     //   const [hasError, setError] = useState(false);
-    const [station, setStation] = useState(props.station_id) //not sure if best to set this from props here, but doing it first in useEffect didn't seem to work
-    const [data, setData] = useState({ dates: [], data: {} });
+  //  const [station, setStation] = useState(props.station_id) //not sure if best to set this from props here, but doing it first in useEffect didn't seem to work
+   // const [data, setData] = useState({ dates: [], data: {} });
 
 
 

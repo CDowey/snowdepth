@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { defaults, Line } from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2'
 import Loader from 'react-loader-spinner'
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 
@@ -50,7 +50,7 @@ class LineChart extends Component {
     const datasets = []
 
     for (let [key, value] of Object.entries(chartData)) {
-      if (key == 'Average Season') {
+      if (key === 'Average Season') {
         datasets.push(
           {
             label: key,
