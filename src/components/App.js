@@ -6,6 +6,7 @@ import LineChart from './LineChart';
 import MapInfo from './MapInfo'
 import NavPanel from './NavPanel';
 
+const urlPrefix = window.location.hostname.includes('localhost') ? 'http://localhost:4000/' : 'http://157.245.243.254/'
 
 const App = () => {
 
@@ -28,8 +29,7 @@ const App = () => {
 
     const fetchData = async (station) => {
 
-      const url_prefix = 'http://localhost:4000/'
-      const url = url_prefix + station + '/data.json'
+      const url = urlPrefix + station + '/data.json'
       const res = await fetch(url);
       const res_data = await res.json();
       setSnowData(res_data)
