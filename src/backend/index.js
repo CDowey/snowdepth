@@ -1,8 +1,8 @@
 const express = require('express');
 const cors = require('cors')
 const fetch = require('node-fetch');
-const moment = require('moment')
-
+const moment = require('moment');
+const path = require('path');
 const app = express()
 const port = process.env.PORT || 4000
 
@@ -264,8 +264,8 @@ app.get('/:station/mostrecentdepth.json', async (req, res) => {
         body: `tested ${station}`
     })
 })
-
-app.use('/snowdepths', express.static('../../build'))
-app.use('/', express.static('../../build')) // rafael did this, don't do this forever
+const buildpath = path.join(__dirname, '..', '..', 'build')
+app.use('/snowdepths', express.static(buildpath))
+app.use('/', express.static(buildpath)) // rafael did this, don't do this forever
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

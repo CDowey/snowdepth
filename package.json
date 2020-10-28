@@ -20,6 +20,7 @@
     "moment": "^2.27.0",
     "moment-range": "^4.0.2",
     "node-fetch": "^2.6.0",
+    "pm2": "^4.5.0",
     "pondjs": "^0.9.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
@@ -38,8 +39,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "backend": "pm2 start ./src/backend/index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
