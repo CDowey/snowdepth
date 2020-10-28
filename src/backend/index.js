@@ -265,5 +265,7 @@ app.get('/:station/mostrecentdepth.json', async (req, res) => {
     })
 })
 
+app.use('/snowdepths', express.static('../../build'))
+app.use('/', express.static('../../build')) // rafael did this, don't do this forever
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
