@@ -4,7 +4,9 @@ import Header from './Header';
 import LeafletMap from './LeafletMap';
 import LineChart from './LineChart';
 import MapInfo from './MapInfo'
+import OptionsPane from './OptionsPane'
 import NavPanel from './NavPanel';
+import { Button, Toast } from 'react-bootstrap'
 
 const urlPrefix = window.location.hostname.includes('localhost') ? 'http://localhost:4000/' : 'http://157.245.243.254/'
 
@@ -18,7 +20,7 @@ const App = () => {
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
-   // setIsLoading(true)
+    // setIsLoading(true)
   }
 
   console.log('App station', station)
@@ -39,7 +41,7 @@ const App = () => {
     fetchData(station)
 
   }
-  , [station]
+    , [station]
 
   )
 
@@ -52,15 +54,22 @@ const App = () => {
           <div className='chartContainer'>
             {/* * Use this conditional statement to change what is return based on isLoading */}
             {isLoading
-                ? ''
-                : <LineChart chartData={snowData.data.chartData} />
-                }
+              ? ''
+              : <LineChart chartData={snowData.data.chartData} />
+            }
             {/* <LineChart className='lineChart'
                     data={snowData} station={station} loading={isLoading}/> */}
           </div>
-          {isLoading
-            ? ''
-            : <MapInfo mapInfoData={snowData.data.info} />}
+          <div className='belowChartContainer'>
+            {isLoading
+              ? ''
+              : <>
+                <MapInfo mapInfoData={snowData.data.info} />
+                <OptionsPane />
+              </>
+            }
+
+          </div>
           <NavPanel className='NavPanel' />
         </div>
       </div>

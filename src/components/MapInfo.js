@@ -3,6 +3,7 @@ import '../css/App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
+
 const reformatName = (phrase) => {
     return phrase
         .toLowerCase()
@@ -28,10 +29,11 @@ const MapInfo = (props) => {
             <br></br>
             <table className='mapStationTable'>
                 <tbody>
-                    <tr>                        <td>
-                        <span className='stationAttributeName'>Station: </span>
-                        <span className='stationAttributeValue'><a href={Station_URL} target="_blank" rel="noopener noreferrer">{Station_ID}</a></span>
-                    </td>
+                    <tr>
+                        <td>
+                            <span className='stationAttributeName'>Station: </span>
+                            <span className='stationAttributeValue'><a href={Station_URL} target="_blank" rel="noopener noreferrer">{Station_ID}</a></span>
+                        </td>
                         <td>
                             <span className='stationAttributeName'>Current Snow Depth: </span>
                             <span className='currentSnowDepthAttribute'>{Current_Depth} in</span>
