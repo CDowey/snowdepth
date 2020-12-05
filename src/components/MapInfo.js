@@ -35,7 +35,7 @@ const MapInfo = (props) => {
                             <span className='stationAttributeValue'><a href={Station_URL} target="_blank" rel="noopener noreferrer">{Station_ID}</a></span>
                         </td>
                         <td>
-                            <span className='stationAttributeName'>Current Snow Depth: </span>
+                            <span className='stationAttributeName'>Last Reported Snow Depth: </span>
                             <span className='currentSnowDepthAttribute'>{Current_Depth} in</span>
                         </td>
 

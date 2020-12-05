@@ -15,23 +15,24 @@ const GraphOptions = (props) => {
         , [median]);
 
     return (
-        <div className="graphOptions">
-            <div className="graphOptions-title" onClick={toggleExpanded}>
-                {expanded ? <span>&minus;</span> : <span>+</span>} Graph Options
-            </div>
-            <div className="graphOptions-items">
-                {subItems &&
-                    <div>
-                        <input
-                            name="medianShow"
-                            type="checkbox"
-                            checked={median}
-                            onChange={medianToggle} />
-                            {' '}Median
-            </div>
-                }
-            </div>
-        </div>
+        <></>
+        // <div className="graphOptions">
+        //     <div className="graphOptions-title" onClick={toggleExpanded}>
+        //         {expanded ? <span>&minus;</span> : <span>+</span>} Graph Options
+        //     </div>
+        //     <div className="graphOptions-items">
+        //         {subItems &&
+        //             <div>
+        //                 <input
+        //                     name="medianShow"
+        //                     type="checkbox"
+        //                     checked={median}
+        //                     onChange={medianToggle} />
+        //                     {' '}Median
+        //     </div>
+        //         }
+        //     </div>
+        // </div>
     );
 };
 
