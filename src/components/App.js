@@ -27,18 +27,32 @@ const App = () => {
 
   // Initial Graph and Map options configuration
   const initialOptions = {
-    'GraphOptions': [
-      { 'Average': true },
-      { 'Median': false },
-      { '1-σ': false },
-      { '2-σ': false }
-    ],
-    'MapOptions': [
-      { 'Points': true },
-      { 'Modelled Snow Depth': false }
-    ]
+    'Graph Options':
+    {
+      'Average': true,
+      'Median': false,
+      '1-σ': false,
+      '2-σ': false
+    },
+    'Map Options':
+    {
+      'Stations': true,
+      'Modelled Snow Depth': false
+    }
+
   }
 
+  // Set up functions to allow options toggling from Options Pane
+  const toggleOptions = (optionsType, option) => {
+    console.log('toggle', optionsType, options)
+
+    // get current options object
+    const newOptions = options
+    // switch the value of the current option of interest
+    newOptions[optionsType][option] = !newOptions[optionsType][option]
+    // set new options object
+    setOptions(newOptions)
+  }
 
 
   useEffect(() => {
@@ -79,8 +93,8 @@ const App = () => {
               ? ''
               : <>
                 <MapInfo mapInfoData={snowData.data.info} />
-                <OptionsPane title='Graph Options' options={options.GraphOptions} />
-                <OptionsPane title='Map Options' options={options.MapOptions} />
+                <OptionsPane title='Graph Options' options={options['Graph Options']} toggle={toggleOptions} />
+                <OptionsPane title='Map Options' options={options['Map Options']} toggle={toggleOptions} />
               </>
             }
 

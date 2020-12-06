@@ -12,14 +12,14 @@ export default class MapIcon extends Component {
     const textColor = this.props.textColor || '#535354';
     const xpos = this.props.xpos || "48%"
 
-    console.log('icon', depth[0], xpos)
+    // console.log('icon', depth[0], xpos)
 
     return (
       <svg width="30px" height="30px" cx='50' cy='50' viewBox="0 0 100 100" className="donut" aria-labelledby="beers-title beers-desc" role="img">
         <circle className="donut-hole" cx="50" cy="50" r="25" fill="white" role="presentation"></circle>
         <circle className="donut-ring" cx="50" cy="50" r="25" fill={bgColor} stroke={strokeColor} strokeWidth={stroke} role="presentation"></circle>
         <g className="chart-text">
-          <text className="chart-number" font-size = '2em' fill= {textColor} x={xpos} y="58%">
+          <text className="chart-number" fontSize = '2em' fill= {textColor} x={xpos} y="58%">
             {depth}
           </text>
         </g>

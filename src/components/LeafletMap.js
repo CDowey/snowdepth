@@ -92,7 +92,6 @@ const LeafletMap = (props) => {
 
         // Set selected marker from props from App
         setSelectedStationID(props.station_id)
-        console.log('selectedStation', selectedStationID)
 
 
         // API call to get current snowdepth for all stations
@@ -125,7 +124,7 @@ const LeafletMap = (props) => {
                 day: "2-digit",
             });
 
-            console.log('DATES', startDate, endDate)
+            // console.log('DATES', startDate, endDate)
 
             // I think the data range should be a week and if they haven't reported in the week prior then show that
             // otherwise find the most recent SNWD value in what is returned
@@ -160,7 +159,7 @@ const LeafletMap = (props) => {
                 // let station_results = results.find(x => x.STATION === station)
                 let station_results = results.map((e) => e.STATION === station ? e.SNWD : null)
                 station_results = station_results.filter(x => x != null)
-                console.log('station_results', station_results)
+                // console.log('station_results', station_results)
 
                 // if station_results has no results then return 'N/A'
                 if (station_results.length === 0) {
@@ -177,7 +176,7 @@ const LeafletMap = (props) => {
 
             // Get result with date closest today? always first or last?
 
-            console.log('daily_summaries_prior_week', station_depths)
+            // console.log('daily_summaries_prior_week', station_depths)
 
             for (let key of Object.keys(Snow_Data)) {
                 if (good_stations.includes(key)) {
@@ -229,7 +228,7 @@ const LeafletMap = (props) => {
         // need geojson ref
         const { statebounday = {} } = stateBoundayRef;
 
-        console.log('geojson ref', statebounday)
+        // console.log('geojson ref', statebounday)
 
         // use turf/bbox to get bounding box (I couldn't figure out the GeoJSON refs...for Leaflet)
 
