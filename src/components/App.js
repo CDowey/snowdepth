@@ -7,6 +7,7 @@ import MapInfo from './MapInfo'
 import OptionsPane from './OptionsPane'
 import NavPanel from './NavPanel';
 import { Button, Toast } from 'react-bootstrap'
+import { findAllByTestId } from '@testing-library/react';
 
 const urlPrefix = window.location.hostname.includes('localhost') ? 'http://localhost:4000/' : 'http://157.245.243.254/'
 
@@ -15,8 +16,7 @@ const App = () => {
   const [station, setStation] = useState('USC00435416')
   const [isLoading, setIsLoading] = useState(true)
   const [snowData, setSnowData] = useState({})
-
-
+  const [options, setOptions] = useState({})
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
@@ -24,6 +24,20 @@ const App = () => {
   }
 
   console.log('App station', station)
+
+  // Initial Graph and Map options configuration
+  const initialOptions = {
+    'GraphOptions': [
+      { 'Average': true },
+      { 'Median': false },
+      { '1-σ': false },
+      { '2-σ': false }
+    ],
+    'MapOptions': [
+      { 'Points': true },
+      { 'Modelled Snow Depth': false }
+    ]
+  }
 
 
 
@@ -40,9 +54,9 @@ const App = () => {
 
     fetchData(station)
 
-  }
-    , [station]
+    setOptions(initialOptions)
 
+  }, [station]
   )
 
   return (
@@ -65,7 +79,8 @@ const App = () => {
               ? ''
               : <>
                 <MapInfo mapInfoData={snowData.data.info} />
-                <OptionsPane />
+                <OptionsPane title='Graph Options' options={options.GraphOptions} />
+                <OptionsPane title='Map Options' options={options.MapOptions} />
               </>
             }
 

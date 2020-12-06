@@ -388,7 +388,7 @@ const LeafletMap = (props) => {
                 {loaded
                     ?
                     <div>
-                        <div class='mapHeader-header'>Last Reported Snow Depths</div>
+                        <div className='mapHeader-header'>Last Reported Snow Depths</div>
                         <div>Select Marker to view comparison with past seasons.</div>
                         <div>If marker is blank, no Snow Depth Report is available in past 7 days.</div>
                     </div>

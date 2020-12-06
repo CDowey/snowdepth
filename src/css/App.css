@@ -163,7 +163,7 @@ th, td {
 .graphOptions {
     color: gray;
     order: 2;
-    padding: 25px 0px 0px 0px;
+    padding: 25px 10px 0px 10px;
 }
 
 .graphOptions-title {
