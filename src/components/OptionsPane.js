@@ -34,8 +34,9 @@ const OptionsPane = (props) => {
         , [sig2]);
 
     const optionsOutput = options.map(item =>
-        <div key={Object.keys(item)[0]}>
-
+   
+        <div>
+<label key = {Object.keys(item)[0]}>
         <input
         key = {Object.keys(item)[0]}
         name={Object.keys(item)[0]}
@@ -43,28 +44,9 @@ const OptionsPane = (props) => {
         checked={Object.values(item)[0]}
         // onChange={} 
         />
-        <span className='graphOptionsSelectors'>{' ' + Object.keys(item)[0]}</span>
-  </div>
+        <span>{' ' + Object.keys(item)[0]}</span></label>
+        </div>
     )
-
-    // options.map(item => {
-    //     const optionName = 
-
-    //     return (
-    //     <div>{Object.keys(Object.values(item)[0])}</div>
-    //     // <div>
-    //     //     <input
-    //     key = 
-    //     //         name="medianShow"
-    //     //         type="checkbox"
-    //     //         checked={Object.values(item)[0]}
-    //     //         //onChange={} 
-    //     //         />
-    //     //     <span className='graphOptionsSelectors'>{' ' + Object.keys(item)[0]}</span>
-    //     // </div>
-    //     )
-    // })
-
 
     return (
         <div className="graphOptions">
@@ -73,24 +55,6 @@ const OptionsPane = (props) => {
             </div>
             <div className="graphOptions-items">
                 {subItems && optionsOutput
-                    // < div >
-                    // <div>
-                    //     <input
-                    //         name="medianShow"
-                    //         type="checkbox"
-                    //         checked={median}
-                    //         onChange={medianToggle} />
-                    //     <span className='graphOptionsSelectors'>{' '}Median</span>
-                    // </div>
-                    // <div>
-                    //     <input
-                    //         name="1SigShow"
-                    //         type="checkbox"
-                    //         checked={sig1}
-                    //         onChange={sig1Toggle}
-                    //     />
-                    //     <span className='graphOptionsSelectors'>{' '}1-σ</span>
-                    // </div>
                     // <div>
                     //     <input
                     //         name="2SigShow"
@@ -100,7 +64,7 @@ const OptionsPane = (props) => {
                     //     />
                     //     <span className='graphOptionsSelectors'>{' '}2-σ</span>
                     // </div>
-                    // </div>
+
                 }
             </div>
         </div >
