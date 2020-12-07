@@ -16,14 +16,6 @@ const App = () => {
   const [station, setStation] = useState('USC00435416')
   const [isLoading, setIsLoading] = useState(true)
   const [snowData, setSnowData] = useState({})
-  const [options, setOptions] = useState({})
-
-  const changeStation = (newStationID) => {
-    setStation(newStationID);
-    // setIsLoading(true)
-  }
-
-  console.log('App station', station)
 
   // Initial Graph and Map options configuration
   const initialOptions = {
@@ -39,8 +31,17 @@ const App = () => {
       'Stations': true,
       'Modelled Snow Depth': false
     }
-
   }
+  
+  let options = initialOptions
+
+  const changeStation = (newStationID) => {
+    setStation(newStationID);
+    // setIsLoading(true)
+  }
+
+  console.log('App station', station)
+
 
   // Set up functions to allow options toggling from Options Pane
   const toggleOptions = (optionsType, option) => {
@@ -51,8 +52,9 @@ const App = () => {
     // switch the value of the current option of interest
     newOptions[optionsType][option] = !newOptions[optionsType][option]
     // set new options object
-    setOptions(newOptions)
+    options = newOptions
   }
+
 
 
   useEffect(() => {
@@ -68,7 +70,6 @@ const App = () => {
 
     fetchData(station)
 
-    setOptions(initialOptions)
 
   }, [station]
   )
