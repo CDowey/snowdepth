@@ -6,6 +6,7 @@ import LineChart from './LineChart';
 import MapInfo from './MapInfo'
 import OptionsPane from './OptionsPane'
 import NavPanel from './NavPanel';
+import 'semantic-ui-css/semantic.min.css'
 import { Button, Toast } from 'react-bootstrap'
 import { findAllByTestId } from '@testing-library/react';
 
@@ -45,6 +46,7 @@ const App = () => {
 
   // Set up functions to allow options toggling from Options Pane
   const toggleOptions = (optionsType, option) => {
+    console.log('toggle from App', optionsType, option)
     // switch the value of the current option of interest
     options[optionsType][option] = !options[optionsType][option]
     

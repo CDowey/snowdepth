@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
+import Toggle from 'react-toggle'
 import '../css/App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const OptionsPane = (props) => {
 
@@ -18,14 +18,13 @@ const OptionsPane = (props) => {
 
         <div key={item}>
             <label key={item}>
-                <input
-                    key={item}
-                    name={item}
-                    type="checkbox"
-                    defaultChecked={options[item]}
-                    onChange={() => toggle(title, item, options[item])}
-                />
-                <span>{' ' + item}</span>
+                    <Toggle
+                        key={item}
+                        className={item}
+                        defaultChecked={options[item]}
+                        icons={false}
+                        onChange={() => toggle(title, item, options[item])} />
+                    <span>{' ' + item}</span>
             </label>
         </div>
     )
