@@ -32,7 +32,7 @@ const App = () => {
       'Modelled Snow Depth': false
     }
   }
-  
+
   let options = initialOptions
 
   const changeStation = (newStationID) => {
@@ -45,14 +45,11 @@ const App = () => {
 
   // Set up functions to allow options toggling from Options Pane
   const toggleOptions = (optionsType, option) => {
-    console.log('toggle', optionsType, options)
-
-    // get current options object
-    const newOptions = options
     // switch the value of the current option of interest
-    newOptions[optionsType][option] = !newOptions[optionsType][option]
-    // set new options object
-    options = newOptions
+    options[optionsType][option] = !options[optionsType][option]
+    
+    // Set Parameters In Line Chart
+
   }
 
 
