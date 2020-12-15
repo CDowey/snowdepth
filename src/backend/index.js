@@ -69,21 +69,63 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
     // create copy of station_snow_data
     let depth_arrays = Object.values(station_snow_data.chartData)
+
+    // Where statistics are calculated
     let average_season = []
+    let median_season = []
+    let average_plus_onesd = []
+    let average_minus_onesd = []
+    let average_plus_twosd = []
+    let average_minus_twosd = []
+
+    // define statistical functions
+    const median = (arr) => {
+        const mid = Math.floor(arr.length / 2),
+            nums = [...arr].sort((a, b) => a - b);
+        return arr.length % 2 !== 0 ? nums[mid] : (nums[mid - 1] + nums[mid]) / 2;
+    };
+
+    const standardDeviation = (array) => {
+        const n = array.length
+        const mean = array.reduce((a, b) => a + b) / n
+        return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+    }
+
+
     // transpose
     depth_arrays = transpose(depth_arrays)
 
     // Calculate average for each day array
     depth_arrays.map(
         array => {
-            const average = array.reduce((a, b) => a + b, 0) / array.length
+
+            // Average
+            const average_val = array.reduce((a, b) => a + b, 0) / array.length
             // ^ is a way of rounding to an int
-            average_season.push(average ^ 0);
+            average_season.push(average_val ^ 0);
+
+            // Median
+            const median_val = median(array)
+            median_season.push(median_val)
+
+            // Standard Deviations
+            const standardDeviation_val = standardDeviation(array)
+            average_plus_onesd.push(average_val + standardDeviation_val)
+            average_minus_onesd.push(average_val - standardDeviation_val)
+            average_plus_twosd.push(average_val + (standardDeviation_val*2))
+            average_minus_twosd.push(average_val - (standardDeviation_val*2))
+
         }
     )
 
-    // Add Average Season to chartData
+    // Add Season statistics to chartData
     station_snow_data.chartData['Average Season'] = average_season
+    station_snow_data.chartData['Median Season'] = median_season
+    station_snow_data.chartData['SD_plus Season'] = average_plus_onesd
+    station_snow_data.chartData['SD_mins Season'] = average_minus_onesd
+    station_snow_data.chartData['SD_twoplus Season'] = average_plus_twosd
+    station_snow_data.chartData['SD_twominus Season'] = average_minus_twosd
+
 
     // Get Current Season Data
 
@@ -122,30 +164,30 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     current_depths[0] = 0
 
     for (const [i, value] of current_depths.entries()) {
-        if(Number.isNaN(value)) {
-            current_depths[i] = current_depths[i-1]
+        if (Number.isNaN(value)) {
+            current_depths[i] = current_depths[i - 1]
         }
     }
 
     // Need to add something here so that Feb 29th is filled in with Feb28th value, unless it doesn't exist....
 
-   // for testing with non zero depths
-  // current_depths = [0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,6]
-   const indexlastmeasurement = current_depths.length
+    // for testing with non zero depths
+    // current_depths = [0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,20, 0, 2, 3, 9, 12, 12, 12, 14, 14, 0, 0, 2, 3, 20,20,20,20,20,20,20,20,20,6]
+    const indexlastmeasurement = current_depths.length
 
     // To allow for proper calculating averages fill remaining values with nulls
     const nulls = new Array(304 - current_depths.length).fill(null)
     current_depths = current_depths.concat(nulls)
 
-   
+
 
     station_snow_data.chartData['Current Season'] = current_depths
-    station_snow_data.info['Current_Depth'] = current_depths[indexlastmeasurement-1]
-    station_snow_data.info['Average_Depth'] = average_season[indexlastmeasurement-1]
+    station_snow_data.info['Current_Depth'] = current_depths[indexlastmeasurement - 1]
+    station_snow_data.info['Average_Depth'] = average_season[indexlastmeasurement - 1]
 
-res.json({
-    'data': station_snow_data
-})
+    res.json({
+        'data': station_snow_data
+    })
 })
 
 
