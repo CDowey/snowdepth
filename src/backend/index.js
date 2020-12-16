@@ -110,10 +110,27 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
 
             // Standard Deviations
             const standardDeviation_val = standardDeviation(array)
-            average_plus_onesd.push(average_val + standardDeviation_val)
-            average_minus_onesd.push(average_val - standardDeviation_val)
-            average_plus_twosd.push(average_val + (standardDeviation_val*2))
-            average_minus_twosd.push(average_val - (standardDeviation_val*2))
+
+            const avg_plus_onesd_corrected = ((average_val + standardDeviation_val) > 0) ?
+                (average_val + standardDeviation_val) : 0
+            average_plus_onesd.push(avg_plus_onesd_corrected ^ 0)
+
+            const avg_minus_onesd_corrected = ((average_val - standardDeviation_val) > 0) ?
+                (average_val - standardDeviation_val) : 0
+            average_minus_onesd.push(avg_minus_onesd_corrected ^ 0)
+
+            const avg_plus_twosd_corrected = ((average_val + (2 * standardDeviation_val)) > 0) ?
+                (average_val + (2 * standardDeviation_val)) : 0
+            average_plus_twosd.push(avg_plus_twosd_corrected ^ 0)
+
+            const avg_minus_twosd_corrected = ((average_val - (2 * standardDeviation_val)) > 0) ?
+                (average_val - (2 * standardDeviation_val)) : 0
+            average_minus_twosd.push(avg_minus_twosd_corrected ^ 0)
+
+            // average_minus_onesd.push(average_val - standardDeviation_val)
+            // average_plus_twosd.push(average_val + (standardDeviation_val*2))
+            // (average_val - (standardDeviation_val*2)) > 0 ? average_minus_twosd.push(average_val - (standardDeviation_val*2)) : average_minus_twosd.push(0)
+            // //average_minus_twosd.push(average_val - (standardDeviation_val*2))
 
         }
     )
@@ -122,7 +139,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
     station_snow_data.chartData['Average Season'] = average_season
     station_snow_data.chartData['Median Season'] = median_season
     station_snow_data.chartData['SD_plus Season'] = average_plus_onesd
-    station_snow_data.chartData['SD_mins Season'] = average_minus_onesd
+    station_snow_data.chartData['SD_minus Season'] = average_minus_onesd
     station_snow_data.chartData['SD_twoplus Season'] = average_plus_twosd
     station_snow_data.chartData['SD_twominus Season'] = average_minus_twosd
 

@@ -80,12 +80,87 @@ class LineChart extends Component {
           }
         )
       }
-      else {
+      else if (key === 'Median Season') {
         datasets.push(
           {
             label: key,
             data: value,
             order: 3,
+            backgroundColor: 'rgba(0,0,255, 0)',
+            borderColor: 'rgba(0, 144, 15,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 2,
+            fill: false
+          }
+        )
+      }
+      else if (key === 'SD_plus Season') {
+        datasets.push(
+          {
+            label: 'Average ± 1-σ',
+            data: value,
+            order: 4,
+            backgroundColor: 'rgba(208, 0, 218, .10)',
+            borderColor: 'rgba(208, 0, 218,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: '+1'
+          }
+        )
+      }
+      else if (key === 'SD_minus Season') {
+        datasets.push(
+          {
+            label: 'Average ± 1-σ',
+            data: value,
+            order: 4,
+            backgroundColor: 'rgba(208, 0, 218, .15)',
+            borderColor: 'rgba(208, 0, 218,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: false
+          }
+        )
+      }
+      else if (key === 'SD_twoplus Season') {
+        datasets.push(
+          {
+            label: 'Average ± 1-σ',
+            data: value,
+            order: 5,
+            backgroundColor: 'rgba(255, 145, 21, .10)',
+            borderColor: 'rgba(255, 145, 21,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: '+1'
+          }
+        )
+      }
+      else if (key === 'SD_twominus Season') {
+        datasets.push(
+          {
+            label: 'Average ± 1-σ',
+            data: value,
+            order: 5,
+            backgroundColor: 'rgba(255, 145, 21, .10)',
+            borderColor: 'rgba(255, 145, 21,.95)',
+            pointRadius: 0,
+            lineTension: 0.1,
+            borderWidth: 1,
+            fill: false
+          }
+        )
+      }
+      else {
+        datasets.push(
+          {
+            label: key,
+            data: value,
+            order: 6,
             backgroundColor: 'rgba(100,100,100, 0.6)',
             borderColor: 'rgba(146,146,146,.95)',
             pointRadius: 0,
