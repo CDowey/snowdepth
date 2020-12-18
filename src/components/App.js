@@ -34,7 +34,7 @@ const App = () => {
     }
   }
 
-  let options = initialOptions
+  const [options, setOptions] = useState(initialOptions)
 
   const changeStation = (newStationID) => {
     setStation(newStationID);
@@ -46,12 +46,12 @@ const App = () => {
 
   // Set up functions to allow options toggling from Options Pane
   const toggleOptions = (optionsType, option) => {
-    console.log('toggle from App', optionsType, option)
     // switch the value of the current option of interest
     options[optionsType][option] = !options[optionsType][option]
-    
-    // Set Parameters In Line Chart
+    setOptions({... options, [optionsType]:{...options[optionsType], [option]: !options[optionsType][option]}})
+   // setFormState({...formState, reasons:{...formState.reasons, [changedReason]: !formState.reasons[changedReason]}});
 
+    console.log('app.js', options)
   }
 
 
@@ -83,7 +83,7 @@ const App = () => {
             {/* * Use this conditional statement to change what is return based on isLoading */}
             {isLoading
               ? ''
-              : <LineChart chartData={snowData.data.chartData} />
+              : <LineChart chartData={snowData.data.chartData} options={options}/>
             }
             {/* <LineChart className='lineChart'
                     data={snowData} station={station} loading={isLoading}/> */}

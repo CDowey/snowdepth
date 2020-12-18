@@ -46,6 +46,8 @@ class LineChart extends Component {
 
   componentDidMount() {
     const chartData = this.props.chartData
+    const options = this.props.options
+    console.log('options', options)
     const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
     const datasets = []
 
@@ -54,6 +56,7 @@ class LineChart extends Component {
         datasets.push(
           {
             label: key,
+            hidden: !options['Graph Options']['Average'],
             data: value,
             order: 2,
             backgroundColor: 'rgba(255,0,0,.02)',
@@ -143,7 +146,7 @@ class LineChart extends Component {
       else if (key === 'SD_twominus Season') {
         datasets.push(
           {
-            label: 'Average ± 1-σ',
+            label: 'Average ± 2-σ',
             data: value,
             order: 5,
             backgroundColor: 'rgba(255, 145, 21, .10)',
@@ -189,43 +192,119 @@ class LineChart extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
       const chartData = this.props.chartData
+      const options = this.props.options
+      console.log('options', options)
       const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
       const datasets = []
 
-      const special_datasets = ['Average Season', 'Current Season']
-
       for (let [key, value] of Object.entries(chartData)) {
-        if (special_datasets.includes(key)) {
-          if (key === 'Average Season') {
-            datasets.push(
-              {
-                label: key,
-                data: value,
-                order: 2,
-                backgroundColor: 'rgba(255,0,0,.02)',
-                borderColor: 'rgba(255,0,0,.95)',
-                pointRadius: 0,
-                lineTension: 0.1,
-                borderWidth: 2,
-                fill: true
-              }
-            )
-          }
-          if (key === 'Current Season') {
-            datasets.push(
-              {
-                label: key,
-                data: value,
-                order: 1,
-                backgroundColor: 'rgba(0,0,255, .02)',
-                borderColor: 'rgba(0, 31, 255,.95)',
-                pointRadius: 0,
-                lineTension: 0.1,
-                borderWidth: 2,
-                fill: true
-              }
-            )
-          }
+        // if (special_datasets.includes(key)) {
+        if (key === 'Average Season') {
+          datasets.push(
+            {
+              label: key,
+              hidden: !options['Graph Options']['Average'],
+              data: value,
+              order: 2,
+              backgroundColor: 'rgba(255,0,0,.02)',
+              borderColor: 'rgba(255,0,0,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 2,
+              fill: true
+            }
+          )
+        }
+        if (key === 'Current Season') {
+          datasets.push(
+            {
+              label: key,
+              data: value,
+              order: 1,
+              backgroundColor: 'rgba(0,0,255, .02)',
+              borderColor: 'rgba(0, 31, 255,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 2,
+              fill: true
+            }
+          )
+
+        }
+        else if (key === 'Median Season') {
+          datasets.push(
+            {
+              label: key,
+              data: value,
+              order: 3,
+              backgroundColor: 'rgba(0,0,255, 0)',
+              borderColor: 'rgba(0, 144, 15,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 2,
+              fill: false
+            }
+          )
+        }
+        else if (key === 'SD_plus Season') {
+          datasets.push(
+            {
+              label: 'Average ± 1-σ',
+              data: value,
+              order: 4,
+              backgroundColor: 'rgba(208, 0, 218, .10)',
+              borderColor: 'rgba(208, 0, 218,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 1,
+              fill: '+1'
+            }
+          )
+        }
+        else if (key === 'SD_minus Season') {
+          datasets.push(
+            {
+              label: 'Average ± 1-σ',
+              data: value,
+              order: 4,
+              backgroundColor: 'rgba(208, 0, 218, .15)',
+              borderColor: 'rgba(208, 0, 218,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 1,
+              fill: false
+            }
+          )
+        }
+        else if (key === 'SD_twoplus Season') {
+          datasets.push(
+            {
+              label: 'Average ± 1-σ',
+              data: value,
+              order: 5,
+              backgroundColor: 'rgba(255, 145, 21, .10)',
+              borderColor: 'rgba(255, 145, 21,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 1,
+              fill: '+1'
+            }
+          )
+        }
+        else if (key === 'SD_twominus Season') {
+          datasets.push(
+            {
+              label: 'Average ± 2-σ',
+              data: value,
+              order: 5,
+              backgroundColor: 'rgba(255, 145, 21, .10)',
+              borderColor: 'rgba(255, 145, 21,.95)',
+              pointRadius: 0,
+              lineTension: 0.1,
+              borderWidth: 1,
+              fill: false
+            }
+          )
         }
         else {
           datasets.push(
