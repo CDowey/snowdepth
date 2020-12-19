@@ -47,7 +47,7 @@ class LineChart extends Component {
   componentDidMount() {
     const chartData = this.props.chartData
     const options = this.props.options
-    console.log('options', options)
+    console.log('mount options', options)
     const dates = getDaysArray(new Date('09-01-2019'), new Date('06-30-2020'))
     const datasets = []
 
@@ -71,6 +71,7 @@ class LineChart extends Component {
       else if (key === 'Current Season') {
         datasets.push(
           {
+            hidden: true,
             label: key,
             data: value,
             order: 1,
@@ -86,6 +87,7 @@ class LineChart extends Component {
       else if (key === 'Median Season') {
         datasets.push(
           {
+            hidden: !options['Graph Options']['Median'],
             label: key,
             data: value,
             order: 3,
@@ -101,6 +103,7 @@ class LineChart extends Component {
       else if (key === 'SD_plus Season') {
         datasets.push(
           {
+            hidden: true,
             label: 'Average ± 1-σ',
             data: value,
             order: 4,
@@ -116,6 +119,7 @@ class LineChart extends Component {
       else if (key === 'SD_minus Season') {
         datasets.push(
           {
+            hidden: true,
             label: 'Average ± 1-σ',
             data: value,
             order: 4,
@@ -131,6 +135,7 @@ class LineChart extends Component {
       else if (key === 'SD_twoplus Season') {
         datasets.push(
           {
+            hidden: true,
             label: 'Average ± 1-σ',
             data: value,
             order: 5,
@@ -146,6 +151,7 @@ class LineChart extends Component {
       else if (key === 'SD_twominus Season') {
         datasets.push(
           {
+            hidden: true,
             label: 'Average ± 2-σ',
             data: value,
             order: 5,
@@ -215,9 +221,10 @@ class LineChart extends Component {
             }
           )
         }
-        if (key === 'Current Season') {
+        else if (key === 'Current Season') {
           datasets.push(
             {
+              hidden: true,
               label: key,
               data: value,
               order: 1,
@@ -234,6 +241,7 @@ class LineChart extends Component {
         else if (key === 'Median Season') {
           datasets.push(
             {
+              hidden: !options['Graph Options']['Median'],
               label: key,
               data: value,
               order: 3,
@@ -249,6 +257,7 @@ class LineChart extends Component {
         else if (key === 'SD_plus Season') {
           datasets.push(
             {
+              hidden: true,
               label: 'Average ± 1-σ',
               data: value,
               order: 4,
@@ -264,6 +273,7 @@ class LineChart extends Component {
         else if (key === 'SD_minus Season') {
           datasets.push(
             {
+              hidden: true,
               label: 'Average ± 1-σ',
               data: value,
               order: 4,
@@ -279,6 +289,7 @@ class LineChart extends Component {
         else if (key === 'SD_twoplus Season') {
           datasets.push(
             {
+              hidden: true,
               label: 'Average ± 1-σ',
               data: value,
               order: 5,
@@ -294,6 +305,7 @@ class LineChart extends Component {
         else if (key === 'SD_twominus Season') {
           datasets.push(
             {
+              hidden: true,
               label: 'Average ± 2-σ',
               data: value,
               order: 5,
