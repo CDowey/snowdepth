@@ -71,7 +71,7 @@ class LineChart extends Component {
       else if (key === 'Current Season') {
         datasets.push(
           {
-            // hidden: true,
+            hidden: !options['Graph Options']['Current'],
             label: key,
             data: value,
             order: 1,
@@ -224,7 +224,7 @@ class LineChart extends Component {
         else if (key === 'Current Season') {
           datasets.push(
             {
-              // hidden: true,
+              hidden: !options['Graph Options']['Current'],
               label: key,
               data: value,
               order: 1,

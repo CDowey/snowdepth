@@ -275,25 +275,42 @@ th, td {
     transition: all 0.2s ease;
 }
 
-.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+/* .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
     background-color: #000000;
-}
-
-.react-toggle--checked .react-toggle-track {
-    background-color: rgba(255, 0, 0, .95);
-    border-color: gray;
-    border: 1px;
-}
-
-/* .Median {
-    background-color: rgba(25, 0, 0, .95);
-    border-color: gray;
-    border: 1px;
 } */
 
-.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+.Current.react-toggle--checked .react-toggle-track {
+    background-color: rgba(0, 31, 255,.95);
+}
+
+.Average.react-toggle--checked .react-toggle-track {
     background-color: rgba(255, 0, 0, .95);
 }
+
+.Median.react-toggle--checked .react-toggle-track {
+    background-color: rgba(0, 144, 25, 0.95);
+}
+
+.sigma1.react-toggle--checked .react-toggle-track {
+    background-color: rgba(208, 0, 218,.95);
+}
+
+.sigma2.react-toggle--checked .react-toggle-track {
+    background-color: rgba(255, 145, 21,.95);
+}
+
+.Stations.react-toggle--checked .react-toggle-track {
+    background-color: rgba(146, 146, 146, 0.95);
+}
+
+.ModelledSnowDepth.react-toggle--disabled .react-toggle-track {
+    background-color: rgba(240, 240, 240, 0.95);
+    border: rgba(153, 153, 153, 0.95)
+}
+
+/* .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+    background-color: rgba(255, 0, 0, .95);
+} */
 
 .react-toggle-track-check {
     position: absolute;

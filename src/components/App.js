@@ -22,6 +22,7 @@ const App = () => {
   const initialOptions = {
     'Graph Options':
     {
+      'Current': true, 
       'Average': true,
       'Median': false,
       '1-σ': false,            
@@ -79,7 +80,7 @@ const App = () => {
     <div className="App">
       <Header />
       <div className='rowContainer'>
-        <LeafletMap changeStation={changeStation} station_id={station} />
+        <LeafletMap changeStation={changeStation} station_id={station} options={options['Map Options']}/>
         <div className='sidePanel'>
           <div className='chartContainer'>
             {/* * Use this conditional statement to change what is return based on isLoading */}

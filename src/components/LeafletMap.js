@@ -26,6 +26,11 @@ const LeafletMap = (props) => {
     // Map Center
     const [mapCenter, setMapCenter] = useState([43.89, -72.5])
 
+    // Markers Visible
+    const [markerVisible, setMarkerVisible] = useState(props.options.Stations)
+    console.log('markers vis', markerVisible)
+
+
     const bound_style = () => {
         return {
             weight: 2,
@@ -60,6 +65,10 @@ const LeafletMap = (props) => {
     }
 
     useEffect(() => {
+
+        // // Get Map options
+        // const options = props.options
+        // console.log('use effect', options)
 
 
         //Set Marker Locations 
@@ -198,13 +207,14 @@ const LeafletMap = (props) => {
                 }
             }
 
+            
             setMarkers(stationLocations)
             setLoaded(true)
             setMapCenter([43.89, -72.5])
         }
 
+        setMarkerVisible(props.options.Stations)
         getDailySummaries()
-
 
         // LAT AND LONG from the daily summaries might be more precise! 4 dec
 
@@ -256,7 +266,7 @@ const LeafletMap = (props) => {
 
         // getCurrentDepths()
 
-    }, [mapRef, props.station_id, selectedStationID]);
+    }, [mapRef, props.station_id, selectedStationID, props.options]);
 
     // This allows the marker to be dynamic, perhaps reflecting the latest measurement at the site?
     // Would be a lot of requests to get that info unless it is available a different way
@@ -338,6 +348,7 @@ const LeafletMap = (props) => {
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
+                                opacity={markerVisible? 100 : 0}
                                 icon={selectedIcon(stationobj.depth)}
                                 onClick={handleClick}
                             >
@@ -352,6 +363,7 @@ const LeafletMap = (props) => {
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
+                                opacity={markerVisible? 100 : 0}
                                 icon={icon(stationobj.depth)}
                                 onClick={handleClick}
                             >
