@@ -285,7 +285,7 @@ const LeafletMap = (props) => {
             return '43%'
         }
         if (len === 2) {
-            return '38%'
+            return '37%'
         }
         if (len === 3) {
             return '30%'
