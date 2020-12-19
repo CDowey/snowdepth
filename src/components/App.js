@@ -24,7 +24,7 @@ const App = () => {
     {
       'Average': true,
       'Median': false,
-      '1-σ': false,
+      '1-σ': false,            
       '2-σ': false
     },
     'Map Options':

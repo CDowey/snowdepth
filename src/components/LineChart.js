@@ -103,7 +103,7 @@ class LineChart extends Component {
       else if (key === 'SD_plus Season') {
         datasets.push(
           {
-            hidden: true,
+            hidden: !options['Graph Options']['1-σ'],
             label: 'Average ± 1-σ',
             data: value,
             order: 4,
@@ -119,7 +119,7 @@ class LineChart extends Component {
       else if (key === 'SD_minus Season') {
         datasets.push(
           {
-            hidden: true,
+            hidden: !options['Graph Options']['1-σ'],
             label: 'Average ± 1-σ',
             data: value,
             order: 4,
@@ -135,7 +135,7 @@ class LineChart extends Component {
       else if (key === 'SD_twoplus Season') {
         datasets.push(
           {
-            hidden: true,
+            hidden: !options['Graph Options']['2-σ'],
             label: 'Average ± 1-σ',
             data: value,
             order: 5,
@@ -151,7 +151,7 @@ class LineChart extends Component {
       else if (key === 'SD_twominus Season') {
         datasets.push(
           {
-            hidden: true,
+            hidden: !options['Graph Options']['2-σ'],
             label: 'Average ± 2-σ',
             data: value,
             order: 5,
@@ -257,7 +257,7 @@ class LineChart extends Component {
         else if (key === 'SD_plus Season') {
           datasets.push(
             {
-              hidden: true,
+              hidden: !options['Graph Options']['1-σ'],
               label: 'Average ± 1-σ',
               data: value,
               order: 4,
@@ -273,7 +273,7 @@ class LineChart extends Component {
         else if (key === 'SD_minus Season') {
           datasets.push(
             {
-              hidden: true,
+              // hidden: !options['Graph Options']['1-σ'],
               label: 'Average ± 1-σ',
               data: value,
               order: 4,
@@ -289,7 +289,7 @@ class LineChart extends Component {
         else if (key === 'SD_twoplus Season') {
           datasets.push(
             {
-              hidden: true,
+              hidden: !options['Graph Options']['2-σ'],
               label: 'Average ± 1-σ',
               data: value,
               order: 5,
@@ -305,7 +305,7 @@ class LineChart extends Component {
         else if (key === 'SD_twominus Season') {
           datasets.push(
             {
-              hidden: true,
+              hidden: !options['Graph Options']['2-σ'],
               label: 'Average ± 2-σ',
               data: value,
               order: 5,
