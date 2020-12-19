@@ -71,7 +71,7 @@ class LineChart extends Component {
       else if (key === 'Current Season') {
         datasets.push(
           {
-            hidden: true,
+            // hidden: true,
             label: key,
             data: value,
             order: 1,
@@ -104,7 +104,7 @@ class LineChart extends Component {
         datasets.push(
           {
             hidden: !options['Graph Options']['1-σ'],
-            label: 'Average ± 1-σ',
+            label: 'Average + 1-σ',
             data: value,
             order: 4,
             backgroundColor: 'rgba(208, 0, 218, .10)',
@@ -120,7 +120,7 @@ class LineChart extends Component {
         datasets.push(
           {
             hidden: !options['Graph Options']['1-σ'],
-            label: 'Average ± 1-σ',
+            label: 'Average - 1-σ',
             data: value,
             order: 4,
             backgroundColor: 'rgba(208, 0, 218, .15)',
@@ -224,7 +224,7 @@ class LineChart extends Component {
         else if (key === 'Current Season') {
           datasets.push(
             {
-              hidden: true,
+              // hidden: true,
               label: key,
               data: value,
               order: 1,
@@ -258,7 +258,7 @@ class LineChart extends Component {
           datasets.push(
             {
               hidden: !options['Graph Options']['1-σ'],
-              label: 'Average ± 1-σ',
+              label: 'Average + 1-σ',
               data: value,
               order: 4,
               backgroundColor: 'rgba(208, 0, 218, .10)',
@@ -273,8 +273,8 @@ class LineChart extends Component {
         else if (key === 'SD_minus Season') {
           datasets.push(
             {
-              // hidden: !options['Graph Options']['1-σ'],
-              label: 'Average ± 1-σ',
+              hidden: !options['Graph Options']['1-σ'],
+              label: 'Average - 1-σ',
               data: value,
               order: 4,
               backgroundColor: 'rgba(208, 0, 218, .15)',
