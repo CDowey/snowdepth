@@ -1,1 +1,1 @@
-(vermontsnow.us)[http://vermontsnow.us]
+[vermontsnow.us](http://vermontsnow.us)
