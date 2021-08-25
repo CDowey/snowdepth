@@ -154,7 +154,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
         const params = new URLSearchParams({
             dataset: 'daily-summaries',
             stations: station,
-            startDate: current_snow_year.substr(0, 4) + '-09-01',
+            startDate: current_snow_year.substr(0, 4) + '-08-01',
             endDate: moment(today).format("YYYY-MM-DD"),
             dataTypes: 'SNWD',
             units: 'standard',

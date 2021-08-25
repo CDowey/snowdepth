@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
+import { Map, MapContainer, useMapEvents, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
+import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet"
+import { loadModules } from 'esri-loader';
 import bbox from '@turf/bbox'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
@@ -207,7 +209,7 @@ const LeafletMap = (props) => {
                 }
             }
 
-            
+
             setMarkers(stationLocations)
             setLoaded(true)
             setMapCenter([43.89, -72.5])
@@ -248,7 +250,7 @@ const LeafletMap = (props) => {
             [bboxArray[3], bboxArray[2]]
         ]
 
-        map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
+        // map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
         // Needs better way for the container to resize based on available space and width/heigh ratio
 
         setMapCenter([43.89, -72.5])
@@ -325,20 +327,38 @@ const LeafletMap = (props) => {
         }))
     };
 
+    const MapClick = () => {
+        useMapEvents({
+            click: (e) => {
+              console.log('Lat:', e.latlng.lng, 'Long:', e.latlng.lng)
+            },
+          })
+
+          // Here is where we can query the snow depth image service
+          
+
+
+          return null
+      }
+
 
 
     return (
         <div className='mapContainer' >
 
-            <Map className='Map'
-                ref={mapRef}
+            <MapContainer className='Map'
+                // ref={mapRef}
                 center={mapCenter}
                 zoom={8}
                 // zoomSnap={7.5} //ideally this could be adjusted based on screensize (use fitBounds for this)
                 maxZoom={8}
                 minZoom={8}
                 zoomControl={false}
-                attributionControl={false} >
+                attributionControl={false} 
+                dragging={false}
+                >
+
+                <MapClick />
                 {
                     markers.map((stationobj, idx) => {
                         // Tunery Operator within the map was the only way I could get this to work with two diff markers
@@ -348,7 +368,7 @@ const LeafletMap = (props) => {
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
-                                opacity={markerVisible? 100 : 0}
+                                opacity={markerVisible ? 100 : 0}
                                 icon={selectedIcon(stationobj.depth)}
                                 onClick={handleClick}
                             >
@@ -363,7 +383,7 @@ const LeafletMap = (props) => {
                                 station_id={stationobj.station_id}
                                 station_name={stationobj.station_name}
                                 position={[stationobj.lat, stationobj.long]}
-                                opacity={markerVisible? 100 : 0}
+                                opacity={markerVisible ? 100 : 0}
                                 icon={icon(stationobj.depth)}
                                 onClick={handleClick}
                             >
@@ -374,6 +394,9 @@ const LeafletMap = (props) => {
                     })
                 }
 
+                <ImageMapLayer
+                    url="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/NOHRSC_Snow_Analysis/MapServer/3"
+                />
 
                 <TileLayer
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}"
@@ -394,7 +417,7 @@ const LeafletMap = (props) => {
                     style={mask_style}
                 />
 
-            </Map>
+            </MapContainer>
             <div className='mapHeader' >
                 {loaded
                     ?
