@@ -154,7 +154,7 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
         const params = new URLSearchParams({
             dataset: 'daily-summaries',
             stations: station,
-            startDate: current_snow_year.substr(0, 4) + '-08-01',
+            startDate: current_snow_year.substr(0, 4) + '-09-01',
             endDate: moment(today).format("YYYY-MM-DD"),
             dataTypes: 'SNWD',
             units: 'standard',
@@ -174,8 +174,15 @@ app.get('/:station/data.json', cors(corsOptions), async (req, res) => {
         }
     };
 
-    const current_depths_response = await getSnowDepths(station)
-    let current_depths = current_depths_response.map(a => parseInt(a.SNWD));
+    let current_depths_response = await getSnowDepths(station)
+
+    // If you get a bad response it will be an object
+    if (typeof current_depths_response === 'object' && current_depths_response !== null && !Array.isArray(current_depths_response)
+    ){
+        current_depths = []
+    } else {
+        let current_depths = current_depths_response.map(a => parseInt(a.SNWD));
+    }
 
     // Set initial value to 0 and then fill forward to fill any gaps
     current_depths[0] = 0
