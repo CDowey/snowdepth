@@ -7,8 +7,6 @@ import MapInfo from './MapInfo'
 import OptionsPane from './OptionsPane'
 import NavPanel from './NavPanel';
 import 'semantic-ui-css/semantic.min.css'
-import { Button, Toast } from 'react-bootstrap'
-import { findAllByTestId } from '@testing-library/react';
 
 const urlPrefix = window.location.hostname.includes('localhost') ? 'http://localhost:4000/' : 'http://157.245.243.254/'
 

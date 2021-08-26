@@ -15,13 +15,13 @@ const OptionsPane = (props) => {
 
     // function for making class names without leading numbers
     const cleanClassNames = (incomingclassname) => {
-        if (incomingclassname == '1-σ'){
+        if (incomingclassname === '1-σ'){
             return 'sigma1'
         }
-        else if (incomingclassname == '2-σ'){
+        else if (incomingclassname === '2-σ'){
             return 'sigma2'
         }
-        else if (incomingclassname == 'Modelled Snow Depth'){
+        else if (incomingclassname === 'Modelled Snow Depth'){
             return 'ModelledSnowDepth'
         }
         else {
@@ -40,7 +40,7 @@ const OptionsPane = (props) => {
                         className= {cleanClassNames(item)} 
                         defaultChecked={options[item]}
                         icons={false}
-                        disabled={item == 'Modelled Snow Depth' ? true : false}
+                        disabled={item === 'Modelled Snow Depth' ? true : false}
                         onChange={() => toggle(title, item, options[item])} />
                     <span>{' ' + item}</span>
             </label>

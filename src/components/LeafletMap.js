@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Map, MapContainer, useMapEvents, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
-import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet"
-import { loadModules } from 'esri-loader';
-import bbox from '@turf/bbox'
+import { MapContainer, useMapEvents, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet'
+// import { ImageMapLayer, FeatureLayer } from "react-esri-leaflet"
+// import { loadModules } from 'esri-loader';
+// import bbox from '@turf/bbox'
 import MapIcon from './MapIcon'
 import L from 'leaflet';
 //import esri from 'esri-leaflet';
@@ -234,21 +234,21 @@ const LeafletMap = (props) => {
         // map.fitBounds(group.getBounds());
 
         // Destructure mapRef
-        const { current = {} } = mapRef;        // sets it to empty object if mapRef not defined
-        const { leafletElement: map } = current;
+        // const { current = {} } = mapRef;        // sets it to empty object if mapRef not defined
+        // const { leafletElement: map } = current;
 
         // need geojson ref
-        const { statebounday = {} } = stateBoundayRef;
+        // const { statebounday = {} } = stateBoundayRef;
 
         // console.log('geojson ref', statebounday)
 
         // use turf/bbox to get bounding box (I couldn't figure out the GeoJSON refs...for Leaflet)
 
-        const bboxArray = bbox(VT_Boundary);
-        const VT_bounds = [
-            [bboxArray[1], bboxArray[0]],
-            [bboxArray[3], bboxArray[2]]
-        ]
+        // const bboxArray = bbox(VT_Boundary);
+        // const VT_bounds = [
+            // [bboxArray[1], bboxArray[0]],
+            // [bboxArray[3], bboxArray[2]]
+        // ]
 
         // map.fitBounds(VT_bounds)   // This works but doesn't allow for the partial zoom steps like zoomSnap does. 
         // Needs better way for the container to resize based on available space and width/heigh ratio
@@ -356,6 +356,12 @@ const LeafletMap = (props) => {
                 zoomControl={false}
                 attributionControl={false} 
                 dragging={false}
+                doubleClickZoom={"center"}
+                zoomSnap={false} 
+                zoomDelta={false} 
+                trackResize={false}
+                touchZoom={false}
+                scrollWheelZoom={false}
                 >
 
                 <MapClick />
@@ -370,11 +376,16 @@ const LeafletMap = (props) => {
                                 position={[stationobj.lat, stationobj.long]}
                                 opacity={markerVisible ? 100 : 0}
                                 icon={selectedIcon(stationobj.depth)}
-                                onClick={handleClick}
+                                // onClick={handleClick}
+                                eventHandlers={{
+                                    click: (e) => {
+                                        handleClick(e)
+                                    },
+                                  }}
                             >
-                                <Popup >
+                                {/* <Popup >
                                     <span > Station Name < br /> {stationobj.station_name} </span>
-                                </Popup>
+                                </Popup> */}
                             </Marker>
 
                             :
@@ -385,7 +396,10 @@ const LeafletMap = (props) => {
                                 position={[stationobj.lat, stationobj.long]}
                                 opacity={markerVisible ? 100 : 0}
                                 icon={icon(stationobj.depth)}
-                                onClick={handleClick}
+                                // onClick={handleClick}
+                                eventHandlers={{
+                                    click: (e) => {handleClick(e)},
+                                  }}
                             >
                                 <Popup >
                                     <span > Station Name < br /> {stationobj.station_name} </span>
@@ -394,9 +408,9 @@ const LeafletMap = (props) => {
                     })
                 }
 
-                <ImageMapLayer
+                {/* <ImageMapLayer
                     url="https://idpgis.ncep.noaa.gov/arcgis/rest/services/NWS_Observations/NOHRSC_Snow_Analysis/MapServer/3"
-                />
+                /> */}
 
                 <TileLayer
                     url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}"
